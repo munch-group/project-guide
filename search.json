@@ -4,21 +4,7 @@
     "href": "index.html",
     "title": "Project Guide",
     "section": "",
-    "text": "Introduction\nThese pages are generated from Git repository (more about that later). The repository serves both as a source of practial information to get you started, and as a scaffold for your project. Once you have copied it and made it your own, you populate with your own text, code, analysis notebooks, and documentation. For now most of what you see are placeholders for what will eventually be your own contributions."
-  },
-  {
-    "objectID": "index.html#project-outline",
-    "href": "index.html#project-outline",
-    "title": "Project Guide",
-    "section": "Project outline",
-    "text": "Project outline\nHere you should write a paragraph outlining the project to the extent you can at this point. What are the goals of your project? What would you like to find out? What would you like to learn? You should update it along the way."
-  },
-  {
-    "objectID": "index.html#project-plan",
-    "href": "index.html#project-plan",
-    "title": "Project Guide",
-    "section": "Project plan",
-    "text": "Project plan\nHere you should outline project plan and what you intend to do in the weeks/months of your project. This is ofcause tentative and will change along the way. But it is important that it changes because you decide it is meaningful.\n\nThe first month is allocated to …\nThe second month …\n\n\nThe last month …"
+    "text": "Introduction\nThese pages serve as a source of practial information to get you started. The part called “Project setup”, take you though the steps to get you set up on your own machine and on our computing cluster. You should go through this part in the other it is listed and make sure you have succesfully completed each step before you go on.\nThe Quickstarts are introductions to the most important tools you will use.\nYou will end up producing a set of pages much like these, and the Notebooks and Reporting both serve as showcases and to give you an idea of how your own notebooks and reports will show once you get to that point."
   },
   {
     "objectID": "index.html#suggested-reading",
