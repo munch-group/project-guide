@@ -123,14 +123,14 @@
     "href": "notebooks/01_getting_started.html",
     "title": "9  Getting started",
     "section": "",
-    "text": "import matplotlib.pyplot as plt\nimport seaborn as sns\nsns.set()\nsns.set_style(\"whitegrid\")\nimport random\n\n\nplt.plot([random.random() for i in range(100)]) ;\n\n\n\n\nFigure 9.1: Line plot of random points. bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"
+    "text": "import matplotlib.pyplot as plt\nfrom matplotlib_inline.backend_inline import set_matplotlib_formats\n#set_matplotlib_formats('retina', 'png')\nset_matplotlib_formats('pdf', 'svg')\nimport seaborn as sns\nsns.set()\nsns.set_style(\"ticks\")\nimport random\n\n\nplt.plot([random.random() for i in range(100)]) ;\n\n\n\n\nFigure 9.1: Line plot of random points. bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla"
   },
   {
     "objectID": "notebooks/02_jupyter_and_quarto.html",
     "href": "notebooks/02_jupyter_and_quarto.html",
     "title": "10  Jupyter with Quarto",
     "section": "",
-    "text": "import matplotlib.pyplot as plt\nimport seaborn as sns\nsns.set()\nsns.set_style(\"whitegrid\")\nimport random\n\n\nplt.scatter([random.random() for i in range(100)],\n            [random.random() for i in range(100)]) ;\n\n\n\n\nFigure 10.1: Scatter plot of random points"
+    "text": "import matplotlib.pyplot as plt\nfrom matplotlib_inline.backend_inline import set_matplotlib_formats\n#set_matplotlib_formats('retina', 'png')\nset_matplotlib_formats('pdf', 'svg')\nimport seaborn as sns\nsns.set()\nsns.set_style(\"ticks\")\nimport random\n\n\nplt.scatter([random.random() for i in range(100)],\n            [random.random() for i in range(100)]) ;\n\n\n\n\nFigure 10.1: Scatter plot of random points"
   },
   {
     "objectID": "reports/manuscript.html#abstract",
