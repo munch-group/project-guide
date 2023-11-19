@@ -6,8 +6,8 @@ execute:
   echo: true
 
 book:
-  title: "Title of your project"
-  author: "Your Name"
+  title: "Project Guide"
+  author: "Kasper Munch"
   chapters:
     - index.qmd
     - part: "Project setup"
@@ -26,7 +26,7 @@ book:
       chapters: 
       - notebooks/01_getting_started.ipynb
       - notebooks/02_jupyter_and_quarto.ipynb
-    - part: "Reports"
+    - part: "Reporting"
       chapters: 
       - reports/manuscript.qmd
       - reports/supplementary.qmd
