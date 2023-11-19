@@ -1,0 +1,99 @@
+
+Saved
+# Cluster access
+
+<img src="https://icon-library.com/images/62418-database-icons-virtual-servers-computer-private-server.png" align="right" width="150"  />
+
+The [GenomeDK](https://genome.au.dk/) cluster is a huge collection of computers with a shared file system. You can find lots of helpful information about the cluster on their homepage beyond what I cover on these pages. The cluster does not have a screen or keyboard you can use, but by connecting to the cluster from your computer, you can create and edit files much like if they were on your laptop. These pages take you through the steps to connect and access the cluster.
+
+::: {.callout-warning}
+
+## Heads up
+
+This is not a leisure read. Make sure you follow it to the letter. Do each step in order, and do not proceed until you have completed each step.
+
+:::
+
+Below, you will see something like `<cluster user name>` or `<project folder>`. Whenever you see something like that, you should replace everything, including `<` and `>`, with whatever it says. E.g., if your cluster user name is `mike`, you should replace `<cluster user name>` with `mike`.
+
+Before you can begin, you need access to the cluster. The cluster is called GenomeDK and has its own [website](https://genome.au.dk) with lots of information and documentation. To get an account on the cluster, you must [request one here](https://genome.au.dk/docs/getting-started/#request-access). Below, `<username>` will represent your user name.
+
+### Connecting to the cluster using ssh
+
+<img src="https://atulhost.com/wp-content/uploads/2020/04/ssh.png" align="right" width="300" height="200" />
+
+SSH is short for secure shell. A shell is the software that lets you run commands in your terminal window. The *secure shell* (SSH) allows you to log in to another computer to navigate the folders and run commands on that machine. So when you open your terminal window, your commands run on your local machine, but when you "ssh" (yes, it is a verb, too) into the cluster, your commands run on the cluster. Before you go on, try to run the command `hostname` in your terminal. You can see that it prints something that tells you that you are on your laptop. 
+
+You connect to the cluster from the terminal by executing the command below (remember to replace `<cluster user name>` with your actual cluster user name):
+
+```bash
+ssh <cluster user name>@login.genome.au.dk
+```
+
+When you do, ssh prompts you for the password that goes with your cluster username (GenomeDK requires two-factor authentication and will sometimes ask you for a site key). Enter the password and press Enter. You are now in your home folder on the cluster. Your terminal looks the same as before, but it will print:
+
+```
+
+  _____                                ______ _   __
+
+ |  __ \                               |  _  \ | / /
+
+ | |  \/ ___ _ __   ___  _ __ ___   ___| | | | |/ /
+
+ | | __ / _ \ '_ \ / _ \| '_ ` _ \ / _ \ | | |    \
+
+ | |_\ \  __/ | | | (_) | | | | | |  __/ |/ /| |\  \
+
+  \____/\___|_| |_|\___/|_| |_| |_|\___|___/ \_| \_/
+
+```
+
+If you run the `hostname` command again, you can see that you are now on `fe-open-01`. Now log out of the cluster again by typing `exit` and Enter (or pressing  Ctrl-d). You are now back on your laptop. Try `hostname` again and see the name of your computer.
+
+
+
+You will need to log in to the cluster many times, so you should set up your SSH connection to the cluster so you can connect securely without typing the password every time. You do not need to know *how* this works, but if you are interested, here is roughly how:
+
+::: {.callout-note}
+
+## SSH keys
+
+Firstly, you have to understand what public/private encryption keys are. A private key is a very long, random sequence of bits. A private key is kept secret and never leaves your laptop. A public key is another string of bits that is a derivative of the private key. You can generate a unique public key from the private key but cannot get the private key from a public key: It is a one-way process. You can encrypt (or sign) any message using the public key, and it will only be possible to decrypt it using the private key. In other words, anyone with your public key can send you encrypted messages that only you will be able to read. So, if the cluster has your public key saved, it can authenticate you like this: The cluster sends your machine an encrypted message using your public key. Your laptop then decrypts the message using its private key and sends it back. The cluster then checks the decryption and logs you in.
+
+:::
+
+First, check if you have these two authentication files on your local machine (you can do so by running `ls -a ~/.ssh` in the terminal):
+
+```bash
+~/.ssh/id_rsa
+~/.ssh/id_rsa.pub
+```
+
+You most likely do not. If so, you generate authentication keys with the command below. Just press Enter when prompted for a file in which to save the key. Do not enter a passphrase when prompted - just press enter:
+
+```bash
+ssh-keygen -t rsa
+
+```
+
+Now use `ssh` to create a directory `~/.ssh` on the cluster (assuming your username on the cluster is `<cluster user name>`). SSH will prompt you for your password.
+
+```bash
+ssh <cluster user name>@login.genome.au.dk mkdir -p .ssh
+```
+
+Finally, append the public `ssh` key on your local machine to the file `.ssh/authorized_keys` on the cluster and enter your password (replace `<cluster user name>` with your cluster user name):
+
+```bash
+cat ~/.ssh/id_rsa.pub | ssh username@login.genome.au.dk 'cat >> .ssh/authorized_keys'
+```
+
+From now on, you can log into the cluster from your local machine without being prompted for a password.
+
+Try it:
+
+```bash
+ssh <cluster user name>@login.genome.au.dk
+```
+
+(see, no password).

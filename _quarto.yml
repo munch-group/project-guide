@@ -10,16 +10,22 @@ book:
   author: "Your Name"
   chapters:
     - index.qmd
-    - part: "Howtos"
+    - part: "Project setup"
       chapters: 
       - guides/laptop_setup.qmd
-      - guides/genomedk.qmd
+      - guides/cluster_access.qmd
       - guides/cluster_setup.qmd
       - guides/reproducible.qmd
+    - part: "Quickstarts"
+      chapters: 
+      - guides/git.qmd      
+      - guides/gwf.qmd      
+      - guides/jupyter.qmd      
+      - guides/quarto.qmd      
     - part: "Notebooks"
       chapters: 
-      - notebooks/01_notebook.ipynb
-      - notebooks/02_notebook.ipynb
+      - notebooks/01_getting_started.ipynb
+      - notebooks/02_jupyter_and_quarto.ipynb
     - part: "Reports"
       chapters: 
       - reports/manuscript.qmd

@@ -1,7 +1,9 @@
 
 # Cluster set up
 
-This page covers how you get set up on the GenomeDK cluster to do your project. First log in to the cluster:
+This page covers how you get set up on the GenomeDK cluster to do your project. 
+
+First log in to the cluster:
 
 ```bash
 ssh <cluster user name>@login.genome.au.dk
@@ -28,34 +30,53 @@ Follow the default installation, and say **yes** when it asks you if it should r
 
 ## The project folder
 
-The project folder is a folder that is set up on the cluster to hold your project. I call it `projectfolder` here, but it will be called something sensible like `baboonadmixture`.
+The project folder is a folder that is set up on the cluster to hold your project. I use the placeholder `<projectfolder>` here, but it will be called something sensible like `baboonadmixture`.
 
 It is accessible to only you and anyone else you collaborate with (such as your supervisor). The project folder is in your home directory and should hold the following subfolders:
 
-    projectfolder
+    <projectfolder>
         /data
         /people
-            /username
-            /supervisor_username
+            /<username>
+            /<supervisor_username>
 
 The `<projectfolder>/people/<username>` is your domain. This is where you have all the files that relates to your project.
 
-The name of the project folder is is also the name of the account that gets billed for the work on the cluster. When you run `srun`, `sbatch` or `slurm-jupyter` you must specify that project name using the `-A` or `--account` options (see below for more details on that). 
+The name of the project folder is is also the name of the account that gets billed for the work on the cluster. When you run `gwf`, `srun`, `sbatch` or `slurm-jupyter` (see below) you must specify that project name using the `-A` or `--account` options (see below for more details on that). 
 
 
+
+## Make a Git repository for your project
+
+<img src="https://github.githubassets.com/images/modules/open_graph/github-mark.png" align="right" width="200"  />
+
+[Git](https://git-scm.com/) is a version control tool that you use from the terminal. A folder under Git control is called a repository. Git does not interfere with your files and it does not save them. It lets you monitor the state of your files so you can easily see if any files are added, modified, or removed, and it allows you to (manually) maintain a record of what files where changes when, how, and for what reason. 
+
+1. Start by creating your own [github account](https://github.com/join) if you do not have one already.
+2. Follow the instructions [on this page](https://www.inmotionhosting.com/support/server/ssh/how-to-add-ssh-keys-to-your-github-account/) to add ssh keys to GitHub.
+3. Email me your GitHub username on so I can add you to the shared GitHub account for our research group. I will create a repository for you with scaffold of folders and with placeholder files that will get you started in the right way.
+4. Wait for an email or notification and accept my inviation to the "munch-lab" GitHub organization and an email from me with the name of the repository I made for your project. In what follows, I will use `<repositoryname>` for the name of your repository.
+5. Make sure you are logged into your GitHub account and then go to the repository listing at the [munch-lab organization](https://github.com/orgs/munch-lab/repositories) on GitHub. Find the directory I made for you and have a look at what is in there. Leave it there for now.
 
 ### Cloning this git repository to the cluster
 
-Go to your folder under the project folder (`<projectfolder>/people/<username>`) and clone your repository:
+Start logging into the cluster and run these two commands to let Git know who you are:
 
-```bash
-git clone git@github.com:username/birc-project.git
 ```
-(replace `username` with your GitHub username).
+git config --global user.name "<Your GitHub user name>"
+git config --global user.email <your_email@whatever.com>
+```
 
-You now have a folder called `<projectfolder>/people/<username>/birc-project` and this is where you will do all your work for the project.
+Go to your folder under the project folder (`~/<projectfolder>/people/<username>`). Once you are in that folder, you can "clone" your git repository from GitHub to the folder on the cluster.
 
-If you `cd` into `birc-directory` and run `ls`, you will see a number of folders.
+```
+git clone git@github.com:munch-lab/<repositoryname>.git
+```
+(replace `<repositoryname>` with the actual name of your repository).
+
+You now have a folder called `<projectfolder>/people/<username>/<repositoryname>` and this is where you must keep *all* your files for the project.
+
+If you `cd` into `<repositoryname>` and run `ls`, you will see a number of folders.
 
 - `data`: Stores *small* (tens of megabases) data files you want to keep .
 - `binder`: Stores the `environment.yml` files documenting your conda environment used in the project.
@@ -65,52 +86,17 @@ If you `cd` into `birc-directory` and run `ls`, you will see a number of folders
 - `notebooks`: Stores Juptyer notebooks with code, documentation, and results.
 - `figures`: Stores result plots and figures you make.
 - `results`: Stores the small result files of your project (tens of megabases).
+- `reports`: Stores documents reporting your findings.
 
 Files in all those folders are under Git control, *except* files in the `steps` folder. Those files are not backed up in any way, but should instead be reproducible using the code and information in your other folders.
 
-## The GitHub repository
+## Git 101
 
-<img src="https://github.githubassets.com/images/modules/open_graph/github-mark.png" align="right" width="200"  />
+When you are in your `<repositoryname>` folder, you can run git commands to manage your files, record their changes and sync them to the repository on GitHub for safe keeping. [These tutorials](https://www.atlassian.com/git) are good introductions to git. The three most important commands to learn are: [git status](https://git-scm.com/docs/git-status), [git add](https://git-scm.com/docs/git-add), [git rm](https://git-scm.com/docs/git-rm), [git mv](https://git-scm.com/docs/git-mv), [git commit](https://git-scm.com/docs/git-commit) and [git push](https://git-scm.com/docs/git-push). 
 
-The text you are reading now is actually in a Git repository i made for you. 
+You use `git add <the_changed_file>` to journal the creation or modification of a file. This "stages" the change. This adds the file to the a "group" of changes that represent some modification to your project. You can add more files to that "group" by running `git add` again. 
 
-[Git](https://git-scm.com/) is a version control tool that you use from the terminal. A folder under Git control is called a repository. Git does not interfere with your files and it does not save them. It lets you monitor the state of your files so you can easily see if any files are added, modified, or removed, and it allows you to (manually) maintain a record of what files where changes when, how, and for what reason. 
-
-In addition to the documentation you are reading now, the repository serves as a template for your project. Follow these steps in order to get this repository:
-
-1. Start by creating your own [github account](https://github.com/join) if you do not have one. 
-2. Follow the instructions [on this page](https://www.inmotionhosting.com/support/server/ssh/how-to-add-ssh-keys-to-your-github-account/) to add ssh keys to GitHub.
-3. Log in to your GitHub account on the web. Go to the [analysis-remplate-repo](https://github.com/kaspermunch/analysis-remplate-repo). Click the big green button that says "Use this template" and pick "Create new repository". You are then prompted for a name for your repository. Name it `birc-project`. Leave the rest as it is and click "Create repository". This will create your own copy of this repository on your own GitHub account.
-
-Once your own `birc-project` repository is ready, find it on your own account, go to the repository front page. Look at the `cluster_setup.qmd` file in the `guides` folder. This is what renders into the page you are reading this from. You will learn later how to make such web pages yourself to document your work.
-
-## Git 1.0.1
-
-Start logging into the cluster and run these two commands to let Git know who you are:
-```
-git config --global user.name "<Your GitHub user name>"
-git config --global user.email <your_email@whatever.com>
-```
-
-Note that to run git commands tracking your `birc-project`, . 
-
-[These tutorials](https://www.atlassian.com/git) are good. The three most important commands to learn are [git status](https://git-scm.com/docs/git-status), [git add](https://git-scm.com/docs/git-add), [git rm](https://git-scm.com/docs/git-rm), [git commit](https://git-scm.com/docs/git-commit) and [git push](https://git-scm.com/docs/git-push). 
-
-You should read the documentation, but in a nutshell this is how it works:
-
-`git status` shows you the status of your files. It may show you that you have created or modified one or more files.
-
-::: {.callout-tip}
-## Tip
-
-When you run git commands, you must be in your `birc-project` folder. Otherwise git will not know which repository you are referring to.
-:::
-
-To journal the creation or modification of a file, you run  `git add <the_changed_file>`. This "stages" the change. This adds the file to the a "group" of changes that represent some modification to your project. You can add more files to that "group" by running `git add` again. 
-
-Maybe you added two python files that together lets you run some analysis. Now you want to store the group of changes to the journal maintained by Git and associate it with a description that describes it. For that you use `git commit -m 'description'`. If you added two python files, your description could be `'Added two python files for my analysis'`. Now your changes are recorded in the Git journal for the `birc-project` repository *on the cluster*, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. 
-
-To backup your repository you need to synchronize your local `birc-project` repository on your computer with the `birc-project` repository on GitHub. You do that using the `git push` command.
+Maybe you added or changed two python files that together lets you run some analysis. Now you want to store the group of changes to the journal maintained by Git and associate it with a description that describes it. For that you use `git commit -m 'description'`. If you added two python files, your description could be `'Added two python files for my analysis'`. Now your changes are recorded in the version of the `<repositoryname>` *on the cluster*, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. To backup your repository you need to synchronize your local `<repositoryname>` repository on your computer with the `<repositoryname>` repository on GitHub. You do that using the `git push` command.
 
 There is a cheat sheet [here](https://training.github.com/downloads/github-git-cheat-sheet/) and some good visual guides [here](https://ndpsoftware.com/git-cheatsheet.html) and [here](https://marklodato.github.io/visual-git-guide/index-en.html).
 
@@ -122,30 +108,27 @@ Your files on the cluster are not backed up! If you want to backup files, you ne
 
 The best/only way to keep your code safe is to track your files with git push each set of changes to GitHub as often as it makes sense. The more often you do it, the less work you will loose if you accidentally delete or overwrite a file.
 
-We will get back to which files you should track using Git in @sec-reproducible-research on reproducible research.
-
+We will get back to which files you should track using Git in @sec-reproducible-work on how to to make your work reproducible.
 
 ## Create a conda environment
 
 Log in to the cluster and run this command to create a conda environment for your project on the cluster. This environment should contain the packages that you need for your project. 
 
+If you create your environment like this (your can pick another name than `birc-project` if you have an environment with that name already):
 
-Create your environment like this:
-
-```bash
-conda env create -y -f binder/environment.yml
+```
+conda create -n birc-project -y -f binder/environment.yml
 ```
 
-You probably end up needing more packages than is initially included, you can easily install them later. E.g., to see how to install `biopython` using `conda`, just google "conda biopython". The top link instructs you to install it like this: `conda install -c conda-forge biopython`.
+This environment contains most of the packages you will need. If you find yourself needing more packages than is initially included, you can easily install them later. E.g., to see how to install `biopython` using `conda`, just google "conda biopython". The top link instructs you to install it like this: `conda install -c conda-forge biopython`.
 
-**Important:** Whenever you log into the cluster to work on your project, you should activate your `birc-project` environment like this:
+**Important:** Whenever you log into the cluster to work on your project, you should activate your `birc-project` environment like this, otherwise the packages are not available:
 
 ```bash
 conda activate birc-project
 ```
 
- When your environment is active, it says `(birc-project)` on the command prompt instead of `(base)`.
-
+When your environment is active, it says `(birc-project)` on the command prompt instead of `(base)`.
 
 ### Set up Jupyter
 
@@ -160,14 +143,6 @@ config-slurm-jupyter.sh
 ```
 
 The script will ask for a lot of information. You can just press `Enter` for all of them **except** when prompted for what password you want to use: Then, you must type your cluster password.
-
-
-
-### Visual Studio Code
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2560px-Visual_Studio_Code_1.35_icon.svg.png" align="right" width="100" height="100" />
-
-If you did not do so when you installed Anaconda, you should download and install Visual Studio Code. VScode is great for developing scripts and editing text files. Once you have installed VS code, you should install the "Remote Development" extension. You do that by clicking the funny squares in the left bar and search for "Remote Development". Once installed, you can click the small green square in the lower-left corner to connect to the cluster. Select "Connect current window to host" then "Add new SSH host", then type `<username>@login.genome.au.dk`, then select the config file `.ssh/config`. Now you can click the small green square in the lower-left corner to connect to the cluster by selecting `login.genome.au.dk`. It may take a bit, but once it is done installing a remote server, you will have access to the files in your home folder on the cluster.
 
 ### How to run a Jupyter notebook on the cluster
 
@@ -192,6 +167,12 @@ In Chrome, you can simply type the characters "thisisunsafe" while in the Chrome
 <img src="img/thisisunsafe.png" alt="image" width="450"/>
 
 Once ready, jupyter may ask for your cluster password. To close the jupyter notebook, press `Ctrl-c` in the terminal. Closing the browser window does **not** close down the jupyter on the cluster. You can [read this tutorial](https://www.dataquest.io/blog/jupyter-notebook-tutorial/) to learn how to use a jupyter notebook.
+
+### Visual Studio Code
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2560px-Visual_Studio_Code_1.35_icon.svg.png" align="right" width="100" height="100" />
+
+If you did not do so when you installed Anaconda, you should download and install Visual Studio Code. VScode is great for developing scripts and editing text files. Once you have installed VScode, you should install the "Remote Development" extension. You do that by clicking the funny squares in the left bar and search for "Remote Development". Once installed, you can click the small green square in the lower-left corner to connect to the cluster. Select "Connect current window to host" then "Add new SSH host", then type `<username>@login.genome.au.dk`, then select the config file `.ssh/config`. Now you can click the small green square in the lower-left corner to connect to the cluster by selecting `login.genome.au.dk`. It may take a bit, but once it is done installing a remote server, you will have access to the files in your home folder on the cluster.
 
 ### Running interactive commands on the cluster
 
