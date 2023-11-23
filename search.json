@@ -7,13 +7,6 @@
     "text": "Introduction\nThese pages serve as a source of practial information to get you started. The part called “Project setup”, take you though the steps to get you set up on your own machine and on our computing cluster. You should go through this part in the other it is listed and make sure you have succesfully completed each step before you go on.\nThe Quickstarts are introductions to the most important tools you will use.\nYou will end up producing a set of pages much like these, and the Notebooks and Reporting both serve as showcases and to give you an idea of how your own notebooks and reports will show once you get to that point."
   },
   {
-    "objectID": "index.html#suggested-reading",
-    "href": "index.html#suggested-reading",
-    "title": "Project Guide",
-    "section": "Suggested reading",
-    "text": "Suggested reading\nThese are some suggestions for background reading. If you want to some reading before you begin the project, focus on textbook population genetic basics. I will guide you to more relevant reads once you get started.\n\nNielsen and Slatkin’s “An Introduction to Population Genetics: Theory and Applications” is a good introduction to the basics of population genetics.\nGraham Coop’s Lecture notes are also a good basic introduction (and is free).\nGenetic Villains: Killer Meiotic Drivers, is a review on meiotic drive.\nExtraordinary selection on the human X chromosome associated with archaic admixture is our most recent paper on the topic."
-  },
-  {
     "objectID": "guides/laptop_setup.html",
     "href": "guides/laptop_setup.html",
     "title": "1  Laptop setup",
