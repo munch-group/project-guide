@@ -6,11 +6,3 @@ The Quickstarts are introductions to the most important tools you will use.
 
 You will end up producing a set of pages much like these, and the Notebooks and Reporting both serve as showcases and to give you an idea of how your own notebooks and reports will show once you get to that point.
 
-## Suggested reading
-
-These are some suggestions for background reading. If you want to some reading before you begin the project, focus on textbook population genetic basics. I will guide you to more relevant reads once you get started.
-
-- [Nielsen and Slatkin's "An Introduction to Population Genetics: Theory and Applications"](https://www.amazon.com/Introduction-Population-Genetics-Theory-Applications/dp/1605351539) is a good introduction to the basics of population genetics.
-- [Graham Coop's Lecture notes](https://github.com/cooplab/popgen-notes) are also a good basic introduction (and is free).
-- [Genetic Villains: Killer Meiotic Drivers](https://doi.org/10.1016/j.tig.2018.02.003), is a review on meiotic drive.
-- [Extraordinary selection on the human X chromosome associated with archaic admixture](10.1016/j.xgen.2023.100274) is our most recent paper on the topic.
