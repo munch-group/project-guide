@@ -55,8 +55,16 @@ The name of the project folder is is also the name of the account that gets bill
 1. Start by creating your own [github account](https://github.com/join) if you do not have one already.
 2. Follow the instructions [on this page](https://www.inmotionhosting.com/support/server/ssh/how-to-add-ssh-keys-to-your-github-account/) to add ssh keys to GitHub.
 3. Email me your GitHub username on so I can add you to the shared GitHub account for our research group. I will create a repository for you with scaffold of folders and with placeholder files that will get you started in the right way.
-4. Wait for an email or notification and accept my inviation to the "munch-lab" GitHub organization and an email from me with the name of the repository I made for your project. In what follows, I will use `<repositoryname>` for the name of your repository.
+4. Wait for an email or notification and accept my inviation to the "munch-lab" GitHub organization and an email from me with the name of the repository I made for your project. On these pages, I will use `<repositoryname>` for the name of your repository.
 5. Make sure you are logged into your GitHub account and then go to the repository listing at the [munch-lab organization](https://github.com/orgs/munch-lab/repositories) on GitHub. Find the directory I made for you and have a look at what is in there. Leave it there for now.
+
+::: {.callout-important}
+## Warning: Files on the cluster are not backed up!
+
+Your files on the cluster are not backed up! If you want to backup files, you need to put them in a folder called BACKUP. But even if you do, you may loose a week of work, because the backup loop is slow. 
+:::
+
+The best way to keep your progress safe, is to ensure is reproducible and pushed to GitHub. More about that in @sec-reproducible-work and @sec-git.
 
 ### Cloning this git repository to the cluster
 
@@ -89,16 +97,6 @@ If you `cd` into `<repositoryname>` and run `ls`, you will see a number of folde
 - `reports`: Stores documents reporting your findings.
 
 Files in all those folders are under Git control, *except* files in the `steps` folder. Those files are not backed up in any way, but should instead be reproducible using the code and information in your other folders.
-
-## Git 101
-
-When you are in your `<repositoryname>` folder, you can run git commands to manage your files, record their changes and sync them to the repository on GitHub for safe keeping. [These tutorials](https://www.atlassian.com/git) are good introductions to git. The three most important commands to learn are: [git status](https://git-scm.com/docs/git-status), [git add](https://git-scm.com/docs/git-add), [git rm](https://git-scm.com/docs/git-rm), [git mv](https://git-scm.com/docs/git-mv), [git commit](https://git-scm.com/docs/git-commit) and [git push](https://git-scm.com/docs/git-push). 
-
-You use `git add <the_changed_file>` to journal the creation or modification of a file. This "stages" the change. This adds the file to the a "group" of changes that represent some modification to your project. You can add more files to that "group" by running `git add` again. 
-
-Maybe you added or changed two python files that together lets you run some analysis. Now you want to store the group of changes to the journal maintained by Git and associate it with a description that describes it. For that you use `git commit -m 'description'`. If you added two python files, your description could be `'Added two python files for my analysis'`. Now your changes are recorded in the version of the `<repositoryname>` *on the cluster*, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. To backup your repository you need to synchronize your local `<repositoryname>` repository on your computer with the `<repositoryname>` repository on GitHub. You do that using the `git push` command.
-
-There is a cheat sheet [here](https://training.github.com/downloads/github-git-cheat-sheet/) and some good visual guides [here](https://ndpsoftware.com/git-cheatsheet.html) and [here](https://marklodato.github.io/visual-git-guide/index-en.html).
 
 ::: {.callout-important}
 ## Warning: Files on the cluster are not backed up!
