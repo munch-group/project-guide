@@ -274,8 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#install-python-on-your-cluster-account" id="toc-install-python-on-your-cluster-account" class="nav-link active" data-scroll-target="#install-python-on-your-cluster-account"><span class="header-section-number">3.1</span> Install Python on your cluster account</a></li>
   <li><a href="#the-project-folder" id="toc-the-project-folder" class="nav-link" data-scroll-target="#the-project-folder"><span class="header-section-number">3.2</span> The project folder</a></li>
   <li><a href="#make-a-git-repository-for-your-project" id="toc-make-a-git-repository-for-your-project" class="nav-link" data-scroll-target="#make-a-git-repository-for-your-project"><span class="header-section-number">3.3</span> Make a Git repository for your project</a></li>
-  <li><a href="#git-101" id="toc-git-101" class="nav-link" data-scroll-target="#git-101"><span class="header-section-number">3.4</span> Git 101</a></li>
-  <li><a href="#create-a-conda-environment" id="toc-create-a-conda-environment" class="nav-link" data-scroll-target="#create-a-conda-environment"><span class="header-section-number">3.5</span> Create a conda environment</a></li>
+  <li><a href="#create-a-conda-environment" id="toc-create-a-conda-environment" class="nav-link" data-scroll-target="#create-a-conda-environment"><span class="header-section-number">3.4</span> Create a conda environment</a></li>
   </ul>
 </nav>
     </div>
@@ -331,9 +330,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Start by creating your own <a href="https://github.com/join">github account</a> if you do not have one already.</li>
 <li>Follow the instructions <a href="https://www.inmotionhosting.com/support/server/ssh/how-to-add-ssh-keys-to-your-github-account/">on this page</a> to add ssh keys to GitHub.</li>
 <li>Email me your GitHub username on so I can add you to the shared GitHub account for our research group. I will create a repository for you with scaffold of folders and with placeholder files that will get you started in the right way.</li>
-<li>Wait for an email or notification and accept my inviation to the “munch-lab” GitHub organization and an email from me with the name of the repository I made for your project. In what follows, I will use <code>&lt;repositoryname&gt;</code> for the name of your repository.</li>
+<li>Wait for an email or notification and accept my inviation to the “munch-lab” GitHub organization and an email from me with the name of the repository I made for your project. On these pages, I will use <code>&lt;repositoryname&gt;</code> for the name of your repository.</li>
 <li>Make sure you are logged into your GitHub account and then go to the repository listing at the <a href="https://github.com/orgs/munch-lab/repositories">munch-lab organization</a> on GitHub. Find the directory I made for you and have a look at what is in there. Leave it there for now.</li>
 </ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning: Files on the cluster are not backed up!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your files on the cluster are not backed up! If you want to backup files, you need to put them in a folder called BACKUP. But even if you do, you may loose a week of work, because the backup loop is slow.</p>
+</div>
+</div>
+<p>The best way to keep your progress safe, is to ensure is reproducible and pushed to GitHub. More about that in <a href="reproducible.html"><span>Chapter&nbsp;4</span></a> and <a href="git.html"><span>Chapter&nbsp;5</span></a>.</p>
 <section id="cloning-this-git-repository-to-the-cluster" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="cloning-this-git-repository-to-the-cluster"><span class="header-section-number">3.3.1</span> Cloning this git repository to the cluster</h3>
 <p>Start logging into the cluster and run these two commands to let Git know who you are:</p>
@@ -356,14 +369,6 @@ git config --global user.email &lt;your_email@whatever.com&gt;</code></pre>
 <li><code>reports</code>: Stores documents reporting your findings.</li>
 </ul>
 <p>Files in all those folders are under Git control, <em>except</em> files in the <code>steps</code> folder. Those files are not backed up in any way, but should instead be reproducible using the code and information in your other folders.</p>
-</section>
-</section>
-<section id="git-101" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="git-101"><span class="header-section-number">3.4</span> Git 101</h2>
-<p>When you are in your <code>&lt;repositoryname&gt;</code> folder, you can run git commands to manage your files, record their changes and sync them to the repository on GitHub for safe keeping. <a href="https://www.atlassian.com/git">These tutorials</a> are good introductions to git. The three most important commands to learn are: <a href="https://git-scm.com/docs/git-status">git status</a>, <a href="https://git-scm.com/docs/git-add">git add</a>, <a href="https://git-scm.com/docs/git-rm">git rm</a>, <a href="https://git-scm.com/docs/git-mv">git mv</a>, <a href="https://git-scm.com/docs/git-commit">git commit</a> and <a href="https://git-scm.com/docs/git-push">git push</a>.</p>
-<p>You use <code>git add &lt;the_changed_file&gt;</code> to journal the creation or modification of a file. This “stages” the change. This adds the file to the a “group” of changes that represent some modification to your project. You can add more files to that “group” by running <code>git add</code> again.</p>
-<p>Maybe you added or changed two python files that together lets you run some analysis. Now you want to store the group of changes to the journal maintained by Git and associate it with a description that describes it. For that you use <code>git commit -m 'description'</code>. If you added two python files, your description could be <code>'Added two python files for my analysis'</code>. Now your changes are recorded in the version of the <code>&lt;repositoryname&gt;</code> <em>on the cluster</em>, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. To backup your repository you need to synchronize your local <code>&lt;repositoryname&gt;</code> repository on your computer with the <code>&lt;repositoryname&gt;</code> repository on GitHub. You do that using the <code>git push</code> command.</p>
-<p>There is a cheat sheet <a href="https://training.github.com/downloads/github-git-cheat-sheet/">here</a> and some good visual guides <a href="https://ndpsoftware.com/git-cheatsheet.html">here</a> and <a href="https://marklodato.github.io/visual-git-guide/index-en.html">here</a>.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -380,8 +385,9 @@ Warning: Files on the cluster are not backed up!
 <p>The best/only way to keep your code safe is to track your files with git push each set of changes to GitHub as often as it makes sense. The more often you do it, the less work you will loose if you accidentally delete or overwrite a file.</p>
 <p>We will get back to which files you should track using Git in <a href="reproducible.html"><span>Chapter&nbsp;4</span></a> on how to to make your work reproducible.</p>
 </section>
-<section id="create-a-conda-environment" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="create-a-conda-environment"><span class="header-section-number">3.5</span> Create a conda environment</h2>
+</section>
+<section id="create-a-conda-environment" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="create-a-conda-environment"><span class="header-section-number">3.4</span> Create a conda environment</h2>
 <p>Log in to the cluster and run this command to create a conda environment for your project on the cluster. This environment should contain the packages that you need for your project.</p>
 <p>If you create your environment like this (your can pick another name than <code>birc-project</code> if you have an environment with that name already):</p>
 <pre><code>conda create -n birc-project -y -f binder/environment.yml</code></pre>
@@ -389,16 +395,16 @@ Warning: Files on the cluster are not backed up!
 <p><strong>Important:</strong> Whenever you log into the cluster to work on your project, you should activate your <code>birc-project</code> environment like this, otherwise the packages are not available:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate birc-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>When your environment is active, it says <code>(birc-project)</code> on the command prompt instead of <code>(base)</code>.</p>
-<section id="set-up-jupyter" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="set-up-jupyter"><span class="header-section-number">3.5.1</span> Set up Jupyter</h3>
+<section id="set-up-jupyter" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="set-up-jupyter"><span class="header-section-number">3.4.1</span> Set up Jupyter</h3>
 <p><img src="https://github.com/jupyter/jupyter.github.io/blob/master/assets/main-logo.svg" align="right" width="100" height="100"></p>
 <p><a href="https://jupyter.org/">Jupyter</a> is a notebook environment where you can easily combine text, code, and plots. Using the <a href="https://slurm-jupyter.readthedocs.io/en/latest">slurm-jupyter</a> tool, you can run a jupyter notebook on the cluster but see it in the browser on your own machine. That way, your analysis runs on the cluster file system where your data is but the notebook interface is sent to your browser window.</p>
 <p>Before you can connect to a jupyter session on the cluster, you need to do a bit of configuration of the jupyter settings on the cluster. <code>slurm-jupyter</code> comes with script that automates that procedure. Just log into the cluster, activate your environment, and run:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">config-slurm-jupyter.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The script will ask for a lot of information. You can just press <code>Enter</code> for all of them <strong>except</strong> when prompted for what password you want to use: Then, you must type your cluster password.</p>
 </section>
-<section id="how-to-run-a-jupyter-notebook-on-the-cluster" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="how-to-run-a-jupyter-notebook-on-the-cluster"><span class="header-section-number">3.5.2</span> How to run a Jupyter notebook on the cluster</h3>
+<section id="how-to-run-a-jupyter-notebook-on-the-cluster" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="how-to-run-a-jupyter-notebook-on-the-cluster"><span class="header-section-number">3.4.2</span> How to run a Jupyter notebook on the cluster</h3>
 <p>Jupyter runs best in the <a href="https://www.google.com/chrome">Chrome browser</a> or Safari on Mac. For the best experience, install that before you go on. It does not need to be your default browser. <code>slurm-jupyter</code> will use it anyway. Now make sure you are on your own machine and that your <code>popgen</code> environment is activated. Then run this command to start a jupyter notebook on the cluster and send the display to your browser:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">slurm-jupyter</span> <span class="at">-C</span> <span class="at">-u</span> <span class="op">&lt;</span>cluster_user_name<span class="op">&gt;</span> -A <span class="op">&lt;</span>projectfolder<span class="op">&lt;&gt;</span> -e birc-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(replace <code>&lt;cluster_user_name&gt;</code> with your cluster user name, <code>&lt;projectfolder&gt;</code> with your project folder name.</p>
@@ -410,20 +416,20 @@ Warning: Files on the cluster are not backed up!
 <p><img src="img/thisisunsafe.png" alt="image" width="450"></p>
 <p>Once ready, jupyter may ask for your cluster password. To close the jupyter notebook, press <code>Ctrl-c</code> in the terminal. Closing the browser window does <strong>not</strong> close down the jupyter on the cluster. You can <a href="https://www.dataquest.io/blog/jupyter-notebook-tutorial/">read this tutorial</a> to learn how to use a jupyter notebook.</p>
 </section>
-<section id="visual-studio-code" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="visual-studio-code"><span class="header-section-number">3.5.3</span> Visual Studio Code</h3>
+<section id="visual-studio-code" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="visual-studio-code"><span class="header-section-number">3.4.3</span> Visual Studio Code</h3>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2560px-Visual_Studio_Code_1.35_icon.svg.png" align="right" width="100" height="100"></p>
 <p>If you did not do so when you installed Anaconda, you should download and install Visual Studio Code. VScode is great for developing scripts and editing text files. Once you have installed VScode, you should install the “Remote Development” extension. You do that by clicking the funny squares in the left bar and search for “Remote Development”. Once installed, you can click the small green square in the lower-left corner to connect to the cluster. Select “Connect current window to host” then “Add new SSH host”, then type <code>&lt;username&gt;@login.genome.au.dk</code>, then select the config file <code>.ssh/config</code>. Now you can click the small green square in the lower-left corner to connect to the cluster by selecting <code>login.genome.au.dk</code>. It may take a bit, but once it is done installing a remote server, you will have access to the files in your home folder on the cluster.</p>
 </section>
-<section id="running-interactive-commands-on-the-cluster" class="level3" data-number="3.5.4">
-<h3 data-number="3.5.4" class="anchored" data-anchor-id="running-interactive-commands-on-the-cluster"><span class="header-section-number">3.5.4</span> Running interactive commands on the cluster</h3>
+<section id="running-interactive-commands-on-the-cluster" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="running-interactive-commands-on-the-cluster"><span class="header-section-number">3.4.4</span> Running interactive commands on the cluster</h3>
 <p>When you log into the cluster, you land on the “front-end” of the cluster. Think of it as the lobby of a giant hotel. If you execute the <code>hostname</code> command, you will get <code>fe-open-01</code>. <code>fe1</code> is the name of the front-end machine. The “front-end” is a single machine shared by anyone who logs in. So you cannot run resource-intensive jobs there, but quick commands are ok. Commands that finish in less than ten seconds are ok. In the exercises for this course, you will run software that takes a much longer time to finish. So you need one of the computing machines on the cluster, so you can work on that instead. You ask for a computing machine by running this command:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--mem-per-cpu</span><span class="op">=</span>1g <span class="at">--time</span><span class="op">=</span>3:00:00 <span class="at">--account</span><span class="op">=&lt;</span>projectfolder<span class="op">&gt;</span> --pty bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>That says that you need at most one gigabyte of memory, that you need it for at most three hours (the duration of the exercise), and that the computing expenses should be billed to the project <code>&lt;projectfolder&gt;</code>. When you execute the command, your terminal will say “srun: job 40924828 queued and waiting for resources”. That means that you are waiting for a machine. Once it prints “srun: job 40924828 has been allocated resources”, you have been logged into a computing node. If you execute the <code>hostname</code> command, you will get something like <code>s05n20</code>. <code>s05n20</code> is a computing machine. The same way you moved from your own computer to front-end machine of the cluster by logging in using ssh, the command above moves you from the front-end to a compute machine. Now you can execute any command you like without causing trouble for anyone.</p>
 <p>Now try to log out of the compute node by executing the <code>exit</code> command or by pressing <code>Ctrl-d</code>. If you execute the <code>hostname</code> command again, you will get <code>fe1.genomedk.net</code> showing that you are back at the front-end machine.</p>
 </section>
-<section id="queueing-commands-on-the-cluster" class="level3" data-number="3.5.5">
-<h3 data-number="3.5.5" class="anchored" data-anchor-id="queueing-commands-on-the-cluster"><span class="header-section-number">3.5.5</span> Queueing commands on the cluster</h3>
+<section id="queueing-commands-on-the-cluster" class="level3" data-number="3.4.5">
+<h3 data-number="3.4.5" class="anchored" data-anchor-id="queueing-commands-on-the-cluster"><span class="header-section-number">3.4.5</span> Queueing commands on the cluster</h3>
 <p>For non-interactive work, it is better to submit your command as a job to the cluster. When you do that, the job gets queued along with many other jobs, and as soon as the requested resources are available on the cluster, the job will start on one the many many machines. To submit a job, you must first create a file (a “batch script”) that contains both the requested computer resources and the command you want to run.</p>
 <p>Create a file called <code>myscript.sh</code> with exactly this content:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
@@ -452,8 +458,8 @@ Warning: Files on the cluster are not backed up!
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> firstjob.stderr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>That is basically it.</p>
 </section>
-<section id="how-to-copy-files-to-and-from-the-cluster" class="level3" data-number="3.5.6">
-<h3 data-number="3.5.6" class="anchored" data-anchor-id="how-to-copy-files-to-and-from-the-cluster"><span class="header-section-number">3.5.6</span> How to copy files to and from the cluster</h3>
+<section id="how-to-copy-files-to-and-from-the-cluster" class="level3" data-number="3.4.6">
+<h3 data-number="3.4.6" class="anchored" data-anchor-id="how-to-copy-files-to-and-from-the-cluster"><span class="header-section-number">3.4.6</span> How to copy files to and from the cluster</h3>
 <p>You may need to transfer files back and forth between your own machine and the cluster. To copy a file called <code>file</code> in a directory called <code>dir</code> on the cluster to the current folder on your own machine, you can use the <code>scp</code> command:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>cluster_user_name<span class="op">&gt;</span>@login.genome.au.dk:dir/file .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To copy a file called <code>file</code> in the current folder on your own machine to a folder called <code>dir</code> on the cluster, you do this:</p>

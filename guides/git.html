@@ -233,7 +233,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#git-as-journaled-backup" id="toc-git-as-journaled-backup" class="nav-link active" data-scroll-target="#git-as-journaled-backup"><span class="header-section-number">5.1</span> Git as journaled backup</a></li>
+  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git"><span class="header-section-number">5.2</span> Git</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -255,8 +262,26 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="git-as-journaled-backup" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="git-as-journaled-backup"><span class="header-section-number">5.1</span> Git as journaled backup</h2>
+<p>When you are in your <code>&lt;repositoryname&gt;</code> folder, you can run git commands to manage your files, record their changes and sync them to the repository on GitHub for safe keeping. <a href="https://www.atlassian.com/git">These tutorials</a> are good introductions to git.</p>
+<p>To journal the creation or modification of a file, you need to <code>add</code> it to git:</p>
+<pre><code>git add &lt;the_changed_file&gt;</code></pre>
+<p>This “stages” the change. This adds the file to the a “group” of changes that represent some modification to your project. You can add more files to that “group” by running the command again with other files. If you run <code>git status</code> you can see that the files are now staged.</p>
+<p>So maybe you added or changed two python files addressing some parcitular problem or advancing some part of your project. Now you want to store those of changes to the journal maintained by Git and associate it with a short message describing the changes. For that you use:</p>
+<pre><code>git commit -m '&lt;message&gt;'</code></pre>
+<p>If you added two python files, your description could be <code>'Added two python files for my analysis'</code>. If you fixed a bug or added new code to the files, your message should reflect that.</p>
+<p>Now your changes are recorded in the version of the <code>&lt;repositoryname&gt;</code> <em>on the cluster</em>, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. To backup your repository you need to synchronize your <em>local</em> <code>&lt;repositoryname&gt;</code> repository on the cluster with the <code>&lt;repositoryname&gt;</code> repository <em>on GitHub</em>. To du that use:</p>
+<pre><code>git push</code></pre>
+<p>In addition to keeping your precious files safe and backed up, your GitHub repository also serve as a journal documenting of your progress. Each commit is a snapshot if your project that can be retrieved at any time.</p>
+</section>
+<section id="git" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="git"><span class="header-section-number">5.2</span> Git</h2>
+<p>There is a cheat sheet <a href="https://training.github.com/downloads/github-git-cheat-sheet/">here</a> and some good visual guides <a href="https://ndpsoftware.com/git-cheatsheet.html">here</a> and <a href="https://marklodato.github.io/visual-git-guide/index-en.html">here</a>.</p>
+<p>The three most important commands to learn are: <a href="https://git-scm.com/docs/git-status">git status</a>, <a href="https://git-scm.com/docs/git-add">git add</a>, <a href="https://git-scm.com/docs/git-rm">git rm</a>, <a href="https://git-scm.com/docs/git-mv">git mv</a>, <a href="https://git-scm.com/docs/git-commit">git commit</a> and <a href="https://git-scm.com/docs/git-push">git push</a>.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
