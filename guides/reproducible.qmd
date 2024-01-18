@@ -41,6 +41,33 @@ When you create your conda environment, and whenever you install new packages, y
 conda env export --from-history -f ./binder/environment.yml
 ```
 
+Once your project is well underway and you have settled on the set of packages needed for your project, you can make your environment more stable (and thus reproducible) by creating the environment again, installing all the packages in one go. To do that, first create a `test` environment to make sure that your exported environment can actually be created (you do not want to end up with a new environmnet that does not work like the old one):
+
+```bash
+conda env create -n test -f binder/environment.yml
+```
+
+If, and only if, the `test` environment is successfully created and works the way it should you delete the `test` environment and the `birc-project` enrivonemnt:
+
+```bash
+conda env remove -n test
+conda env remove -n birc-project
+```
+
+and create a new version of the `birc-project` enrivonemnt:
+
+```bash
+conda env create -f binder/environment.yml
+```
+
+Then, to make life easier for someone reproducing your project on the GenomeDK, you must run this command as well (it records all the packages used including their linux versions used here):
+
+```bash
+conda activate birc-project
+conda env export -f ./binder/environment-genomedk.yml
+```
+
+
 ## Use version control
 
 Using version control systems like Git to track changes to code and documentation over time. This helps in understanding the evolution of the research and facilitates collaboration. It also allows you to tag the the state of your repository upon publication, so you can keep working on it later without disrupting its state at publication.

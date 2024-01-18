@@ -7,19 +7,25 @@ When you are in your `<repositoryname>` folder, you can run git commands to mana
 
 To journal the creation or modification of a file, you need to `add` it to git:
 
-    git add <the_changed_file>
+```txt
+git add <the_changed_file>
+```
 
  This "stages" the change. This adds the file to the a "group" of changes that represent some modification to your project. You can add more files to that "group" by running the command again with other files. If you run `git status` you can see that the files are now staged.
 
 So maybe you added or changed two python files addressing some parcitular problem or advancing some part of your project. Now you want to store those of changes to the journal maintained by Git and associate it with a short message describing the changes. For that you use:
 
-    git commit -m '<message>'
+```txt
+git commit -m '<message>'
+```
     
 If you added two python files, your description could be `'Added two python files for my analysis'`. If you fixed a bug or added new code to the files, your message should reflect that. 
 
 Now your changes are recorded in the version of the `<repositoryname>` *on the cluster*, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. To backup your repository you need to synchronize your *local* `<repositoryname>` repository on the cluster with the `<repositoryname>` repository *on GitHub*. To du that use:
 
-    git push
+```txt
+git push
+```
 
 In addition to keeping your precious files safe and backed up, your GitHub repository also serve as a journal documenting of your progress. Each commit is a snapshot if your project that can be retrieved at any time.
 

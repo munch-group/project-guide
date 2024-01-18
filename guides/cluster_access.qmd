@@ -1,5 +1,4 @@
 
-Saved
 # Cluster access
 
 <img src="https://icon-library.com/images/62418-database-icons-virtual-servers-computer-private-server.png" align="right" width="150"  />
@@ -8,9 +7,9 @@ The [GenomeDK](https://genome.au.dk/) cluster is a huge collection of computers 
 
 ::: {.callout-warning}
 
-## Heads up
+## This is not a leisure read
 
-This is not a leisure read. Make sure you follow it to the letter. Do each step in order, and do not proceed until you have completed each step.
+Make sure you follow it to the letter. Do each step in order, and do not proceed until you have successfully completed each step.
 
 :::
 
@@ -26,26 +25,19 @@ SSH is short for secure shell. A shell is the software that lets you run command
 
 You connect to the cluster from the terminal by executing the command below (remember to replace `<cluster user name>` with your actual cluster user name):
 
-```bash
+```
 ssh <cluster user name>@login.genome.au.dk
 ```
 
 When you do, ssh prompts you for the password that goes with your cluster username (GenomeDK requires two-factor authentication and will sometimes ask you for a site key). Enter the password and press Enter. You are now in your home folder on the cluster. Your terminal looks the same as before, but it will print:
 
 ```
-
   _____                                ______ _   __
-
  |  __ \                               |  _  \ | / /
-
  | |  \/ ___ _ __   ___  _ __ ___   ___| | | | |/ /
-
  | | __ / _ \ '_ \ / _ \| '_ ` _ \ / _ \ | | |    \
-
  | |_\ \  __/ | | | (_) | | | | | |  __/ |/ /| |\  \
-
   \____/\___|_| |_|\___/|_| |_| |_|\___|___/ \_| \_/
-
 ```
 
 If you run the `hostname` command again, you can see that you are now on `fe-open-01`. Now log out of the cluster again by typing `exit` and Enter (or pressing  Ctrl-d). You are now back on your laptop. Try `hostname` again and see the name of your computer.
@@ -64,27 +56,27 @@ Firstly, you have to understand what public/private encryption keys are. A priva
 
 First, check if you have these two authentication files on your local machine (you can do so by running `ls -a ~/.ssh` in the terminal):
 
-```bash
+```
 ~/.ssh/id_rsa
 ~/.ssh/id_rsa.pub
 ```
 
 You most likely do not. If so, you generate authentication keys with the command below. Just press Enter when prompted for a file in which to save the key. Do not enter a passphrase when prompted - just press enter:
 
-```bash
+```
 ssh-keygen -t rsa
 
 ```
 
 Now use `ssh` to create a directory `~/.ssh` on the cluster (assuming your username on the cluster is `<cluster user name>`). SSH will prompt you for your password.
 
-```bash
+```
 ssh <cluster user name>@login.genome.au.dk mkdir -p .ssh
 ```
 
 Finally, append the public `ssh` key on your local machine to the file `.ssh/authorized_keys` on the cluster and enter your password (replace `<cluster user name>` with your cluster user name):
 
-```bash
+```
 cat ~/.ssh/id_rsa.pub | ssh username@login.genome.au.dk 'cat >> .ssh/authorized_keys'
 ```
 
@@ -92,7 +84,7 @@ From now on, you can log into the cluster from your local machine without being 
 
 Try it:
 
-```bash
+```
 ssh <cluster user name>@login.genome.au.dk
 ```
 
