@@ -197,8 +197,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/jupyter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Jupyter notebooks</span></span></a>
+  <a href="../notebooks/00_jupyterlab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Jupyter lab</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -220,14 +220,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/01_getting_started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Getting started</span></span></a>
+  <a href="../notebooks/01_weather.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Danish weather</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/02_jupyter_and_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Jupyter with Quarto</span></span></a>
+  <a href="../notebooks/02_interaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Workplace interaction</span></span></a>
   </div>
 </li>
       </ul>
@@ -300,13 +300,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>This page covers how you get set up on the GenomeDK cluster to do your project.</p>
 <p>First log in to the cluster:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>cluster user name<span class="op">&gt;</span>@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh &lt;cluster user name&gt;@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="install-python-on-your-cluster-account" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="install-python-on-your-cluster-account"><span class="header-section-number">3.1</span> Install Python on your cluster account</h2>
 <p>You need to install miniconda (a minimal Anaconda version) in your cluster home dir. Log in to the cluster and run this command to download the miniconda install script:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then use this command to download and install miniconda:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniconda3-latest-Linux-x86_64.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bash Miniconda3-latest-Linux-x86_64.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Follow the default installation, and say <strong>yes</strong> when it asks you if it should run <code>conda init</code> for you.</p>
 <p><strong>NP:</strong> Now log out of the cluster and log back in. This is needed to make the <code>conda</code> command available to you.</p>
 </section>
@@ -314,11 +314,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.2" class="anchored" data-anchor-id="the-project-folder"><span class="header-section-number">3.2</span> The project folder</h2>
 <p>The project folder is a folder that is set up on the cluster to hold your project. I use the placeholder <code>&lt;projectfolder&gt;</code> here, but it will be called something sensible like <code>baboonadmixture</code>.</p>
 <p>It is accessible to only you and anyone else you collaborate with (such as your supervisor). The project folder is in your home directory and should hold the following subfolders:</p>
-<pre><code>&lt;projectfolder&gt;
-    /data
-    /people
-        /&lt;username&gt;
-        /&lt;supervisor_username&gt;</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>&lt;projectfolder&gt;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    /data</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    /people</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        /&lt;username&gt;</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        /&lt;supervisor_username&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>&lt;projectfolder&gt;/people/&lt;username&gt;</code> is your domain. This is where you have all the files that relates to your project.</p>
 <p>The name of the project folder is is also the name of the account that gets billed for the work on the cluster. When you run <code>gwf</code>, <code>srun</code>, <code>sbatch</code> or <code>slurm-jupyter</code> (see below) you must specify that project name using the <code>-A</code> or <code>--account</code> options (see below for more details on that).</p>
 </section>
@@ -333,27 +333,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Wait for an email or notification and accept my inviation to the “munch-lab” GitHub organization and an email from me with the name of the repository I made for your project. On these pages, I will use <code>&lt;repositoryname&gt;</code> for the name of your repository.</li>
 <li>Make sure you are logged into your GitHub account and then go to the repository listing at the <a href="https://github.com/orgs/munch-lab/repositories">munch-lab organization</a> on GitHub. Find the directory I made for you and have a look at what is in there. Leave it there for now.</li>
 </ol>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning: Files on the cluster are not backed up!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Your files on the cluster are not backed up! If you want to backup files, you need to put them in a folder called BACKUP. But even if you do, you may loose a week of work, because the backup loop is slow.</p>
-</div>
-</div>
-<p>The best way to keep your progress safe, is to ensure is reproducible and pushed to GitHub. More about that in <a href="reproducible.html"><span>Chapter&nbsp;4</span></a> and <a href="git.html"><span>Chapter&nbsp;5</span></a>.</p>
 <section id="cloning-this-git-repository-to-the-cluster" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="cloning-this-git-repository-to-the-cluster"><span class="header-section-number">3.3.1</span> Cloning this git repository to the cluster</h3>
 <p>Start logging into the cluster and run these two commands to let Git know who you are:</p>
-<pre><code>git config --global user.name "&lt;Your GitHub user name&gt;"
-git config --global user.email &lt;your_email@whatever.com&gt;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>git config --global user.name "&lt;Your GitHub user name&gt;"</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>git config --global user.email &lt;your_email@whatever.com&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Go to your folder under the project folder (<code>~/&lt;projectfolder&gt;/people/&lt;username&gt;</code>). Once you are in that folder, you can “clone” your git repository from GitHub to the folder on the cluster.</p>
-<pre><code>git clone git@github.com:munch-lab/&lt;repositoryname&gt;.git</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>git clone git@github.com:munch-lab/&lt;repositoryname&gt;.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(replace <code>&lt;repositoryname&gt;</code> with the actual name of your repository).</p>
 <p>You now have a folder called <code>&lt;projectfolder&gt;/people/&lt;username&gt;/&lt;repositoryname&gt;</code> and this is where you must keep <em>all</em> your files for the project.</p>
 <p>If you <code>cd</code> into <code>&lt;repositoryname&gt;</code> and run <code>ls</code>, you will see a number of folders.</p>
@@ -382,31 +368,49 @@ Warning: Files on the cluster are not backed up!
 <p>Your files on the cluster are not backed up! If you want to backup files, you need to put them in a folder called BACKUP. But even if you do you may loose a week of work, since the backup loop is very slow.</p>
 </div>
 </div>
-<p>The best/only way to keep your code safe is to track your files with git push each set of changes to GitHub as often as it makes sense. The more often you do it, the less work you will loose if you accidentally delete or overwrite a file.</p>
-<p>We will get back to which files you should track using Git in <a href="reproducible.html"><span>Chapter&nbsp;4</span></a> on how to to make your work reproducible.</p>
+<p>The best way to keep your progress safe, is to ensure is reproducible and pushed to GitHub as often as it makes sense (at least onece a day). The more often you do it, the less work you will loose if you accidentally delete or overwrite a file. More about that in <a href="reproducible.html"><span>Chapter&nbsp;4</span></a> and <a href="git.html"><span>Chapter&nbsp;5</span></a>.</p>
 </section>
 </section>
 <section id="create-a-conda-environment" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="create-a-conda-environment"><span class="header-section-number">3.4</span> Create a conda environment</h2>
-<p>Log in to the cluster and run this command to create a conda environment for your project on the cluster. This environment should contain the packages that you need for your project.</p>
-<p>If you create your environment like this (your can pick another name than <code>birc-project</code> if you have an environment with that name already):</p>
-<pre><code>conda create -n birc-project -y -f binder/environment.yml</code></pre>
-<p>This environment contains most of the packages you will need. If you find yourself needing more packages than is initially included, you can easily install them later. E.g., to see how to install <code>biopython</code> using <code>conda</code>, just google “conda biopython”. The top link instructs you to install it like this: <code>conda install -c conda-forge biopython</code>.</p>
+<p>Log in to the cluster. Here, we will be a little more through with the conda environment, since this is where you will be doing all your work.</p>
+<p>Begin by creating an empty environment like this (you can pick another name than <code>birc-project</code> if you have an environment with that name already):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>conda create -n birc-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now activate the environmet</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>conda activate &lt;name&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make sure it now says <code>(birc-project)</code> and and not <code>(base)</code> at your terminal prompt.</p>
+<p>Now add channels to the environment (places to search for packagages). These will do for now (you can always add more later):</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>conda config --env --append channels conda-forge</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>conda config --env --append channels bioconda</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>conda config --env --append channels gwforg</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>conda config --env --append channels kaspermunch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then install the actual packages. The following command installs the basic packages you will need for typical Python-based data analysis project:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>conda install git gwf jupyterlab ipython seaborn statsmodels scipy gwf pytables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If your project use probabilistic programming with PyMC (if you are in doubt, it is not), you need to install these packages as well:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>conda install arviz pymc seaborn xarray bambi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- 
+bioconda pyfaidx tskit scikit-allel samtools bamtools vcftools haptools
+-->
+<p>If you prefer to use R for data analysis and plots, you should use the following two commands to add the <code>r</code> channel and install the basic R packages:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>conda config --env --append channels r</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>conda install r-essentials rpy2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Export it to the binder folder to document which packages your project depends on:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>conda env export --from-history &gt; binder/environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Important:</strong> Whenever you log into the cluster to work on your project, you should activate your <code>birc-project</code> environment like this, otherwise the packages are not available:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate birc-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>conda activate birc-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>When your environment is active, it says <code>(birc-project)</code> on the command prompt instead of <code>(base)</code>.</p>
 <section id="set-up-jupyter" class="level3" data-number="3.4.1">
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="set-up-jupyter"><span class="header-section-number">3.4.1</span> Set up Jupyter</h3>
 <p><img src="https://github.com/jupyter/jupyter.github.io/blob/master/assets/main-logo.svg" align="right" width="100" height="100"></p>
 <p><a href="https://jupyter.org/">Jupyter</a> is a notebook environment where you can easily combine text, code, and plots. Using the <a href="https://slurm-jupyter.readthedocs.io/en/latest">slurm-jupyter</a> tool, you can run a jupyter notebook on the cluster but see it in the browser on your own machine. That way, your analysis runs on the cluster file system where your data is but the notebook interface is sent to your browser window.</p>
 <p>Before you can connect to a jupyter session on the cluster, you need to do a bit of configuration of the jupyter settings on the cluster. <code>slurm-jupyter</code> comes with script that automates that procedure. Just log into the cluster, activate your environment, and run:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">config-slurm-jupyter.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>config-slurm-jupyter.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The script will ask for a lot of information. You can just press <code>Enter</code> for all of them <strong>except</strong> when prompted for what password you want to use: Then, you must type your cluster password.</p>
 </section>
 <section id="how-to-run-a-jupyter-notebook-on-the-cluster" class="level3" data-number="3.4.2">
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="how-to-run-a-jupyter-notebook-on-the-cluster"><span class="header-section-number">3.4.2</span> How to run a Jupyter notebook on the cluster</h3>
 <p>Jupyter runs best in the <a href="https://www.google.com/chrome">Chrome browser</a> or Safari on Mac. For the best experience, install that before you go on. It does not need to be your default browser. <code>slurm-jupyter</code> will use it anyway. Now make sure you are on your own machine and that your <code>popgen</code> environment is activated. Then run this command to start a jupyter notebook on the cluster and send the display to your browser:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">slurm-jupyter</span> <span class="at">-C</span> <span class="at">-u</span> <span class="op">&lt;</span>cluster_user_name<span class="op">&gt;</span> -A <span class="op">&lt;</span>projectfolder<span class="op">&lt;&gt;</span> -e birc-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>slurm-jupyter -C -u &lt;cluster_user_name&gt; -A &lt;projectfolder&lt;&gt; -e birc-project</code></pre>
 <p>(replace <code>&lt;cluster_user_name&gt;</code> with your cluster user name, <code>&lt;projectfolder&gt;</code> with your project folder name.</p>
 <p>Watch the terminal to see what is going on. After a while, a jupyter notebook should show up in your browser window. The first time you do this, your browser may refuse to show jupyter because the connection is unsafe. In Safari you are prompted with this winidow where you click “details”:</p>
 <p><img src="img/mac_warning1.png" alt="image" width="450"></p>
@@ -424,7 +428,7 @@ Warning: Files on the cluster are not backed up!
 <section id="running-interactive-commands-on-the-cluster" class="level3" data-number="3.4.4">
 <h3 data-number="3.4.4" class="anchored" data-anchor-id="running-interactive-commands-on-the-cluster"><span class="header-section-number">3.4.4</span> Running interactive commands on the cluster</h3>
 <p>When you log into the cluster, you land on the “front-end” of the cluster. Think of it as the lobby of a giant hotel. If you execute the <code>hostname</code> command, you will get <code>fe-open-01</code>. <code>fe1</code> is the name of the front-end machine. The “front-end” is a single machine shared by anyone who logs in. So you cannot run resource-intensive jobs there, but quick commands are ok. Commands that finish in less than ten seconds are ok. In the exercises for this course, you will run software that takes a much longer time to finish. So you need one of the computing machines on the cluster, so you can work on that instead. You ask for a computing machine by running this command:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--mem-per-cpu</span><span class="op">=</span>1g <span class="at">--time</span><span class="op">=</span>3:00:00 <span class="at">--account</span><span class="op">=&lt;</span>projectfolder<span class="op">&gt;</span> --pty bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>srun --mem-per-cpu=1g --time=3:00:00 --account=&lt;projectfolder&gt; --pty bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>That says that you need at most one gigabyte of memory, that you need it for at most three hours (the duration of the exercise), and that the computing expenses should be billed to the project <code>&lt;projectfolder&gt;</code>. When you execute the command, your terminal will say “srun: job 40924828 queued and waiting for resources”. That means that you are waiting for a machine. Once it prints “srun: job 40924828 has been allocated resources”, you have been logged into a computing node. If you execute the <code>hostname</code> command, you will get something like <code>s05n20</code>. <code>s05n20</code> is a computing machine. The same way you moved from your own computer to front-end machine of the cluster by logging in using ssh, the command above moves you from the front-end to a compute machine. Now you can execute any command you like without causing trouble for anyone.</p>
 <p>Now try to log out of the compute node by executing the <code>exit</code> command or by pressing <code>Ctrl-d</code>. If you execute the <code>hostname</code> command again, you will get <code>fe1.genomedk.net</code> showing that you are back at the front-end machine.</p>
 </section>
@@ -432,38 +436,38 @@ Warning: Files on the cluster are not backed up!
 <h3 data-number="3.4.5" class="anchored" data-anchor-id="queueing-commands-on-the-cluster"><span class="header-section-number">3.4.5</span> Queueing commands on the cluster</h3>
 <p>For non-interactive work, it is better to submit your command as a job to the cluster. When you do that, the job gets queued along with many other jobs, and as soon as the requested resources are available on the cluster, the job will start on one the many many machines. To submit a job, you must first create a file (a “batch script”) that contains both the requested computer resources and the command you want to run.</p>
 <p>Create a file called <code>myscript.sh</code> with exactly this content:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=1gb</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=01:00:00</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=&lt;projectfolder&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --job-name=firstjob</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I can submit cluster jobs now!"</span> <span class="op">&gt;</span> success.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>#!/bin/bash</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>#SBATCH --mem=1gb</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>#SBATCH --time=01:00:00</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>#SBATCH --account=&lt;projectfolder&gt;</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>#SBATCH --job-name=firstjob</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>echo "I can submit cluster jobs now!" &gt; success.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(replace <code>&lt;projectfolder&gt;</code> with your project folder name)</p>
 <p>The first line says this is a bash script, the lines following three lines say that your job needs at most one gigabyte of memory, will run for at most one hour, that the expenses should be billed to the project <code>&lt;projectfolder&gt;</code>. The fourth line gives the name of the job. Here we have called it <code>firstjob</code>, but you should name it something sensible.</p>
 <p>You submit the job using the <code>sbatch</code> command:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> myscript.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sbatch myscript.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now your job is queued. Use the <code>mj</code> command to see what jobs you have queued or running. That will show something like this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>                                                                        Alloc</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Job ID           Username Queue    Jobname    SessID NDS  S Elap Time   nodes</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>---------------- -------- -------- ---------- ------ ---  - ----------  -----</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>34745986         kmt      normal   firstjob       --   1  R 0-00:19:27  s03n56</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>                                                                        Alloc</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Job ID           Username Queue    Jobname    SessID NDS  S Elap Time   nodes</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>---------------- -------- -------- ---------- ------ ---  - ----------  -----</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>34745986         kmt      normal   firstjob       --   1  R 0-00:19:27  s03n56</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you want to cancel this job before it finishes, you can use the <code>scancel</code> command:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scancel</span> 34745986</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>scancel 34745986</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Once your job finishes, it has created the file <code>success.txt</code> and written “I can submit cluster jobs now!” to it. So see that you can use the <code>cat</code> command:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> success.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cat success.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>When you a program or script on the command line, it usually also prints some information in the terminal. When you run a job on the cluster there is no terminal to print to. Instead, this is written to two files that you can read when the job finishes. In this case, the fiels are called <code>firstjob.stdout</code> and <code>firstjob.stderr</code>. To see what is in them, you can use the <code>cat</code> command:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> firstjob.stdout</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>cat firstjob.stdout</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> firstjob.stderr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cat firstjob.stderr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>That is basically it.</p>
 </section>
 <section id="how-to-copy-files-to-and-from-the-cluster" class="level3" data-number="3.4.6">
 <h3 data-number="3.4.6" class="anchored" data-anchor-id="how-to-copy-files-to-and-from-the-cluster"><span class="header-section-number">3.4.6</span> How to copy files to and from the cluster</h3>
 <p>You may need to transfer files back and forth between your own machine and the cluster. To copy a file called <code>file</code> in a directory called <code>dir</code> on the cluster to the current folder on your own machine, you can use the <code>scp</code> command:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>cluster_user_name<span class="op">&gt;</span>@login.genome.au.dk:dir/file .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>scp &lt;cluster_user_name&gt;@login.genome.au.dk:dir/file .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To copy a file called <code>file</code> in the current folder on your own machine to a folder called <code>dir</code> on the cluster, you do this:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> ./file <span class="op">&lt;</span>cluster_user_name<span class="op">&gt;</span>@login.genome.au.dk:dir/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>scp ./file &lt;cluster_user_name&gt;@login.genome.au.dk:dir/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

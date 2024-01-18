@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -197,8 +163,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/jupyter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Jupyter notebooks</span></span></a>
+  <a href="../notebooks/00_jupyterlab.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Jupyter lab</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -220,14 +186,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/01_getting_started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Getting started</span></span></a>
+  <a href="../notebooks/01_weather.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Danish weather</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notebooks/02_jupyter_and_quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Jupyter with Quarto</span></span></a>
+  <a href="../notebooks/02_interaction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Workplace interaction</span></span></a>
   </div>
 </li>
       </ul>
@@ -289,7 +255,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Saved</p>
 <p><img src="https://icon-library.com/images/62418-database-icons-virtual-servers-computer-private-server.png" align="right" width="150"></p>
 <p>The <a href="https://genome.au.dk/">GenomeDK</a> cluster is a huge collection of computers with a shared file system. You can find lots of helpful information about the cluster on their homepage beyond what I cover on these pages. The cluster does not have a screen or keyboard you can use, but by connecting to the cluster from your computer, you can create and edit files much like if they were on your laptop. These pages take you through the steps to connect and access the cluster.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -298,11 +263,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Heads up
+This is not a leisure read
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This is not a leisure read. Make sure you follow it to the letter. Do each step in order, and do not proceed until you have completed each step.</p>
+<p>Make sure you follow it to the letter. Do each step in order, and do not proceed until you have successfully completed each step.</p>
 </div>
 </div>
 <p>Below, you will see something like <code>&lt;cluster user name&gt;</code> or <code>&lt;project folder&gt;</code>. Whenever you see something like that, you should replace everything, including <code>&lt;</code> and <code>&gt;</code>, with whatever it says. E.g., if your cluster user name is <code>mike</code>, you should replace <code>&lt;cluster user name&gt;</code> with <code>mike</code>.</p>
@@ -312,21 +277,14 @@ Heads up
 <p><img src="https://atulhost.com/wp-content/uploads/2020/04/ssh.png" align="right" width="300" height="200"></p>
 <p>SSH is short for secure shell. A shell is the software that lets you run commands in your terminal window. The <em>secure shell</em> (SSH) allows you to log in to another computer to navigate the folders and run commands on that machine. So when you open your terminal window, your commands run on your local machine, but when you “ssh” (yes, it is a verb, too) into the cluster, your commands run on the cluster. Before you go on, try to run the command <code>hostname</code> in your terminal. You can see that it prints something that tells you that you are on your laptop.</p>
 <p>You connect to the cluster from the terminal by executing the command below (remember to replace <code>&lt;cluster user name&gt;</code> with your actual cluster user name):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>cluster user name<span class="op">&gt;</span>@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>ssh &lt;cluster user name&gt;@login.genome.au.dk</code></pre>
 <p>When you do, ssh prompts you for the password that goes with your cluster username (GenomeDK requires two-factor authentication and will sometimes ask you for a site key). Enter the password and press Enter. You are now in your home folder on the cluster. Your terminal looks the same as before, but it will print:</p>
-<pre><code>
-  _____                                ______ _   __
-
+<pre><code>  _____                                ______ _   __
  |  __ \                               |  _  \ | / /
-
  | |  \/ ___ _ __   ___  _ __ ___   ___| | | | |/ /
-
  | | __ / _ \ '_ \ / _ \| '_ ` _ \ / _ \ | | |    \
-
  | |_\ \  __/ | | | (_) | | | | | |  __/ |/ /| |\  \
-
-  \____/\___|_| |_|\___/|_| |_| |_|\___|___/ \_| \_/
-</code></pre>
+  \____/\___|_| |_|\___/|_| |_| |_|\___|___/ \_| \_/</code></pre>
 <p>If you run the <code>hostname</code> command again, you can see that you are now on <code>fe-open-01</code>. Now log out of the cluster again by typing <code>exit</code> and Enter (or pressing Ctrl-d). You are now back on your laptop. Try <code>hostname</code> again and see the name of your computer.</p>
 <p>You will need to log in to the cluster many times, so you should set up your SSH connection to the cluster so you can connect securely without typing the password every time. You do not need to know <em>how</em> this works, but if you are interested, here is roughly how:</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -343,17 +301,18 @@ SSH keys
 </div>
 </div>
 <p>First, check if you have these two authentication files on your local machine (you can do so by running <code>ls -a ~/.ssh</code> in the terminal):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">~/.ssh/id_rsa</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">~/.ssh/id_rsa.pub</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>~/.ssh/id_rsa
+~/.ssh/id_rsa.pub</code></pre>
 <p>You most likely do not. If so, you generate authentication keys with the command below. Just press Enter when prompted for a file in which to save the key. Do not enter a passphrase when prompted - just press enter:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>ssh-keygen -t rsa
+</code></pre>
 <p>Now use <code>ssh</code> to create a directory <code>~/.ssh</code> on the cluster (assuming your username on the cluster is <code>&lt;cluster user name&gt;</code>). SSH will prompt you for your password.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>cluster user name<span class="op">&gt;</span>@login.genome.au.dk mkdir <span class="at">-p</span> .ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>ssh &lt;cluster user name&gt;@login.genome.au.dk mkdir -p .ssh</code></pre>
 <p>Finally, append the public <code>ssh</code> key on your local machine to the file <code>.ssh/authorized_keys</code> on the cluster and enter your password (replace <code>&lt;cluster user name&gt;</code> with your cluster user name):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_rsa.pub <span class="kw">|</span> <span class="fu">ssh</span> username@login.genome.au.dk <span class="st">'cat &gt;&gt; .ssh/authorized_keys'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>cat ~/.ssh/id_rsa.pub | ssh username@login.genome.au.dk 'cat &gt;&gt; .ssh/authorized_keys'</code></pre>
 <p>From now on, you can log into the cluster from your local machine without being prompted for a password.</p>
 <p>Try it:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>cluster user name<span class="op">&gt;</span>@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>ssh &lt;cluster user name&gt;@login.genome.au.dk</code></pre>
 <p>(see, no password).</p>
 
 
