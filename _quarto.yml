@@ -20,13 +20,12 @@ book:
       chapters: 
       - guides/git.qmd      
       - guides/gwf.qmd      
-      - guides/jupyter.qmd      
+      - notebooks/00_jupyterlab.ipynb
       - guides/quarto.qmd      
     - part: "Notebooks"
       chapters: 
-      - notebooks/00_jupyterlab.ipynb
-      - notebooks/01_getting_started.ipynb
-      - notebooks/02_jupyter_and_quarto.ipynb
+      - notebooks/01_weather.ipynb
+      - notebooks/02_interaction.ipynb
     - part: "Reporting"
       chapters: 
       - reports/manuscript.qmd
