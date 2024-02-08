@@ -167,6 +167,7 @@ conda activate birc-project
 
 When your environment is active, it says `(birc-project)` on the command prompt instead of `(base)`.
 
+<!-- 
 ### Set up Jupyter
 
 <img src="https://github.com/jupyter/jupyter.github.io/blob/master/assets/main-logo.svg" align="right" width="100" height="100" />
@@ -180,16 +181,17 @@ config-slurm-jupyter.sh
 ```
 
 The script will ask for a lot of information. You can just press `Enter` for all of them **except** when prompted for what password you want to use: Then, you must type your cluster password.
+-->
 
 ### How to run a Jupyter notebook on the cluster
 
 Jupyter runs best in the [Chrome browser](https://www.google.com/chrome) or Safari on Mac. For the best experience, install that before you go on. It does not need to be your default browser. `slurm-jupyter` will use it anyway. Now make sure you are on your own machine and that your `popgen` environment is activated. Then run this command to start a jupyter notebook on the cluster and send the display to your browser:
 
 ```
-slurm-jupyter -C -u <cluster_user_name> -A <projectfolder<> -e birc-project
+slurm-jupyter -u <cluster_user_name> -A <projectfolder<> -e birc-project --chrome
 ```
 
-(replace `<cluster_user_name>` with your cluster user name, `<projectfolder>` with your project folder name.
+(replace `<cluster_user_name>` with your cluster user name, `<projectfolder>` with your project folder name).
 
 Watch the terminal to see what is going on. After a while, a jupyter notebook should show up in your browser window. The first time you do this, your browser may refuse to show jupyter because the connection is unsafe. In Safari you are prompted with this winidow where you click "details":
 
