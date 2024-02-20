@@ -36,3 +36,9 @@ Use quarto check to confirm that the installation is successful:
 ```txt
 quarto check
 ```
+
+Now run this command to generate the html pages for your project
+
+```txt
+quarto publish gh-pages
+```
