@@ -37,7 +37,17 @@ Use quarto check to confirm that the installation is successful:
 quarto check
 ```
 
-Now run this command to generate the html pages for your project
+# Render your content
+
+Go to the root of your repository (_where the `_quarto.yml` file is). Acitvate your conda environment and run this command to execute and render your content as html pages.
+
+```txt
+quarto render --execute
+```
+
+# One-time publish setup
+
+The way your repository is set up, GitHub will automatically render (but not execute) and publish your content every time you push changes. But you need to run the command below *once* to allow quarto to do some initial setup and configuration.
 
 ```txt
 quarto publish gh-pages
