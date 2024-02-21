@@ -274,7 +274,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#render-your-content" id="toc-render-your-content" class="nav-link active" data-scroll-target="#render-your-content"><span class="header-section-number">9</span> Render your content</a></li>
+  <li><a href="#one-time-publish-setup" id="toc-one-time-publish-setup" class="nav-link" data-scroll-target="#one-time-publish-setup"><span class="header-section-number">10</span> One-time publish setup</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -312,10 +319,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Check The Installation</p>
 <p>Use quarto check to confirm that the installation is successful:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quarto check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now run this command to generate the html pages for your project</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>quarto publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="render-your-content" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Render your content</h1>
+<p>Go to the root of your repository (_where the <code>_quarto.yml</code> file is). Acitvate your conda environment and run this command to execute and render your content as html pages.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>quarto render --execute</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="one-time-publish-setup" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> One-time publish setup</h1>
+<p>The way your repository is set up, GitHub will automatically render (but not execute) and publish your content every time you push changes. But you need to run the command below <em>once</em> to allow quarto to do some initial setup and configuration.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quarto publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
