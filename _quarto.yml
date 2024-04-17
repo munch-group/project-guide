@@ -38,4 +38,6 @@ format:
   html:
     theme: cosmo
     toc-depth: 2
+    number-sections: false
+
 
