@@ -133,7 +133,7 @@ conda config --env --append channels kaspermunch
 Then install the actual packages. The following command installs the basic packages you will need for typical Python-based data analysis project:
 
 ```txt
-conda install git gwf jupyterlab ipython seaborn statsmodels scipy gwf pytables
+conda install git gwf jupyterlab ipython nbdime seaborn statsmodels scipy gwf pytables
 ```
 
 If your project use probabilistic programming with PyMC (if you are in doubt, it is not), you need to install these packages as well:
@@ -166,6 +166,12 @@ conda activate birc-project
 ```
 
 When your environment is active, it says `(birc-project)` on the command prompt instead of `(base)`.
+
+::: {.info}
+## Tip: git and jupyter
+
+Git diff and merge does not play well with jupyter notebooks. To fix that you can activate your environment and navigate to your cloned repository. Then run this command (assuming you installed `nbdime` in your conda environment): `nbdime config-git --enable`.
+:::
 
 <!-- 
 ### Set up Jupyter
