@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -270,6 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-project-folder" id="toc-the-project-folder" class="nav-link" data-scroll-target="#the-project-folder">The project folder</a></li>
   <li><a href="#make-a-git-repository-for-your-project" id="toc-make-a-git-repository-for-your-project" class="nav-link" data-scroll-target="#make-a-git-repository-for-your-project">Make a Git repository for your project</a></li>
   <li><a href="#create-a-conda-environment" id="toc-create-a-conda-environment" class="nav-link" data-scroll-target="#create-a-conda-environment">Create a conda environment</a></li>
+  <li><a href="#tip-git-and-jupyter" id="toc-tip-git-and-jupyter" class="nav-link" data-scroll-target="#tip-git-and-jupyter">Tip: git and jupyter</a></li>
   </ul>
 </nav>
     </div>
@@ -382,7 +383,7 @@ Warning: Files on the cluster are not backed up!
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>conda config --env --append channels gwforg</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>conda config --env --append channels kaspermunch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then install the actual packages. The following command installs the basic packages you will need for typical Python-based data analysis project:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>conda install git gwf jupyterlab ipython seaborn statsmodels scipy gwf pytables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>conda install git gwf jupyterlab ipython nbdime seaborn statsmodels scipy gwf pytables</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If your project use probabilistic programming with PyMC (if you are in doubt, it is not), you need to install these packages as well:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>conda install arviz pymc seaborn xarray bambi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- 
@@ -396,6 +397,11 @@ bioconda pyfaidx tskit scikit-allel samtools bamtools vcftools haptools
 <p><strong>Important:</strong> Whenever you log into the cluster to work on your project, you should activate your <code>birc-project</code> environment like this, otherwise the packages are not available:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>conda activate birc-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>When your environment is active, it says <code>(birc-project)</code> on the command prompt instead of <code>(base)</code>.</p>
+</section>
+<section id="tip-git-and-jupyter" class="level2 info">
+<h2 class="anchored" data-anchor-id="tip-git-and-jupyter">Tip: git and jupyter</h2>
+<p>Git diff and merge does not play well with jupyter notebooks. To fix that you can activate your environment and navigate to your cloned repository. Then run this command (assuming you installed <code>nbdime</code> in your conda environment): <code>nbdime config-git --enable</code>.</p>
+</section>
 <!-- 
 ### Set up Jupyter
 
@@ -474,7 +480,6 @@ The script will ask for a lot of information. You can just press `Enter` for all
 <div class="sourceCode" id="cb25"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>scp ./file &lt;cluster_user_name&gt;@login.genome.au.dk:dir/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
