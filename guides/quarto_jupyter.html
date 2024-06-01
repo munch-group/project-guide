@@ -261,10 +261,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#render-your-content" id="toc-render-your-content" class="nav-link active" data-scroll-target="#render-your-content">Render your content</a></li>
-  <li><a href="#one-time-publish-setup" id="toc-one-time-publish-setup" class="nav-link" data-scroll-target="#one-time-publish-setup">One-time publish setup</a>
-  <ul class="collapse">
+  <li><a href="#one-time-publish-setup" id="toc-one-time-publish-setup" class="nav-link" data-scroll-target="#one-time-publish-setup">One-time publish setup</a></li>
   <li><a href="#quarto-in-jupyterlab" id="toc-quarto-in-jupyterlab" class="nav-link" data-scroll-target="#quarto-in-jupyterlab">Quarto in JupyterLab</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -329,8 +327,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="render-your-content" class="level1">
-<h1>Render your content</h1>
+<section id="render-your-content" class="level2">
+<h2 class="anchored" data-anchor-id="render-your-content">Render your content</h2>
 <p>Go to the root of your repository (_where the <code>_quarto.yml</code> file is). Acitvate your conda environment and run this command to execute and render your content as html pages.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -339,8 +337,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--execute</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="one-time-publish-setup" class="level1">
-<h1>One-time publish setup</h1>
+<section id="one-time-publish-setup" class="level2">
+<h2 class="anchored" data-anchor-id="one-time-publish-setup">One-time publish setup</h2>
 <p>The way your repository is set up, GitHub will automatically render (but not execute) and publish your content every time you push changes. But you need to run the command below <em>once</em> to allow quarto to do some initial setup and configuration.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -348,12 +346,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
 <section id="quarto-in-jupyterlab" class="level2">
 <h2 class="anchored" data-anchor-id="quarto-in-jupyterlab">Quarto in JupyterLab</h2>
 <p>https://quarto.org/docs/tools/jupyter-lab</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

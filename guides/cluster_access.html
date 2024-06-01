@@ -286,8 +286,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="https://icon-library.com/images/62418-database-icons-virtual-servers-computer-private-server.png" align="right" width="150"></p>
-<p>The <a href="https://genome.au.dk/">GenomeDK</a> cluster is a huge collection of computers with a shared file system. You can find lots of helpful information about the cluster on their homepage beyond what I cover on these pages. The cluster does not have a screen or keyboard you can use, but by connecting to the cluster from your computer, you can create and edit files much like if they were on your laptop. These pages take you through the steps to connect and access the cluster.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -301,6 +299,8 @@ This is not a leisure read
 <p>Make sure you follow it to the letter. Do each step in order, and do not proceed until you have successfully completed each step.</p>
 </div>
 </div>
+<p><img src="https://icon-library.com/images/62418-database-icons-virtual-servers-computer-private-server.png" align="right" width="150"></p>
+<p>The <a href="https://genome.au.dk/">GenomeDK</a> cluster is a huge collection of computers with a shared file system. You can find lots of helpful information about the cluster on their homepage beyond what I cover on these pages. The cluster does not have a screen or keyboard you can use, but by connecting to the cluster from your computer, you can create and edit files much like if they were on your laptop. These pages take you through the steps to connect and access the cluster.</p>
 <p>Below, you will see something like <code>&lt;cluster user name&gt;</code> or <code>&lt;project folder&gt;</code>. Whenever you see something like that, you should replace everything, including <code>&lt;</code> and <code>&gt;</code>, with whatever it says. E.g., if your cluster user name is <code>mike</code>, you should replace <code>&lt;cluster user name&gt;</code> with <code>mike</code>.</p>
 <p>Before you can begin, you need access to the cluster. The cluster is called GenomeDK and has its own <a href="https://genome.au.dk">website</a> with lots of information and documentation. To get an account on the cluster, you must <a href="https://genome.au.dk/docs/getting-started/#request-access">request one here</a>. Below, <code>&lt;username&gt;</code> will represent your user name.</p>
 <section id="connecting-to-the-cluster-using-ssh" class="level3">
@@ -322,7 +322,7 @@ This is not a leisure read
  | |_\ \  __/ | | | (_) | | | | | |  __/ |/ /| |\  \
   \____/\___|_| |_|\___/|_| |_| |_|\___|___/ \_| \_/</code></pre>
 <p>If you run the <code>hostname</code> command again, you can see that you are now on <code>fe-open-01</code>. Now log out of the cluster again by typing <code>exit</code> and Enter (or pressing Ctrl-d). You are now back on your laptop. Try <code>hostname</code> again and see the name of your computer.</p>
-<p>You will need to log in to the cluster many times, so you should set up your SSH connection to the cluster so you can connect securely without typing the password every time. You do not need to know <em>how</em> this works, but if you are interested, here is roughly how:</p>
+<p>You will need to log in to the cluster many times, so you should set up your SSH connection to the cluster so you can connect securely without typing the password every time. This is roughly how it works:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -333,32 +333,41 @@ SSH keys
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Firstly, you have to understand what public/private encryption keys are. A private key is a very long, random sequence of bits. A private key is kept secret and never leaves your laptop. A public key is another string of bits that is a derivative of the private key. You can generate a unique public key from the private key but cannot get the private key from a public key: It is a one-way process. You can encrypt (or sign) any message using the public key, and it will only be possible to decrypt it using the private key. In other words, anyone with your public key can send you encrypted messages that only you will be able to read. So, if the cluster has your public key saved, it can authenticate you like this: The cluster sends your machine an encrypted message using your public key. Your laptop then decrypts the message using its private key and sends it back. The cluster then checks the decryption and logs you in.</p>
+<p>Firstly, you have to understand what public/private encryption keys are. A <em>private</em> key is a very long, random sequence of bits. A private key is kept secret and never leaves your laptop. A <em>public</em> key is another string of bits that is a derivative of the private key.</p>
+<p>You can generate a unique public key from the private key but cannot get the private key from a public key: It is a one-way process. You can encrypt (or sign) any message using the public key, and it will only be possible to decrypt it using the private key it is derived from. In other words, anyone with your public key can send you encrypted messages that only you will be able to read.</p>
+<p>So, if the cluster has your public key saved, it can authenticate you like this: The cluster sends your laptop a message encrypted using the public key. Your laptop then decrypts the message using its private key and sends it back. If the cluster receives a correctly decrypted message it knows it is you and logs you in.</p>
 </div>
 </div>
-<p>First, check if you have these two authentication files on your local machine (you can do so by running <code>ls -a ~/.ssh</code> in the terminal):</p>
+<p>First, check if you have these two authentication files on your local machine:</p>
 <pre><code>~/.ssh/id_rsa
 ~/.ssh/id_rsa.pub</code></pre>
+<p>You can do so using the <code>ls</code> commmand:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> ~/.ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>You most likely do not. If so, you generate authentication keys with the command below. Just press Enter when prompted for a file in which to save the key. Do not enter a passphrase when prompted - just press enter:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb4" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now use <code>ssh</code> to create a directory <code>~/.ssh</code> on the cluster (assuming your username on the cluster is <code>&lt;cluster user name&gt;</code>). SSH will prompt you for your password.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>cluster user name<span class="op">&gt;</span>@login.genome.au.dk mkdir <span class="at">-p</span> .ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>cluster user name<span class="op">&gt;</span>@login.genome.au.dk mkdir <span class="at">-p</span> .ssh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Finally, append the public <code>ssh</code> key on your local machine to the file <code>.ssh/authorized_keys</code> on the cluster and enter your password (replace <code>&lt;cluster user name&gt;</code> with your cluster user name):</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_rsa.pub <span class="kw">|</span> <span class="fu">ssh</span> username@login.genome.au.dk <span class="st">'cat &gt;&gt; .ssh/authorized_keys'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_rsa.pub <span class="kw">|</span> <span class="fu">ssh</span> username@login.genome.au.dk <span class="st">'cat &gt;&gt; .ssh/authorized_keys'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>From now on, you can log into the cluster from your local machine without being prompted for a password.</p>
 <p>Try it:</p>
@@ -366,7 +375,7 @@ SSH keys
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>cluster user name<span class="op">&gt;</span>@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="op">&lt;</span>cluster user name<span class="op">&gt;</span>@login.genome.au.dk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>(see, no password).</p>
 
