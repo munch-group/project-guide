@@ -1,5 +1,5 @@
 
-# Git version control {#sec-git}
+# Version control {#sec-git-101}
 
 ## Git as journaled backup
 

@@ -18,18 +18,17 @@ book:
       - guides/reproducible.qmd
     - part: "Quickstarts"
       chapters: 
-      - guides/git.qmd      
+      - guides/git_101.qmd      
+      - guides/jupyterlab.ipynb
+      - guides/quarto.qmd
+    - part: "Guides"
+      chapters:
       - guides/gwf.qmd      
-      - notebooks/00_jupyterlab.ipynb
-      - guides/quarto.qmd      
-    - part: "Notebooks"
-      chapters: 
-      - notebooks/01_weather.ipynb
-      - notebooks/02_interaction.ipynb
-    - part: "Reporting"
-      chapters: 
-      - reports/manuscript.qmd
-      - reports/supplementary.qmd
+      - guides/git.qmd
+      - guides/numpy_pandas.ipynb
+      - guides/plotting.ipynb
+      - guides/submodules.qmd
+      - guides/pymc.ipynb
     - references.qmd
 
 bibliography: references.bib

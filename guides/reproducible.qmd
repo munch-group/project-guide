@@ -1,5 +1,5 @@
 
-# Reproducible work {#sec-reproducible-work}
+# Reproducible research {#sec-reproducible-reserach}
 
 Reproducible research refers to the idea that the results of a research study can be duplicated or reproduced by other researchers. In the context of scientific and academic research, it means that the data, methods, and code used in a study are made available to others, allowing them to replicate the study's findings. The goal is to ensure transparency, verifiability, and the ability to build upon existing work. To me, the what best guides reproducibility is to always keep in mind that:
 
