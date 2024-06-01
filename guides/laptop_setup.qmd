@@ -30,19 +30,19 @@ When you install Anaconda or Miniconda, Conda makes a single base environment. I
 
 The environment on your local machine only needs a few packages since it only connects you to the cluster. The command below creates a `birc-project` environment and installs the `slurm-jupyter` package from my conda channel:
 
-```txt
+```{.bash filename="Terminal"}
 conda create -y -n birc-project -c kaspermunch slurm-jupyter
 ```
 
 To activate the environment, use this command:
 
-```txt
+```{.bash filename="Terminal"}
 conda activate birc-project
 ```
 
 Note how the environment name at your terminal prompt changes from `(base)` to `(birc-project)`. To deactivate the environment, use this command:
 
-```txt
+```{.bash filename="Terminal"}
 conda deactivate
 ```
 

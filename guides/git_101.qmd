@@ -7,7 +7,7 @@ When you are in your `<repositoryname>` folder, you can run git commands to mana
 
 To journal the creation or modification of a file, you need to `add` it to git:
 
-```txt
+```{.bash filename="Terminal"}
 git add <the_changed_file>
 ```
 
@@ -15,7 +15,7 @@ git add <the_changed_file>
 
 So maybe you added or changed two python files addressing some parcitular problem or advancing some part of your project. Now you want to store those of changes to the journal maintained by Git and associate it with a short message describing the changes. For that you use:
 
-```txt
+```{.bash filename="Terminal"}
 git commit -m '<message>'
 ```
     
@@ -23,7 +23,7 @@ If you added two python files, your description could be `'Added two python file
 
 Now your changes are recorded in the version of the `<repositoryname>` *on the cluster*, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. To backup your repository you need to synchronize your *local* `<repositoryname>` repository on the cluster with the `<repositoryname>` repository *on GitHub*. To du that use:
 
-```txt
+```{.bash filename="Terminal"}
 git push
 ```
 

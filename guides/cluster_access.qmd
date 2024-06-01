@@ -25,7 +25,7 @@ SSH is short for secure shell. A shell is the software that lets you run command
 
 You connect to the cluster from the terminal by executing the command below (remember to replace `<cluster user name>` with your actual cluster user name):
 
-```
+```{.bash filename="Terminal"}
 ssh <cluster user name>@login.genome.au.dk
 ```
 
@@ -63,20 +63,20 @@ First, check if you have these two authentication files on your local machine (y
 
 You most likely do not. If so, you generate authentication keys with the command below. Just press Enter when prompted for a file in which to save the key. Do not enter a passphrase when prompted - just press enter:
 
-```
+```{.bash filename="Terminal"}
 ssh-keygen -t rsa
 
 ```
 
 Now use `ssh` to create a directory `~/.ssh` on the cluster (assuming your username on the cluster is `<cluster user name>`). SSH will prompt you for your password.
 
-```
+```{.bash filename="Terminal"}
 ssh <cluster user name>@login.genome.au.dk mkdir -p .ssh
 ```
 
 Finally, append the public `ssh` key on your local machine to the file `.ssh/authorized_keys` on the cluster and enter your password (replace `<cluster user name>` with your cluster user name):
 
-```
+```{.bash filename="Terminal"}
 cat ~/.ssh/id_rsa.pub | ssh username@login.genome.au.dk 'cat >> .ssh/authorized_keys'
 ```
 
@@ -84,7 +84,7 @@ From now on, you can log into the cluster from your local machine without being 
 
 Try it:
 
-```
+```{.bash filename="Terminal"}
 ssh <cluster user name>@login.genome.au.dk
 ```
 

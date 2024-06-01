@@ -22,7 +22,9 @@ The repos can each have their own adjustable workflow as decribed [here](https:/
 
 Make sure you install the current version of Git in your environments. The one on the cluster is ancient.
 
-    conda install -c conda-forge git
+```{.bash filename="Terminal"}
+conda install -c conda-forge git
+```
 
 I also set these configs for each environment to get nicer/safer commands (commands below assume these are set):
 
@@ -38,72 +40,90 @@ Now, say you have a project repo called "umbrella" that will contain other proje
 
 clone repository as submodule:
 
-    git submodule add git@github.com:kaspermunch/tester.git
-
+```{.bash filename="Terminal"}
+git submodule add git@github.com:munch-group/rfmix.git
+```
 and pull the current state of the submodule repo:
 
-    git submodule init tester
-    git submodule update tester
-
+```{.bash filename="Terminal"}
+git submodule init rfmix
+git submodule update rfmix
+```
 This also generates a `.gitmodules` configuration file that git uses to keep track of submodules. Commit that the addalong with the submodule:
 
-    git add .gitmodules tester
-    git commit -m 'Added tester repo as submodule'
-    git push
+```{.bash filename="Terminal"}
+git add .gitmodules rfmix
+git commit -m 'Added rfmix as submodule'
+git push
+```
 
 If you want to work on/change submodule repo you need to check out a branch to work on (main or some other). Always do this. If you decide to make changes later and forgot you did not check out a branch you could loose those changes:
 
-    cd tester
-    git checkout main  # (or some other branch)
+````{.bash filename="Terminal"}
+cd rfmix
+git checkout main  # (or some other branch)
+````
 
 ## Making changes to the submodule
 
 now you can then do some work on the tester repo (E.g. change the README.md) and add, commit as usual:
 
-    cd tester
-    # change README.md
-    git add README.md
-    git commit
+```{.bash filename="Terminal"}
+cd rfmix
+# change README.md
+git add README.md
+git commit
+```
 
 ## Publishing submodule changes to GitHub
 
 To publish your submodule commit to the tester repo on GitHub you run:
 
-    cd tester
-    git push
+```{.bash filename="Terminal"}
+cd rfmix
+git push
+```
 
 ## Getting submodule changes from GitHub
 
 if you run "git pull" in the umbrella repo, you pull upstream changes to the umbrella repo including the recorded state (commit) of the tester submodule:
 
-    git pull
+```{.bash filename="Terminal"}
+git pull
+```
 
 but it does not pull the tester submodule itself. To do that you run pull in the submodule:
 
-    cd tester
-    git pull
+```{.bash filename="Terminal"}
+cd rfmix
+git pull
+```
 
 # Branches and multiple contributors
 
 As you could see above submodules are really just repos inside other repos. The parent repo just treats the submodule as a file holding which state (commit) the submodule is in. So for most use, working alone on project it is quite simple. In some cases however, you need some of the `git submodule` commands. Those commands updates the relationship between the submodule state recorded in the parent repo and the state and of the submodule.
 
-    git submodule update --checkout
-    git submodule update --rebase
-    git submodule update --merge
-    
-**--checkout** Checkout the commit recorded in the superproject on a detached HEAD in the submodule. This is the default behavior, the main use of this option is to override submodule.$name.update when set to a value other than checkout.
+```{.bash filename="Terminal"}
+git submodule update --checkout
+git submodule update --rebase
+git submodule update --merge
+```
 
-**--merge** Merge the commit recorded in the superproject into the current branch of the submodule. If this option is given, the submodule’s HEAD will not be detached. If a merge failure prevents this process, you will have to resolve the resulting conflicts within the submodule with the usual conflict resolution tools. 
+`--checkout`: Checkout the commit recorded in the superproject on a detached HEAD in the submodule. This is the default behavior, the main use of this option is to override submodule.$name.update when set to a value other than checkout.
 
-**--rebase** Rebase the current branch onto the commit recorded in the superproject. If this option is given, the submodule’s HEAD will not be detached. If a merge failure prevents this process, you will have to resolve these failures with git-rebase[1].     
+`--merge`: Merge the commit recorded in the superproject into the current branch of the submodule. If this option is given, the submodule’s HEAD will not be detached. If a merge failure prevents this process, you will have to resolve the resulting conflicts within the submodule with the usual conflict resolution tools. 
+
+`--rebase`: Rebase the current branch onto the commit recorded in the superproject. If this option is given, the submodule’s HEAD will not be detached. If a merge failure prevents this process, you will have to resolve these failures with git-rebase[1].     
     
-    git submodule update --remote --checkout
-    git submodule update --remote --rebase
-    git submodule update --remote --merge       
+```{.bash filename="Terminal"}
+git submodule update --remote --checkout
+git submodule update --remote --rebase
+git submodule update --remote --merge       
+```
 
 The last one fetches upsteam changes and pulls the submoduile branch recorded in the parent repo when the submodule was added. If this branch is the current branch in the local submodule, then the command is equivalent to `git pull` in the submodule.
 
-**--remote** Instead of using the superproject’s recorded SHA-1 to update the submodule, use the status of the submodule’s remote-tracking branch. In order to ensure a current tracking branch state, update --remote fetches the submodule’s remote repository before calculating the SHA-1. If you don’t want to fetch, you should use submodule update --remote --no-fetch.
+`--remote`: Instead of using the superproject’s recorded SHA-1 to update the submodule, use the status of the submodule’s remote-tracking branch. In order to ensure a current tracking branch state, update --remote fetches the submodule’s remote repository before calculating the SHA-1. If you don’t want to fetch, you should use `submodule update --remote --no-fetch`.
 
 Use this option to integrate changes from the upstream subproject with your submodule’s current HEAD. Alternatively, you can run git pull from the submodule, which is equivalent except for the remote branch name: update --remote uses the default upstream repository and submodule.<name>.branch, while git pull uses the submodule’s branch.<name>.merge. Prefer submodule.<name>.branch if you want to distribute the default upstream branch with the superproject and branch.<name>.merge if you want a more native feel while working in the submodule itself.
 

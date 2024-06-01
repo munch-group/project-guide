@@ -21,13 +21,13 @@ Still, even with the best of intentions, simply recording the commands you used 
 
 Report the location and version of the raw data that serve as input to your analysis. Make sure this data is "read only" so that onone accidentally modifies or deletes it. You can do that like this:
 
-```
+```{.bash filename="Terminal"}
 chmod a=r important_input_file.txt
 ```
 
 or recursively for an entire folder:
 
-```
+```{.bash filename="Terminal"}
 chmod -R a=r input_file_folder
 ```
 
@@ -37,32 +37,32 @@ Employing tools like Conda define the dependencies of your of your project, ensu
 
 When you create your conda environment, and whenever you install new packages, you should update the `environment.yml` file in the `binder` directory. That way the specification of your environment is always up to date and allows anyone to create the conda environment required to run your analysis You do it by running this command:
 
-```bash
+```{.bash filename="Terminal"}
 conda env export --from-history -f ./binder/environment.yml
 ```
 
 Once your project is well underway and you have settled on the set of packages needed for your project, you can make your environment more stable (and thus reproducible) by creating the environment again, installing all the packages in one go. To do that, first create a `test` environment to make sure that your exported environment can actually be created (you do not want to end up with a new environmnet that does not work like the old one):
 
-```bash
+```{.bash filename="Terminal"}
 conda env create -n test -f binder/environment.yml
 ```
 
 If, and only if, the `test` environment is successfully created and works the way it should you delete the `test` environment and the `birc-project` enrivonemnt:
 
-```bash
+```{.bash filename="Terminal"}
 conda env remove -n test
 conda env remove -n birc-project
 ```
 
 and create a new version of the `birc-project` enrivonemnt:
 
-```bash
+```{.bash filename="Terminal"}
 conda env create -f binder/environment.yml
 ```
 
 Then, to make life easier for someone reproducing your project on the GenomeDK, you must run this command as well (it records all the packages used including their linux versions used here):
 
-```bash
+```{.bash filename="Terminal"}
 conda activate birc-project
 conda env export -f ./binder/environment-genomedk.yml
 ```

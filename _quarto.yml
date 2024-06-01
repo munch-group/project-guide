@@ -20,7 +20,7 @@ book:
       chapters: 
       - guides/git_101.qmd      
       - guides/jupyterlab.ipynb
-      - guides/quarto.qmd
+      - guides/quarto_jupyter.ipynb
     - part: "Guides"
       chapters:
       - guides/gwf.qmd      
@@ -35,8 +35,10 @@ bibliography: references.bib
 
 format:
   html:
-    theme: default
-    toc-depth: 1
+    theme:
+      - default
+      # - custom.scss
+    # toc-depth: 1
     number-sections: false
 
 
