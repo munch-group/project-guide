@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/quarto.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quarto reporting</span></a>
+  <a href="../guides/quarto_jupyter.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quarto reporting</span></a>
   </div>
 </li>
       </ul>
@@ -260,7 +260,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#branches-and-multiple-contributors" id="toc-branches-and-multiple-contributors" class="nav-link active" data-scroll-target="#branches-and-multiple-contributors">Branches and multiple contributors</a></li>
+  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries">Preliminaries</a></li>
+  <li><a href="#add-a-submodule" id="toc-add-a-submodule" class="nav-link" data-scroll-target="#add-a-submodule">Add a submodule</a></li>
+  <li><a href="#making-changes-to-the-submodule" id="toc-making-changes-to-the-submodule" class="nav-link" data-scroll-target="#making-changes-to-the-submodule">Making changes to the submodule</a></li>
+  <li><a href="#publishing-submodule-changes-to-github" id="toc-publishing-submodule-changes-to-github" class="nav-link" data-scroll-target="#publishing-submodule-changes-to-github">Publishing submodule changes to GitHub</a></li>
+  <li><a href="#getting-submodule-changes-from-github" id="toc-getting-submodule-changes-from-github" class="nav-link" data-scroll-target="#getting-submodule-changes-from-github">Getting submodule changes from GitHub</a></li>
+  <li><a href="#branches-and-multiple-contributors" id="toc-branches-and-multiple-contributors" class="nav-link" data-scroll-target="#branches-and-multiple-contributors">Branches and multiple contributors</a>
+  <ul class="collapse">
+  <li><a href="#multiple-submodules" id="toc-multiple-submodules" class="nav-link" data-scroll-target="#multiple-submodules">Multiple submodules</a></li>
+  </ul></li>
   <li><a href="#combining-gwf-workflows-from-multiple-git-submodules" id="toc-combining-gwf-workflows-from-multiple-git-submodules" class="nav-link" data-scroll-target="#combining-gwf-workflows-from-multiple-git-submodules">Combining GWF workflows from multiple Git submodules</a></li>
   </ul>
 </nav>
@@ -306,7 +314,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="preliminaries" class="level2">
 <h2 class="anchored" data-anchor-id="preliminaries">Preliminaries</h2>
 <p>Make sure you install the current version of Git in your environments. The one on the cluster is ancient.</p>
-<pre><code>conda install -c conda-forge git</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>I also set these configs for each environment to get nicer/safer commands (commands below assume these are set):</p>
 <pre><code>git config --global diff.submodule log
 git config status.submodulesummary 1
@@ -317,54 +330,104 @@ git config push.recurseSubmodules check</code></pre>
 <section id="add-a-submodule" class="level2">
 <h2 class="anchored" data-anchor-id="add-a-submodule">Add a submodule</h2>
 <p>clone repository as submodule:</p>
-<pre><code>git submodule add git@github.com:kaspermunch/tester.git</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule add git@github.com:munch-group/rfmix.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>and pull the current state of the submodule repo:</p>
-<pre><code>git submodule init tester
-git submodule update tester</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule init rfmix</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update rfmix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>This also generates a <code>.gitmodules</code> configuration file that git uses to keep track of submodules. Commit that the addalong with the submodule:</p>
-<pre><code>git add .gitmodules tester
-git commit -m 'Added tester repo as submodule'
-git push</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .gitmodules rfmix</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">'Added rfmix as submodule'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>If you want to work on/change submodule repo you need to check out a branch to work on (main or some other). Always do this. If you decide to make changes later and forgot you did not check out a branch you could loose those changes:</p>
-<pre><code>cd tester
-git checkout main  # (or some other branch)</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> rfmix</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main  <span class="co"># (or some other branch)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="making-changes-to-the-submodule" class="level2">
 <h2 class="anchored" data-anchor-id="making-changes-to-the-submodule">Making changes to the submodule</h2>
 <p>now you can then do some work on the tester repo (E.g. change the README.md) and add, commit as usual:</p>
-<pre><code>cd tester
-# change README.md
-git add README.md
-git commit</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb8" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> rfmix</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># change README.md</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="publishing-submodule-changes-to-github" class="level2">
 <h2 class="anchored" data-anchor-id="publishing-submodule-changes-to-github">Publishing submodule changes to GitHub</h2>
 <p>To publish your submodule commit to the tester repo on GitHub you run:</p>
-<pre><code>cd tester
-git push</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb9" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> rfmix</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="getting-submodule-changes-from-github" class="level2">
 <h2 class="anchored" data-anchor-id="getting-submodule-changes-from-github">Getting submodule changes from GitHub</h2>
 <p>if you run “git pull” in the umbrella repo, you pull upstream changes to the umbrella repo including the recorded state (commit) of the tester submodule:</p>
-<pre><code>git pull</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb10" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>but it does not pull the tester submodule itself. To do that you run pull in the submodule:</p>
-<pre><code>cd tester
-git pull</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb11" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> rfmix</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="branches-and-multiple-contributors" class="level1">
 <h1>Branches and multiple contributors</h1>
 <p>As you could see above submodules are really just repos inside other repos. The parent repo just treats the submodule as a file holding which state (commit) the submodule is in. So for most use, working alone on project it is quite simple. In some cases however, you need some of the <code>git submodule</code> commands. Those commands updates the relationship between the submodule state recorded in the parent repo and the state and of the submodule.</p>
-<pre><code>git submodule update --checkout
-git submodule update --rebase
-git submodule update --merge</code></pre>
-<p><strong>–checkout</strong> Checkout the commit recorded in the superproject on a detached HEAD in the submodule. This is the default behavior, the main use of this option is to override submodule.$name.update when set to a value other than checkout.</p>
-<p><strong>–merge</strong> Merge the commit recorded in the superproject into the current branch of the submodule. If this option is given, the submodule’s HEAD will not be detached. If a merge failure prevents this process, you will have to resolve the resulting conflicts within the submodule with the usual conflict resolution tools.</p>
-<p><strong>–rebase</strong> Rebase the current branch onto the commit recorded in the superproject. If this option is given, the submodule’s HEAD will not be detached. If a merge failure prevents this process, you will have to resolve these failures with git-rebase[1].</p>
-<pre><code>git submodule update --remote --checkout
-git submodule update --remote --rebase
-git submodule update --remote --merge       </code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb12" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--checkout</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--rebase</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--merge</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>--checkout</code>: Checkout the commit recorded in the superproject on a detached HEAD in the submodule. This is the default behavior, the main use of this option is to override submodule.$name.update when set to a value other than checkout.</p>
+<p><code>--merge</code>: Merge the commit recorded in the superproject into the current branch of the submodule. If this option is given, the submodule’s HEAD will not be detached. If a merge failure prevents this process, you will have to resolve the resulting conflicts within the submodule with the usual conflict resolution tools.</p>
+<p><code>--rebase</code>: Rebase the current branch onto the commit recorded in the superproject. If this option is given, the submodule’s HEAD will not be detached. If a merge failure prevents this process, you will have to resolve these failures with git-rebase[1].</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb13" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--remote</span> <span class="at">--checkout</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--remote</span> <span class="at">--rebase</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> submodule update <span class="at">--remote</span> <span class="at">--merge</span>       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>The last one fetches upsteam changes and pulls the submoduile branch recorded in the parent repo when the submodule was added. If this branch is the current branch in the local submodule, then the command is equivalent to <code>git pull</code> in the submodule.</p>
-<p><strong>–remote</strong> Instead of using the superproject’s recorded SHA-1 to update the submodule, use the status of the submodule’s remote-tracking branch. In order to ensure a current tracking branch state, update –remote fetches the submodule’s remote repository before calculating the SHA-1. If you don’t want to fetch, you should use submodule update –remote –no-fetch.</p>
+<p><code>--remote</code>: Instead of using the superproject’s recorded SHA-1 to update the submodule, use the status of the submodule’s remote-tracking branch. In order to ensure a current tracking branch state, update –remote fetches the submodule’s remote repository before calculating the SHA-1. If you don’t want to fetch, you should use <code>submodule update --remote --no-fetch</code>.</p>
 <p>Use this option to integrate changes from the upstream subproject with your submodule’s current HEAD. Alternatively, you can run git pull from the submodule, which is equivalent except for the remote branch name: update –remote uses the default upstream repository and submodule.<name>.branch, while git pull uses the submodule’s branch.<name>.merge. Prefer submodule.<name>.branch if you want to distribute the default upstream branch with the superproject and branch.<name>.merge if you want a more native feel while working in the submodule itself.</name></name></name></name></p>
 <p>(read the difference between merge and rebase <a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing">here</a>)</p>
 <section id="multiple-submodules" class="level2">

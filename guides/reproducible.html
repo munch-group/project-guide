@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/quarto.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quarto reporting</span></a>
+  <a href="../guides/quarto_jupyter.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quarto reporting</span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +256,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#specify-raw-input-data" id="toc-specify-raw-input-data" class="nav-link active" data-scroll-target="#specify-raw-input-data">Specify raw input data</a></li>
+  <li><a href="#define-dependencies" id="toc-define-dependencies" class="nav-link" data-scroll-target="#define-dependencies">Define dependencies</a></li>
+  <li><a href="#use-version-control" id="toc-use-version-control" class="nav-link" data-scroll-target="#use-version-control">Use version control</a></li>
+  <li><a href="#make-computatioal-steps-an-executable-workflow" id="toc-make-computatioal-steps-an-executable-workflow" class="nav-link" data-scroll-target="#make-computatioal-steps-an-executable-workflow">Make computatioal steps an executable workflow</a></li>
+  <li><a href="#make-your-analysis-executable" id="toc-make-your-analysis-executable" class="nav-link" data-scroll-target="#make-your-analysis-executable">Make your analysis executable</a></li>
+  <li><a href="#make-your-reporting-executable" id="toc-make-your-reporting-executable" class="nav-link" data-scroll-target="#make-your-reporting-executable">Make your reporting executable</a></li>
+  <li><a href="#make-your-entire-project-publicly-available" id="toc-make-your-entire-project-publicly-available" class="nav-link" data-scroll-target="#make-your-entire-project-publicly-available">Make your entire project publicly available</a></li>
+  <li><a href="#reproducing-your-work" id="toc-reproducing-your-work" class="nav-link" data-scroll-target="#reproducing-your-work">Reproducing your work</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -296,25 +309,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="specify-raw-input-data" class="level2">
 <h2 class="anchored" data-anchor-id="specify-raw-input-data">Specify raw input data</h2>
 <p>Report the location and version of the raw data that serve as input to your analysis. Make sure this data is “read only” so that onone accidentally modifies or deletes it. You can do that like this:</p>
-<pre><code>chmod a=r important_input_file.txt</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> a=r important_input_file.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>or recursively for an entire folder:</p>
-<pre><code>chmod -R a=r input_file_folder</code></pre>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> <span class="at">-R</span> a=r input_file_folder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="define-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="define-dependencies">Define dependencies</h2>
 <p>Employing tools like Conda define the dependencies of your of your project, ensuring that others can run the same code with the same dependencies.</p>
 <p>When you create your conda environment, and whenever you install new packages, you should update the <code>environment.yml</code> file in the <code>binder</code> directory. That way the specification of your environment is always up to date and allows anyone to create the conda environment required to run your analysis You do it by running this command:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="at">-f</span> ./binder/environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="at">-f</span> ./binder/environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Once your project is well underway and you have settled on the set of packages needed for your project, you can make your environment more stable (and thus reproducible) by creating the environment again, installing all the packages in one go. To do that, first create a <code>test</code> environment to make sure that your exported environment can actually be created (you do not want to end up with a new environmnet that does not work like the old one):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-n</span> test <span class="at">-f</span> binder/environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-n</span> test <span class="at">-f</span> binder/environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>If, and only if, the <code>test</code> environment is successfully created and works the way it should you delete the <code>test</code> environment and the <code>birc-project</code> enrivonemnt:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> test</span>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> test</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env remove <span class="at">-n</span> birc-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>and create a new version of the <code>birc-project</code> enrivonemnt:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> binder/environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> binder/environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Then, to make life easier for someone reproducing your project on the GenomeDK, you must run this command as well (it records all the packages used including their linux versions used here):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate birc-project</span>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate birc-project</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">-f</span> ./binder/environment-genomedk.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="use-version-control" class="level2">
 <h2 class="anchored" data-anchor-id="use-version-control">Use version control</h2>

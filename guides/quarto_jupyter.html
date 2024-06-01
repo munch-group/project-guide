@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/git_101.html">Quickstarts</a></li><li class="breadcrumb-item"><a href="../guides/quarto.html"><span class="chapter-title">Quarto reporting</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/git_101.html">Quickstarts</a></li><li class="breadcrumb-item"><a href="../guides/quarto_jupyter.html"><span class="chapter-title">Quarto reporting</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/quarto.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Quarto reporting</span></a>
+  <a href="../guides/quarto_jupyter.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Quarto reporting</span></a>
   </div>
 </li>
       </ul>
@@ -261,14 +261,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#render-your-content" id="toc-render-your-content" class="nav-link active" data-scroll-target="#render-your-content">Render your content</a></li>
-  <li><a href="#one-time-publish-setup" id="toc-one-time-publish-setup" class="nav-link" data-scroll-target="#one-time-publish-setup">One-time publish setup</a></li>
+  <li><a href="#one-time-publish-setup" id="toc-one-time-publish-setup" class="nav-link" data-scroll-target="#one-time-publish-setup">One-time publish setup</a>
+  <ul class="collapse">
+  <li><a href="#quarto-in-jupyterlab" id="toc-quarto-in-jupyterlab" class="nav-link" data-scroll-target="#quarto-in-jupyterlab">Quarto in JupyterLab</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/git_101.html">Quickstarts</a></li><li class="breadcrumb-item"><a href="../guides/quarto.html"><span class="chapter-title">Quarto reporting</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/git_101.html">Quickstarts</a></li><li class="breadcrumb-item"><a href="../guides/quarto_jupyter.html"><span class="chapter-title">Quarto reporting</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span id="sec-quarto" class="quarto-section-identifier"><span class="chapter-title">Quarto reporting</span></span></h1>
 </div>
@@ -288,30 +291,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>You can install Quarto for a single user on Linux by using the Quarto tarball and following the below set of steps. First login to the cluster and download the tarball:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.547/quarto-1.4.547-linux-amd64.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb1" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.547/quarto-1.4.547-linux-amd64.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Then extract the contents of the tarball to the location where you typically install software. Like:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mkdir ~/opt</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tar -C ~/opt -xvzf quarto-1.4.547-linux-amd64.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb2" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/opt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-C</span> ~/opt <span class="at">-xvzf</span> quarto-1.4.547-linux-amd64.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Create a symlink to bin/quarto in a folder that is in your path. If there is no such folder, you can create a folder such as ~/bin and place the symlink there. For example:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mkdir ~/bin</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ln -s ~/opt/quarto-1.4.547/bin/quarto ~/bin/quarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb3" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/bin</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ~/opt/quarto-1.4.547/bin/quarto ~/bin/quarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Either add Add folder with quarto to the list of folders where linux searches for executables:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>( echo ""; echo 'export PATH=$PATH:~/bin\n' ; echo "" ) &gt;&gt; ~/.profile</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>source ~/.profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb4" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span> <span class="bu">echo</span> <span class="st">""</span><span class="kw">;</span> <span class="bu">echo</span> <span class="st">'export PATH=$PATH:~/bin\n'</span> <span class="kw">;</span> <span class="bu">echo</span> <span class="st">""</span> <span class="kw">)</span> <span class="op">&gt;&gt;</span> ~/.profile</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Check The Installation</p>
 <p>Use quarto check to confirm that the installation is successful:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quarto check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb5" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="render-your-content" class="level1">
 <h1>Render your content</h1>
 <p>Go to the root of your repository (_where the <code>_quarto.yml</code> file is). Acitvate your conda environment and run this command to execute and render your content as html pages.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>quarto render --execute</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb6" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--execute</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="one-time-publish-setup" class="level1">
 <h1>One-time publish setup</h1>
 <p>The way your repository is set up, GitHub will automatically render (but not execute) and publish your content every time you push changes. But you need to run the command below <em>once</em> to allow quarto to do some initial setup and configuration.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>quarto publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="sourceCode" id="cb7" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish gh-pages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="quarto-in-jupyterlab" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-in-jupyterlab">Quarto in JupyterLab</h2>
+<p>https://quarto.org/docs/tools/jupyter-lab</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
