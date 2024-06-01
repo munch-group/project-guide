@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Project Guide - Laptop setup</title>
+<title>Project Guide - Version control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../guides/cluster_access.html" rel="next">
-<link href="../index.html" rel="prev">
+<link href="../guides/jupyterlab.html" rel="next">
+<link href="../guides/reproducible.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/laptop_setup.html">Project setup</a></li><li class="breadcrumb-item"><a href="../guides/laptop_setup.html"><span class="chapter-title">Laptop setup</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/git_101.html">Quickstarts</a></li><li class="breadcrumb-item"><a href="../guides/git_101.html"><span class="chapter-title">Version control</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -157,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/laptop_setup.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Laptop setup</span></a>
+  <a href="../guides/laptop_setup.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Laptop setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/git_101.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Version control</span></a>
+  <a href="../guides/git_101.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Version control</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -256,14 +256,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#git-as-journaled-backup" id="toc-git-as-journaled-backup" class="nav-link active" data-scroll-target="#git-as-journaled-backup">Git as journaled backup</a></li>
+  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git">Git</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/laptop_setup.html">Project setup</a></li><li class="breadcrumb-item"><a href="../guides/laptop_setup.html"><span class="chapter-title">Laptop setup</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/git_101.html">Quickstarts</a></li><li class="breadcrumb-item"><a href="../guides/git_101.html"><span class="chapter-title">Version control</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Laptop setup</span></h1>
+<h1 class="title"><span id="sec-git-101" class="quarto-section-identifier"><span class="chapter-title">Version control</span></span></h1>
 </div>
 
 
@@ -280,40 +287,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>You will work on our computing cluster, but before we get there, we must get you properly set up on your machine.</p>
-<section id="install-python" class="level3">
-<h3 class="anchored" data-anchor-id="install-python">Install Python</h3>
-<p>If you have not done so already, you should install a distribution of Python called <em>Anaconda</em>. Anaconda is not only an easy way of installing Python on Windows, Mac, and Linux; it also comes with the conda package management system (more about that later). To install Anaconda, visit <a href="https://www.anaconda.com/download">this page</a>. When the download completes, you must follow the default installation.</p>
+<section id="git-as-journaled-backup" class="level2">
+<h2 class="anchored" data-anchor-id="git-as-journaled-backup">Git as journaled backup</h2>
+<p>When you are in your <code>&lt;repositoryname&gt;</code> folder, you can run git commands to manage your files, record their changes and sync them to the repository on GitHub for safe keeping. <a href="https://www.atlassian.com/git">These tutorials</a> are good introductions to git.</p>
+<p>To journal the creation or modification of a file, you need to <code>add</code> it to git:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>git add &lt;the_changed_file&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This “stages” the change. This adds the file to the a “group” of changes that represent some modification to your project. You can add more files to that “group” by running the command again with other files. If you run <code>git status</code> you can see that the files are now staged.</p>
+<p>So maybe you added or changed two python files addressing some parcitular problem or advancing some part of your project. Now you want to store those of changes to the journal maintained by Git and associate it with a short message describing the changes. For that you use:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git commit -m '&lt;message&gt;'</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you added two python files, your description could be <code>'Added two python files for my analysis'</code>. If you fixed a bug or added new code to the files, your message should reflect that.</p>
+<p>Now your changes are recorded in the version of the <code>&lt;repositoryname&gt;</code> <em>on the cluster</em>, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. To backup your repository you need to synchronize your <em>local</em> <code>&lt;repositoryname&gt;</code> repository on the cluster with the <code>&lt;repositoryname&gt;</code> repository <em>on GitHub</em>. To du that use:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>git push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In addition to keeping your precious files safe and backed up, your GitHub repository also serve as a journal documenting of your progress. Each commit is a snapshot if your project that can be retrieved at any time.</p>
 </section>
-<section id="the-terminal" class="level3">
-<h3 class="anchored" data-anchor-id="the-terminal">The Terminal</h3>
-<p>The programs you will use in the project are command-line applications. I.e., programs executed by writing their name and any arguments in a “terminal” rather than clicking on an icon and using a graphical user interface. Many different programs can serve as a terminal.</p>
-<ul>
-<li>If you have a Windows machine, use the <em>Anaconda Powershell Prompt</em> (<em>not</em> the Anaconda Prompt and <em>not</em> the <code>CMD</code>). You installed Anaconda Powershell Prompt along with Anaconda Python.</li>
-<li>If you have a Mac, the terminal you will use is called <em>Terminal</em>. The Terminal application is pre-installed on Mac.</li>
-</ul>
-<p>From now on, whenever I refer to the terminal, I mean <em>Anaconda Powershell Prompt</em> on Windows and <em>Terminal</em> on Mac. I will assume some familiarity with using a terminal and executing commands on the command line. If you have not used a terminal before, or if you are a bit rusty, you should run through <a href="https://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything">this primer</a> before you go on.</p>
-</section>
-<section id="conda-environments" class="level3">
-<h3 class="anchored" data-anchor-id="conda-environments">Conda environments</h3>
-<p><img src="https://docs.conda.io/en/latest/_images/conda_logo.svg" align="right" width="200" height="100"></p>
-<p>You must install packages and programs for your analyses and pipelines. Sometimes, however, the packages you need for one project conflict with the ones you need for other projects you work on in parallel. Such conflicts seem like an unsolvable problem. Would it not be fantastic if you could create a small world insulated from the rest of your Anaconda installation? Then, that small world would only contain the packages you needed for a single project. If each project had its isolated world, then there would be no such conflicts.</p>
-<p>Fortunately, a tool lets you do just that, and its name is Conda. Conda’s small worlds are called “environments,” and you can create as many as you like. You can then switch between them as you switch between your bioinformatics projects. Conda also downloads and installs the packages for you, ensuring that the packages you install in each environment are compatible. It even makes sure to install packages (dependencies) required by the packages you install. By creating an environment for each project, the libraries installed for each project do not interfere.</p>
-</section>
-<section id="create-a-conda-environment-on-your-local-machine" class="level3">
-<h3 class="anchored" data-anchor-id="create-a-conda-environment-on-your-local-machine">Create a conda environment on your local machine</h3>
-<p>When you install Anaconda or Miniconda, Conda makes a single base environment. It is called “base,” and this is why it says “(base)” at your terminal prompt. You need a conda environment for your project on your local machine. You can call it anything you like, but if you call it <code>birc-project</code>, it will match the rest of this tutorial. So do that.</p>
-<p>The environment on your local machine only needs a few packages since it only connects you to the cluster. The command below creates a <code>birc-project</code> environment and installs the <code>slurm-jupyter</code> package from my conda channel:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>conda create -y -n birc-project -c kaspermunch slurm-jupyter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To activate the environment, use this command:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>conda activate birc-project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note how the environment name at your terminal prompt changes from <code>(base)</code> to <code>(birc-project)</code>. To deactivate the environment, use this command:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>conda deactivate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>and the terminal prompt changes back to <code>(base)</code>.</p>
-</section>
-<section id="vpn" class="level3">
-<h3 class="anchored" data-anchor-id="vpn">VPN</h3>
-<p>You can only connect to the cluster on the University’s internal network. So you must be physically on campus or use the University’s VPN. To install VPN, follow the instructions <a href="https://studerende.au.dk/it-support/vpn/">on this page</a>. Before you can use the VPN, you also need to enable two-step verification. You can see how to do that on the same page. If you are not physically on campus, you must activate your VPN before logging in to the cluster. Your password for the VPN is the same as the one you use to log on to access Blackboard.</p>
+<section id="git" class="level2">
+<h2 class="anchored" data-anchor-id="git">Git</h2>
+<p>There is a cheat sheet <a href="https://training.github.com/downloads/github-git-cheat-sheet/">here</a> and some good visual guides <a href="https://ndpsoftware.com/git-cheatsheet.html">here</a> and <a href="https://marklodato.github.io/visual-git-guide/index-en.html">here</a>.</p>
+<p>The three most important commands to learn are: <a href="https://git-scm.com/docs/git-status">git status</a>, <a href="https://git-scm.com/docs/git-add">git add</a>, <a href="https://git-scm.com/docs/git-rm">git rm</a>, <a href="https://git-scm.com/docs/git-mv">git mv</a>, <a href="https://git-scm.com/docs/git-commit">git commit</a> and <a href="https://git-scm.com/docs/git-push">git push</a>.</p>
 
 
 </section>
@@ -730,13 +720,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      <a href="../guides/reproducible.html" class="pagination-link" aria-label="Reproducible research">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Reproducible research</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../guides/cluster_access.html" class="pagination-link" aria-label="Cluster access">
-        <span class="nav-page-text"><span class="chapter-title">Cluster access</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../guides/jupyterlab.html" class="pagination-link" aria-label="Jupyterlab">
+        <span class="nav-page-text"><span class="chapter-title">Jupyterlab</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
