@@ -1,10 +1,6 @@
 
 # Cluster access
 
-<img src="https://icon-library.com/images/62418-database-icons-virtual-servers-computer-private-server.png" align="right" width="150"  />
-
-The [GenomeDK](https://genome.au.dk/) cluster is a huge collection of computers with a shared file system. You can find lots of helpful information about the cluster on their homepage beyond what I cover on these pages. The cluster does not have a screen or keyboard you can use, but by connecting to the cluster from your computer, you can create and edit files much like if they were on your laptop. These pages take you through the steps to connect and access the cluster.
-
 ::: {.callout-warning}
 
 ## This is not a leisure read
@@ -12,6 +8,10 @@ The [GenomeDK](https://genome.au.dk/) cluster is a huge collection of computers 
 Make sure you follow it to the letter. Do each step in order, and do not proceed until you have successfully completed each step.
 
 :::
+
+<img src="https://icon-library.com/images/62418-database-icons-virtual-servers-computer-private-server.png" align="right" width="150"  />
+
+The [GenomeDK](https://genome.au.dk/) cluster is a huge collection of computers with a shared file system. You can find lots of helpful information about the cluster on their homepage beyond what I cover on these pages. The cluster does not have a screen or keyboard you can use, but by connecting to the cluster from your computer, you can create and edit files much like if they were on your laptop. These pages take you through the steps to connect and access the cluster.
 
 Below, you will see something like `<cluster user name>` or `<project folder>`. Whenever you see something like that, you should replace everything, including `<` and `>`, with whatever it says. E.g., if your cluster user name is `mike`, you should replace `<cluster user name>` with `mike`.
 
@@ -44,21 +44,30 @@ If you run the `hostname` command again, you can see that you are now on `fe-ope
 
 
 
-You will need to log in to the cluster many times, so you should set up your SSH connection to the cluster so you can connect securely without typing the password every time. You do not need to know *how* this works, but if you are interested, here is roughly how:
+You will need to log in to the cluster many times, so you should set up your SSH connection to the cluster so you can connect securely without typing the password every time. This is roughly how it works:
 
 ::: {.callout-note}
 
 ## SSH keys
 
-Firstly, you have to understand what public/private encryption keys are. A private key is a very long, random sequence of bits. A private key is kept secret and never leaves your laptop. A public key is another string of bits that is a derivative of the private key. You can generate a unique public key from the private key but cannot get the private key from a public key: It is a one-way process. You can encrypt (or sign) any message using the public key, and it will only be possible to decrypt it using the private key. In other words, anyone with your public key can send you encrypted messages that only you will be able to read. So, if the cluster has your public key saved, it can authenticate you like this: The cluster sends your machine an encrypted message using your public key. Your laptop then decrypts the message using its private key and sends it back. The cluster then checks the decryption and logs you in.
+Firstly, you have to understand what public/private encryption keys are. A *private* key is a very long, random sequence of bits. A private key is kept secret and never leaves your laptop. A *public* key is another string of bits that is a derivative of the private key. 
 
+You can generate a unique public key from the private key but cannot get the private key from a public key: It is a one-way process. You can encrypt (or sign) any message using the public key, and it will only be possible to decrypt it using the private key it is derived from. In other words, anyone with your public key can send you encrypted messages that only you will be able to read. 
+
+So, if the cluster has your public key saved, it can authenticate you like this: The cluster sends your laptop a message encrypted using the public key. Your laptop then decrypts the message using its private key and sends it back. If the cluster receives a correctly decrypted message it knows it is you and logs you in.
 :::
 
-First, check if you have these two authentication files on your local machine (you can do so by running `ls -a ~/.ssh` in the terminal):
+First, check if you have these two authentication files on your local machine: 
 
 ```
 ~/.ssh/id_rsa
 ~/.ssh/id_rsa.pub
+```
+
+You can do so using the `ls` commmand:
+
+```{.bash filename="Terminal"}
+ls -a ~/.ssh
 ```
 
 You most likely do not. If so, you generate authentication keys with the command below. Just press Enter when prompted for a file in which to save the key. Do not enter a passphrase when prompted - just press enter:
