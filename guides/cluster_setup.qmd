@@ -128,12 +128,13 @@ conda config --env --append channels conda-forge
 conda config --env --append channels bioconda
 conda config --env --append channels gwforg
 conda config --env --append channels kaspermunch
+conda config --env --append channels micknudsen
 ```
 
 Then install the actual packages. The following command installs the basic packages you will need for typical Python-based data analysis project:
 
 ```{.bash filename="Terminal"}
-conda install git gwf jupyterlab ipython nbdime seaborn statsmodels scipy gwf pytables
+conda install git gwf jupyterlab ipython nbdime seaborn statsmodels scipy gwf pytables gwf-utilization
 ```
 
 If your project use probabilistic programming with PyMC (if you are in doubt, it is not), you need to install these packages as well:
