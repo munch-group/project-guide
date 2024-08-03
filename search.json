@@ -1,235 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Project Guide",
-    "section": "",
-    "text": "Introduction\nThese pages serve as a source of practial information to get you started. The part called “Project setup”, take you though the steps to get you set up on your own machine and on our computing cluster. You should go through this part in the other it is listed and make sure you have succesfully completed each step before you go on.\nThe Quickstarts are introductions to the most important tools you will use.\nYou will end up producing a set of pages much like these, and the Notebooks and Reporting both serve as showcases and to give you an idea of how your own notebooks and reports will show once you get to that point.",
-    "crumbs": [
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "guides/laptop_setup.html",
-    "href": "guides/laptop_setup.html",
-    "title": "Laptop setup",
-    "section": "",
-    "text": "You will work on our computing cluster, but before we get there, we must get you properly set up on your machine.\n\nInstall Python\nIf you have not done so already, you should install a distribution of Python called Anaconda. Anaconda is not only an easy way of installing Python on Windows, Mac, and Linux; it also comes with the conda package management system (more about that later). To install Anaconda, visit this page. When the download completes, you must follow the default installation.\n\n\nThe Terminal\nThe programs you will use in the project are command-line applications. I.e., programs executed by writing their name and any arguments in a “terminal” rather than clicking on an icon and using a graphical user interface. Many different programs can serve as a terminal.\n\nIf you have a Windows machine, use the Anaconda Powershell Prompt (not the Anaconda Prompt and not the CMD). You installed Anaconda Powershell Prompt along with Anaconda Python.\nIf you have a Mac, the terminal you will use is called Terminal. The Terminal application is pre-installed on Mac.\n\nFrom now on, whenever I refer to the terminal, I mean Anaconda Powershell Prompt on Windows and Terminal on Mac. I will assume some familiarity with using a terminal and executing commands on the command line. If you have not used a terminal before, or if you are a bit rusty, you should run through this primer before you go on.\n\n\nConda environments\n\nYou must install packages and programs for your analyses and pipelines. Sometimes, however, the packages you need for one project conflict with the ones you need for other projects you work on in parallel. Such conflicts seem like an unsolvable problem. Would it not be fantastic if you could create a small world insulated from the rest of your Anaconda installation? Then, that small world would only contain the packages you needed for a single project. If each project had its isolated world, then there would be no such conflicts.\nFortunately, a tool lets you do just that, and its name is Conda. Conda’s small worlds are called “environments,” and you can create as many as you like. You can then switch between them as you switch between your bioinformatics projects. Conda also downloads and installs the packages for you, ensuring that the packages you install in each environment are compatible. It even makes sure to install packages (dependencies) required by the packages you install. By creating an environment for each project, the libraries installed for each project do not interfere.\n\n\nCreate a conda environment on your local machine\nWhen you install Anaconda or Miniconda, Conda makes a single base environment. It is called “base,” and this is why it says “(base)” at your terminal prompt. You need a conda environment for your project on your local machine. You can call it anything you like, but if you call it birc-project, it will match the rest of this tutorial. So do that.\nThe environment on your local machine only needs a few packages since it only connects you to the cluster. The command below creates a birc-project environment and installs the slurm-jupyter package from my conda channel:\n\n\nTerminal\n\nconda create -y -n birc-project -c kaspermunch slurm-jupyter\n\nTo activate the environment, use this command:\n\n\nTerminal\n\nconda activate birc-project\n\nNote how the environment name at your terminal prompt changes from (base) to (birc-project). To deactivate the environment, use this command:\n\n\nTerminal\n\nconda deactivate\n\nand the terminal prompt changes back to (base).\n\n\nVPN\nYou can only connect to the cluster on the University’s internal network. So you must be physically on campus or use the University’s VPN. To install VPN, follow the instructions on this page. Before you can use the VPN, you also need to enable two-step verification. You can see how to do that on the same page. If you are not physically on campus, you must activate your VPN before logging in to the cluster. Your password for the VPN is the same as the one you use to log on to access Blackboard.",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Laptop setup</span>"
-    ]
-  },
-  {
-    "objectID": "guides/cluster_access.html",
-    "href": "guides/cluster_access.html",
-    "title": "Cluster access",
-    "section": "",
-    "text": "This is not a leisure read\n\n\n\nMake sure you follow it to the letter. Do each step in order, and do not proceed until you have successfully completed each step.\n\n\n\nThe GenomeDK cluster is a huge collection of computers with a shared file system. You can find lots of helpful information about the cluster on their homepage beyond what I cover on these pages. The cluster does not have a screen or keyboard you can use, but by connecting to the cluster from your computer, you can create and edit files much like if they were on your laptop. These pages take you through the steps to connect and access the cluster.\nBelow, you will see something like &lt;cluster user name&gt; or &lt;project folder&gt;. Whenever you see something like that, you should replace everything, including &lt; and &gt;, with whatever it says. E.g., if your cluster user name is mike, you should replace &lt;cluster user name&gt; with mike.\nBefore you can begin, you need access to the cluster. The cluster is called GenomeDK and has its own website with lots of information and documentation. To get an account on the cluster, you must request one here. Below, &lt;username&gt; will represent your user name.\n\nConnecting to the cluster using ssh\n\nSSH is short for secure shell. A shell is the software that lets you run commands in your terminal window. The secure shell (SSH) allows you to log in to another computer to navigate the folders and run commands on that machine. So when you open your terminal window, your commands run on your local machine, but when you “ssh” (yes, it is a verb, too) into the cluster, your commands run on the cluster. Before you go on, try to run the command hostname in your terminal. You can see that it prints something that tells you that you are on your laptop.\nYou connect to the cluster from the terminal by executing the command below (remember to replace &lt;cluster user name&gt; with your actual cluster user name):\n\n\nTerminal\n\nssh &lt;cluster user name&gt;@login.genome.au.dk\n\nWhen you do, ssh prompts you for the password that goes with your cluster username (GenomeDK requires two-factor authentication and will sometimes ask you for a site key). Enter the password and press Enter. You are now in your home folder on the cluster. Your terminal looks the same as before, but it will print:\n  _____                                ______ _   __\n |  __ \\                               |  _  \\ | / /\n | |  \\/ ___ _ __   ___  _ __ ___   ___| | | | |/ /\n | | __ / _ \\ '_ \\ / _ \\| '_ ` _ \\ / _ \\ | | |    \\\n | |_\\ \\  __/ | | | (_) | | | | | |  __/ |/ /| |\\  \\\n  \\____/\\___|_| |_|\\___/|_| |_| |_|\\___|___/ \\_| \\_/\nIf you run the hostname command again, you can see that you are now on fe-open-01. Now log out of the cluster again by typing exit and Enter (or pressing Ctrl-d). You are now back on your laptop. Try hostname again and see the name of your computer.\nYou will need to log in to the cluster many times, so you should set up your SSH connection to the cluster so you can connect securely without typing the password every time. This is roughly how it works:\n\n\n\n\n\n\nSSH keys\n\n\n\nFirstly, you have to understand what public/private encryption keys are. A private key is a very long, random sequence of bits. A private key is kept secret and never leaves your laptop. A public key is another string of bits that is a derivative of the private key.\nYou can generate a unique public key from the private key but cannot get the private key from a public key: It is a one-way process. You can encrypt (or sign) any message using the public key, and it will only be possible to decrypt it using the private key it is derived from. In other words, anyone with your public key can send you encrypted messages that only you will be able to read.\nSo, if the cluster has your public key saved, it can authenticate you like this: The cluster sends your laptop a message encrypted using the public key. Your laptop then decrypts the message using its private key and sends it back. If the cluster receives a correctly decrypted message it knows it is you and logs you in.\n\n\nFirst, check if you have these two authentication files on your local machine:\n~/.ssh/id_rsa\n~/.ssh/id_rsa.pub\nYou can do so using the ls commmand:\n\n\nTerminal\n\nls -a ~/.ssh\n\nYou most likely do not. If so, you generate authentication keys with the command below. Just press Enter when prompted for a file in which to save the key. Do not enter a passphrase when prompted - just press enter:\n\n\nTerminal\n\nssh-keygen -t rsa\n\nNow use ssh to create a directory ~/.ssh on the cluster (assuming your username on the cluster is &lt;cluster user name&gt;). SSH will prompt you for your password.\n\n\nTerminal\n\nssh &lt;cluster user name&gt;@login.genome.au.dk mkdir -p .ssh\n\nFinally, append the public ssh key on your local machine to the file .ssh/authorized_keys on the cluster and enter your password (replace &lt;cluster user name&gt; with your cluster user name):\n\n\nTerminal\n\ncat ~/.ssh/id_rsa.pub | ssh username@login.genome.au.dk 'cat &gt;&gt; .ssh/authorized_keys'\n\nFrom now on, you can log into the cluster from your local machine without being prompted for a password.\nTry it:\n\n\nTerminal\n\nssh &lt;cluster user name&gt;@login.genome.au.dk\n\n(see, no password).",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Cluster access</span>"
-    ]
-  },
-  {
-    "objectID": "guides/cluster_setup.html",
-    "href": "guides/cluster_setup.html",
-    "title": "Cluster set up",
-    "section": "",
-    "text": "Install Python on your cluster account\nYou need to install miniconda (a minimal Anaconda version) in your cluster home dir. Log in to the cluster and run this command to download the miniconda install script:\nThen use this command to download and install miniconda:\nFollow the default installation, and say yes when it asks you if it should run conda init for you.\nNP: Now log out of the cluster and log back in. This is needed to make the conda command available to you.",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
-    ]
-  },
-  {
-    "objectID": "guides/cluster_setup.html#install-python-on-your-cluster-account",
-    "href": "guides/cluster_setup.html#install-python-on-your-cluster-account",
-    "title": "Cluster set up",
-    "section": "",
-    "text": "Terminal\n\nwget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh\n\n\n\n\nTerminal\n\nbash Miniconda3-latest-Linux-x86_64.sh",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
-    ]
-  },
-  {
-    "objectID": "guides/cluster_setup.html#the-project-folder",
-    "href": "guides/cluster_setup.html#the-project-folder",
-    "title": "Cluster set up",
-    "section": "The project folder",
-    "text": "The project folder\nThe project folder is a folder that is set up on the cluster to hold your project. I use the placeholder &lt;projectfolder&gt; here, but it will be called something sensible like baboonadmixture.\nIt is accessible to only you and anyone else you collaborate with (such as your supervisor). The project folder is in your home directory and should hold the following subfolders:\n&lt;projectfolder&gt;\n    /data\n    /people\n        /&lt;username&gt;\n        /&lt;supervisor_username&gt;\nThe &lt;projectfolder&gt;/people/&lt;username&gt; is your domain. This is where you have all the files that relates to your project.\nThe name of the project folder is is also the name of the account that gets billed for the work on the cluster. When you run gwf, srun, sbatch or slurm-jupyter (see below) you must specify that project name using the -A or --account options (see below for more details on that).",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
-    ]
-  },
-  {
-    "objectID": "guides/cluster_setup.html#make-a-git-repository-for-your-project",
-    "href": "guides/cluster_setup.html#make-a-git-repository-for-your-project",
-    "title": "Cluster set up",
-    "section": "Make a Git repository for your project",
-    "text": "Make a Git repository for your project\n\nGit is a version control tool that you use from the terminal. A folder under Git control is called a repository. Git does not interfere with your files and it does not save them. It lets you monitor the state of your files so you can easily see if any files are added, modified, or removed, and it allows you to (manually) maintain a record of what files where changes when, how, and for what reason.\n\nStart by creating your own github account if you do not have one already.\nFollow the instructions on this page to add ssh keys to GitHub.\nEmail me your GitHub username on so I can add you to the shared GitHub account for our research group. I will create a repository for you with scaffold of folders and with placeholder files that will get you started in the right way.\nWait for an email or notification and accept my inviation to the “munch-lab” GitHub organization and an email from me with the name of the repository I made for your project. On these pages, I will use &lt;repositoryname&gt; for the name of your repository.\nMake sure you are logged into your GitHub account and then go to the repository listing at the munch-lab organization on GitHub. Find the directory I made for you and have a look at what is in there. Leave it there for now.\n\n\nCloning this git repository to the cluster\nStart logging into the cluster and run these two commands to let Git know who you are:\n\n\nTerminal\n\ngit config --global user.name \"&lt;Your GitHub user name&gt;\"\ngit config --global user.email &lt;your_email@whatever.com&gt;\n\nGo to your folder under the project folder (~/&lt;projectfolder&gt;/people/&lt;username&gt;). Once you are in that folder, you can “clone” your git repository from GitHub to the folder on the cluster.\n\n\nTerminal\n\ngit clone git@github.com:munch-lab/&lt;repositoryname&gt;.git\n\n(replace &lt;repositoryname&gt; with the actual name of your repository).\nYou now have a folder called &lt;projectfolder&gt;/people/&lt;username&gt;/&lt;repositoryname&gt; and this is where you must keep all your files for the project.\nIf you cd into &lt;repositoryname&gt; and run ls, you will see a number of folders.\n\ndata: Stores small (tens of megabases) data files you want to keep .\nbinder: Stores the environment.yml files documenting your conda environment used in the project.\nsandbox: Stores experiment and other files that are not yet part of your project workflow. This keeps the rest of the folder structure clean.\nscripts: Stores Python scripts that that produces intermediate and final results.\nsteps: Stores intermediary files (“steps” on the way to final results).\nnotebooks: Stores Juptyer notebooks with code, documentation, and results.\nfigures: Stores result plots and figures you make.\nresults: Stores the small result files of your project (tens of megabases).\nreports: Stores documents reporting your findings.\n\nFiles in all those folders are under Git control, except files in the steps folder. Those files are not backed up in any way, but should instead be reproducible using the code and information in your other folders.\n\n\n\n\n\n\nWarning: Files on the cluster are not backed up!\n\n\n\nYour files on the cluster are not backed up! If you want to backup files, you need to put them in a folder called BACKUP. But even if you do you may loose a week of work, since the backup loop is very slow.\n\n\nThe best way to keep your progress safe, is to ensure is reproducible and pushed to GitHub as often as it makes sense (at least onece a day). The more often you do it, the less work you will loose if you accidentally delete or overwrite a file. More about that in Reproducible research and Version control.",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
-    ]
-  },
-  {
-    "objectID": "guides/cluster_setup.html#create-a-conda-environment",
-    "href": "guides/cluster_setup.html#create-a-conda-environment",
-    "title": "Cluster set up",
-    "section": "Create a conda environment",
-    "text": "Create a conda environment\nLog in to the cluster. Here, we will be a little more through with the conda environment, since this is where you will be doing all your work.\nBegin by creating an empty environment like this (you can pick another name than birc-project if you have an environment with that name already):\n\n\nTerminal\n\nconda create -n birc-project\n\nNow activate the environmet\n\n\nTerminal\n\nconda activate &lt;name&gt;\n\nMake sure it now says (birc-project) and and not (base) at your terminal prompt.\nNow add channels to the environment (places to search for packagages). These will do for now (you can always add more later):\n\n\nTerminal\n\nconda config --env --append channels conda-forge\nconda config --env --append channels bioconda\nconda config --env --append channels gwforg\nconda config --env --append channels kaspermunch\nconda config --env --append channels micknudsen\n\nThen install the actual packages. The following command installs the basic packages you will need for typical Python-based data analysis project:\n\n\nTerminal\n\nconda install git gwf jupyterlab ipython nbdime seaborn statsmodels scipy gwf pytables gwf-utilization\n\nIf your project use probabilistic programming with PyMC (if you are in doubt, it is not), you need to install these packages as well:\n\n\nTerminal\n\nconda install arviz pymc seaborn xarray bambi\n\n\nIf you prefer to use R for data analysis and plots, you should use the following two commands to add the r channel and install the basic R packages:\n\n\nTerminal\n\nconda config --env --append channels r\nconda install r-essentials rpy2\n\nExport it to the binder folder to document which packages your project depends on:\n\n\nTerminal\n\nconda env export &gt; binder/environment.yml\nconda env export --from-history &gt; binder/environment-from-hisitory.yml\n\nImportant: Whenever you log into the cluster to work on your project, you should activate your birc-project environment like this, otherwise the packages are not available:\n\n\nTerminal\n\nconda activate birc-project\n\nWhen your environment is active, it says (birc-project) on the command prompt instead of (base).",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
-    ]
-  },
-  {
-    "objectID": "guides/cluster_setup.html#tip-git-and-jupyter",
-    "href": "guides/cluster_setup.html#tip-git-and-jupyter",
-    "title": "Cluster set up",
-    "section": "Tip: git and jupyter",
-    "text": "Tip: git and jupyter\nGit diff and merge does not play well with jupyter notebooks. To fix that you can activate your environment and navigate to your cloned repository. Then run this command (assuming you installed nbdime in your conda environment): nbdime config-git --enable.",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
-    ]
-  },
-  {
-    "objectID": "guides/reproducible.html",
-    "href": "guides/reproducible.html",
-    "title": "Reproducible research",
-    "section": "",
-    "text": "Specify raw input data\nReport the location and version of the raw data that serve as input to your analysis. Make sure this data is “read only” so that onone accidentally modifies or deletes it. You can do that like this:\nor recursively for an entire folder:",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
-    ]
-  },
-  {
-    "objectID": "guides/reproducible.html#specify-raw-input-data",
-    "href": "guides/reproducible.html#specify-raw-input-data",
-    "title": "Reproducible research",
-    "section": "",
-    "text": "Terminal\n\nchmod a=r important_input_file.txt\n\n\n\n\nTerminal\n\nchmod -R a=r input_file_folder",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
-    ]
-  },
-  {
-    "objectID": "guides/reproducible.html#define-dependencies",
-    "href": "guides/reproducible.html#define-dependencies",
-    "title": "Reproducible research",
-    "section": "Define dependencies",
-    "text": "Define dependencies\nEmploying tools like Conda define the dependencies of your of your project, ensuring that others can run the same code with the same dependencies.\nWhen you create your conda environment, and whenever you install new packages, you should update the environment.yml file in the binder directory. That way the specification of your environment is always up to date and allows anyone to create the conda environment required to run your analysis You do it by running this command:\n\n\nTerminal\n\nconda env export --from-history -f ./binder/environment.yml\n\nOnce your project is well underway and you have settled on the set of packages needed for your project, you can make your environment more stable (and thus reproducible) by creating the environment again, installing all the packages in one go. To do that, first create a test environment to make sure that your exported environment can actually be created (you do not want to end up with a new environmnet that does not work like the old one):\n\n\nTerminal\n\nconda env create -n test -f binder/environment.yml\n\nIf, and only if, the test environment is successfully created and works the way it should you delete the test environment and the birc-project enrivonemnt:\n\n\nTerminal\n\nconda env remove -n test\nconda env remove -n birc-project\n\nand create a new version of the birc-project enrivonemnt:\n\n\nTerminal\n\nconda env create -f binder/environment.yml\n\nThen, to make life easier for someone reproducing your project on the GenomeDK, you must run this command as well (it records all the packages used including their linux versions used here):\n\n\nTerminal\n\nconda activate birc-project\nconda env export -f ./binder/environment-genomedk.yml",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
-    ]
-  },
-  {
-    "objectID": "guides/reproducible.html#use-version-control",
-    "href": "guides/reproducible.html#use-version-control",
-    "title": "Reproducible research",
-    "section": "Use version control",
-    "text": "Use version control\nUsing version control systems like Git to track changes to code and documentation over time. This helps in understanding the evolution of the research and facilitates collaboration. It also allows you to tag the the state of your repository upon publication, so you can keep working on it later without disrupting its state at publication.\nIn the world of data projects, there are three kinds of data files.\nType 1 files: Files representing the input to your project: sequencing reads, genomes, genotypes, etc. These are usually difficult or expensive to reproduce and once made they never change. They are often too large to fit on GitHub, so they are saved (and backed up) indefinitely on the cluster, and can be distributed upon request to other researchers that want to replicate your analysis. Often the data is only local copy of data also available in a public database. You can put such files in the data folder of your repository on the cluster, but unless they are very small, do not git add these files to Git control.\nType 2 files: Files representing your work and the results from the project: documentation, scripts, code, gwf workflows, notebooks, plots, tables, etc. These files are usually as small as they are precious and they are the ones you add to your Git repository and puth to GitHub every time you change them. These files are workflow.py, and files you put in the binder, scripts, notebooks, results, figures, and reports folders.\nType 3 files: Files representing intermediary steps to get from files of type 1 to files of type 2. These can be large and many and often most of the harddisk space consumed by your project. However, they are easily regenerated if your project is reproducible. So type 3 files need not be saved indefinitely and they should not be added to your Git repository. In fact, type 3 files should be deleted as soon as the project is finished. All such files must be put in the steps folder or in folders inside the steps folder. This way, removing all type 3 files is safely done by deleting the content of the steps folder.",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
-    ]
-  },
-  {
-    "objectID": "guides/reproducible.html#make-computatioal-steps-an-executable-workflow",
-    "href": "guides/reproducible.html#make-computatioal-steps-an-executable-workflow",
-    "title": "Reproducible research",
-    "section": "Make computatioal steps an executable workflow",
-    "text": "Make computatioal steps an executable workflow\nPipeline the steps of the computationally demanding part of your analysis in executable workflows using cluster workflow tools like GWF. This ensures that interdependent steps are run in the right order and rerun if necessary.",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
-    ]
-  },
-  {
-    "objectID": "guides/reproducible.html#make-your-analysis-executable",
-    "href": "guides/reproducible.html#make-your-analysis-executable",
-    "title": "Reproducible research",
-    "section": "Make your analysis executable",
-    "text": "Make your analysis executable\nUse Jupyter notebooks to assemble the code, ducumentation, and figures relevant to each part of your subsequent analysis. That way your analysis is what is produced by running your notebooks in order, no more, no less. placeholder notebooks in the notebooks folder\nname them so they sort lexicographically: 01_first_analysis.ipynb, 02_second_analysis.ipynb.",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
-    ]
-  },
-  {
-    "objectID": "guides/reproducible.html#make-your-reporting-executable",
-    "href": "guides/reproducible.html#make-your-reporting-executable",
-    "title": "Reproducible research",
-    "section": "Make your reporting executable",
-    "text": "Make your reporting executable\nCompile your manuscript and any supplementary ducumemnts by linking to figures and results in your notebooks. This is easily done using tools like Quarto\nMarkdown / Qmarkdown / Notebooks\nthe _quarto.yml file\nrendering\nat the project end set output-dir to docs, render the whole thing and add docs to repository",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
-    ]
-  },
-  {
-    "objectID": "guides/reproducible.html#make-your-entire-project-publicly-available",
-    "href": "guides/reproducible.html#make-your-entire-project-publicly-available",
-    "title": "Reproducible research",
-    "section": "Make your entire project publicly available",
-    "text": "Make your entire project publicly available\nMaking your repository publically available on GitHub. In addition to the scientific reguirement, reproducibility allows anyone to benefit from and build upon your work, greatly increasing its value.",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
-    ]
-  },
-  {
-    "objectID": "guides/reproducible.html#reproducing-your-work",
-    "href": "guides/reproducible.html#reproducing-your-work",
-    "title": "Reproducible research",
-    "section": "Reproducing your work",
-    "text": "Reproducing your work\nIf you follow the steps above, reproducing your results would only entail the following steps:\n\nRetrieve the raw data in the specified version.\nClone your Git repository.\nCreate the conda environment from the environment.yml file.\nRun GWF workflow on a compute cluster for the computationally demanding parts of your analysis.\nRun the Jupyter notebooks in the specified order.\nRun Quarto on the resulting state of the repository to build the manuscript and supplementary information.\n\nBelow I will go over how to organize your project so that these steps also contribute to makeing your own life easier.",
-    "crumbs": [
-      "Project setup",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
-    ]
-  },
-  {
-    "objectID": "guides/git_101.html",
-    "href": "guides/git_101.html",
-    "title": "Version control",
-    "section": "",
-    "text": "Git as journaled backup\nWhen you are in your &lt;repositoryname&gt; folder, you can run git commands to manage your files, record their changes and sync them to the repository on GitHub for safe keeping. These tutorials are good introductions to git.\nTo journal the creation or modification of a file, you need to add it to git:\nThis “stages” the change. This adds the file to the a “group” of changes that represent some modification to your project. You can add more files to that “group” by running the command again with other files. If you run git status you can see that the files are now staged.\nSo maybe you added or changed two python files addressing some parcitular problem or advancing some part of your project. Now you want to store those of changes to the journal maintained by Git and associate it with a short message describing the changes. For that you use:\nIf you added two python files, your description could be 'Added two python files for my analysis'. If you fixed a bug or added new code to the files, your message should reflect that.\nNow your changes are recorded in the version of the &lt;repositoryname&gt; on the cluster, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. To backup your repository you need to synchronize your local &lt;repositoryname&gt; repository on the cluster with the &lt;repositoryname&gt; repository on GitHub. To du that use:\nIn addition to keeping your precious files safe and backed up, your GitHub repository also serve as a journal documenting of your progress. Each commit is a snapshot if your project that can be retrieved at any time.",
-    "crumbs": [
-      "Quickstarts",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Version control</span>"
-    ]
-  },
-  {
-    "objectID": "guides/git_101.html#git-as-journaled-backup",
-    "href": "guides/git_101.html#git-as-journaled-backup",
-    "title": "Version control",
-    "section": "",
-    "text": "Terminal\n\ngit add &lt;the_changed_file&gt;\n\n\n\n\n\nTerminal\n\ngit commit -m '&lt;message&gt;'\n\n\n\n\n\nTerminal\n\ngit push",
-    "crumbs": [
-      "Quickstarts",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Version control</span>"
-    ]
-  },
-  {
-    "objectID": "guides/git_101.html#git",
-    "href": "guides/git_101.html#git",
-    "title": "Version control",
-    "section": "Git",
-    "text": "Git\nThere is a cheat sheet here and some good visual guides here and here.\nThe three most important commands to learn are: git status, git add, git rm, git mv, git commit and git push.",
-    "crumbs": [
-      "Quickstarts",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Version control</span>"
-    ]
-  },
-  {
     "objectID": "guides/jupyterlab.html",
     "href": "guides/jupyterlab.html",
     "title": "Jupyterlab",
@@ -476,7 +246,7 @@
     "href": "guides/numpy_pandas.html#dataframe",
     "title": "Numpy and Pandas",
     "section": "DataFrame",
-    "text": "DataFrame\n\ndf = pd.DataFrame({'name': ['Mike', 'Mia', 'Jake'], 'weight': [82, 62, 75]})\ndf\n\n\n\n\n\n\n\n\n\nname\nweight\n\n\n\n\n0\nMike\n82\n\n\n1\nMia\n62\n\n\n2\nJake\n75\n\n\n\n\n\n\n\n\n\ntype(df)\n\npandas.core.frame.DataFrame\n\n\n\ndf = pd.DataFrame(dict(name=['Mike', 'Mia', 'Jake'], weight=[82, 62, 75]))\ndf\n\n\n\n\n\n\n\n\n\nname\nweight\n\n\n\n\n0\nMike\n82\n\n\n1\nMia\n62\n\n\n2\nJake\n75\n\n\n\n\n\n\n\n\n\nrecords = [('Mike', 82), ('Mia', 62), ('Jake', 75)]\n\ndf = pd.DataFrame().from_records(records, columns=['age', 'weight'])\ndf\n\n\n\n\n\n\n\n\n\nage\nweight\n\n\n\n\n0\nMike\n82\n\n\n1\nMia\n62\n\n\n2\nJake\n75\n\n\n\n\n\n\n\n\n\ndf.index\n\nRangeIndex(start=0, stop=3, step=1)\n\n\n\ndf.index.values\n\narray([0, 1, 2])\n\n\n\ndf.columns\n\nIndex(['age', 'weight'], dtype='object')\n\n\n\ndf.dtypes\n\nage       object\nweight     int64\ndtype: object\n\n\nAdd a column to an existing dataframe:\n\ndf['height'] = [182.5, 173.0, 192.5]\ndf\n\n\n\n\n\n\n\n\n\nage\nweight\nheight\n\n\n\n\n0\nMike\n82\n182.5\n\n\n1\nMia\n62\n173.0\n\n\n2\nJake\n75\n192.5\n\n\n\n\n\n\n\n\nAdd another, categorical, column:\n\ndf['sex'] = pd.Categorical(['male', 'female', 'male'], categories=['female', 'male'], ordered=True)\ndf\n\n\n\n\n\n\n\n\n\nage\nweight\nheight\nsex\n\n\n\n\n0\nMike\n82\n182.5\nmale\n\n\n1\nMia\n62\n173.0\nfemale\n\n\n2\nJake\n75\n192.5\nmale\n\n\n\n\n\n\n\n\n\ndf.dtypes\n\nage         object\nweight       int64\nheight     float64\nsex       category\ndtype: object\n\n\nA Series just wraps an array:\n\ndf.height.to_numpy()\n\narray([182.5, 173. , 192.5])",
+    "text": "DataFrame\n\ndf = pd.DataFrame({'name': ['Mike', 'Mia', 'Jake'], 'weight': [82, 62, 75]})\ndf\n\n\n\n\n\n\n\n\nname\nweight\n\n\n\n\n0\nMike\n82\n\n\n1\nMia\n62\n\n\n2\nJake\n75\n\n\n\n\n\n\n\n\ntype(df)\n\npandas.core.frame.DataFrame\n\n\n\ndf = pd.DataFrame(dict(name=['Mike', 'Mia', 'Jake'], weight=[82, 62, 75]))\ndf\n\n\n\n\n\n\n\n\nname\nweight\n\n\n\n\n0\nMike\n82\n\n\n1\nMia\n62\n\n\n2\nJake\n75\n\n\n\n\n\n\n\n\nrecords = [('Mike', 82), ('Mia', 62), ('Jake', 75)]\n\ndf = pd.DataFrame().from_records(records, columns=['age', 'weight'])\ndf\n\n\n\n\n\n\n\n\nage\nweight\n\n\n\n\n0\nMike\n82\n\n\n1\nMia\n62\n\n\n2\nJake\n75\n\n\n\n\n\n\n\n\ndf.index\n\nRangeIndex(start=0, stop=3, step=1)\n\n\n\ndf.index.values\n\narray([0, 1, 2])\n\n\n\ndf.columns\n\nIndex(['age', 'weight'], dtype='object')\n\n\n\ndf.dtypes\n\nage       object\nweight     int64\ndtype: object\n\n\nAdd a column to an existing dataframe:\n\ndf['height'] = [182.5, 173.0, 192.5]\ndf\n\n\n\n\n\n\n\n\nage\nweight\nheight\n\n\n\n\n0\nMike\n82\n182.5\n\n\n1\nMia\n62\n173.0\n\n\n2\nJake\n75\n192.5\n\n\n\n\n\n\n\nAdd another, categorical, column:\n\ndf['sex'] = pd.Categorical(['male', 'female', 'male'], categories=['female', 'male'], ordered=True)\ndf\n\n\n\n\n\n\n\n\nage\nweight\nheight\nsex\n\n\n\n\n0\nMike\n82\n182.5\nmale\n\n\n1\nMia\n62\n173.0\nfemale\n\n\n2\nJake\n75\n192.5\nmale\n\n\n\n\n\n\n\n\ndf.dtypes\n\nage         object\nweight       int64\nheight     float64\nsex       category\ndtype: object\n\n\nA Series just wraps an array:\n\ndf.height.to_numpy()\n\narray([182.5, 173. , 192.5])",
     "crumbs": [
       "Guides",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Numpy and Pandas</span>"
@@ -487,7 +257,7 @@
     "href": "guides/numpy_pandas.html#example-penguin-data-set",
     "title": "Numpy and Pandas",
     "section": "Example penguin data set",
-    "text": "Example penguin data set\n\nimport seaborn as sns\n\npenguins = sns.load_dataset('penguins')\n\n\npenguins\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n339\nGentoo\nBiscoe\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n340\nGentoo\nBiscoe\n46.8\n14.3\n215.0\n4850.0\nFemale\n\n\n341\nGentoo\nBiscoe\n50.4\n15.7\n222.0\n5750.0\nMale\n\n\n342\nGentoo\nBiscoe\n45.2\n14.8\n212.0\n5200.0\nFemale\n\n\n343\nGentoo\nBiscoe\n49.9\n16.1\n213.0\n5400.0\nMale\n\n\n\n\n344 rows × 7 columns\n\n\n\n\n\npenguins.dtypes\n\nspecies               object\nisland                object\nbill_length_mm       float64\nbill_depth_mm        float64\nflipper_length_mm    float64\nbody_mass_g          float64\nsex                   object\ndtype: object\n\n\n\npenguins.head()\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n\n\n\n\n\n\n\npenguins.tail()\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n339\nGentoo\nBiscoe\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n340\nGentoo\nBiscoe\n46.8\n14.3\n215.0\n4850.0\nFemale\n\n\n341\nGentoo\nBiscoe\n50.4\n15.7\n222.0\n5750.0\nMale\n\n\n342\nGentoo\nBiscoe\n45.2\n14.8\n212.0\n5200.0\nFemale\n\n\n343\nGentoo\nBiscoe\n49.9\n16.1\n213.0\n5400.0\nMale",
+    "text": "Example penguin data set\n\nimport seaborn as sns\n\npenguins = sns.load_dataset('penguins')\n\n\npenguins\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n339\nGentoo\nBiscoe\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n340\nGentoo\nBiscoe\n46.8\n14.3\n215.0\n4850.0\nFemale\n\n\n341\nGentoo\nBiscoe\n50.4\n15.7\n222.0\n5750.0\nMale\n\n\n342\nGentoo\nBiscoe\n45.2\n14.8\n212.0\n5200.0\nFemale\n\n\n343\nGentoo\nBiscoe\n49.9\n16.1\n213.0\n5400.0\nMale\n\n\n\n\n344 rows × 7 columns\n\n\n\n\npenguins.dtypes\n\nspecies               object\nisland                object\nbill_length_mm       float64\nbill_depth_mm        float64\nflipper_length_mm    float64\nbody_mass_g          float64\nsex                   object\ndtype: object\n\n\n\npenguins.head()\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n\n\n\n\n\n\npenguins.tail()\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n339\nGentoo\nBiscoe\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n340\nGentoo\nBiscoe\n46.8\n14.3\n215.0\n4850.0\nFemale\n\n\n341\nGentoo\nBiscoe\n50.4\n15.7\n222.0\n5750.0\nMale\n\n\n342\nGentoo\nBiscoe\n45.2\n14.8\n212.0\n5200.0\nFemale\n\n\n343\nGentoo\nBiscoe\n49.9\n16.1\n213.0\n5400.0\nMale",
     "crumbs": [
       "Guides",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Numpy and Pandas</span>"
@@ -520,7 +290,7 @@
     "href": "guides/numpy_pandas.html#indexing",
     "title": "Numpy and Pandas",
     "section": "Indexing",
-    "text": "Indexing\n\nGet a cell\n\npenguins.loc[4, 'island']\n\n'Torgersen'\n\n\n\n\nGet a row\n\npenguins.loc[4]\n\nspecies                 Adelie\nisland               Torgersen\nbill_length_mm            36.7\nbill_depth_mm             19.3\nflipper_length_mm        193.0\nbody_mass_g             3450.0\nsex                     Female\nName: 4, dtype: object\n\n\n\n\nGet a column\n\npenguins['bill_depth_mm']\n\n0      18.7\n1      17.4\n2      18.0\n3       NaN\n4      19.3\n       ... \n339     NaN\n340    14.3\n341    15.7\n342    14.8\n343    16.1\nName: bill_depth_mm, Length: 344, dtype: float64\n\n\n\npenguins.bill_depth_mm\n\n0      18.7\n1      17.4\n2      18.0\n3       NaN\n4      19.3\n       ... \n339     NaN\n340    14.3\n341    15.7\n342    14.8\n343    16.1\nName: bill_depth_mm, Length: 344, dtype: float64\n\n\n\n\nGet a range of rows and multiple columns\n\npenguins.loc[40:45, ['island', 'body_mass_g']]\n\n\n\n\n\n\n\n\n\nisland\nbody_mass_g\n\n\n\n\n40\nDream\n3150.0\n\n\n41\nDream\n3900.0\n\n\n42\nDream\n3100.0\n\n\n43\nDream\n4400.0\n\n\n44\nDream\n3000.0\n\n\n45\nDream\n4600.0\n\n\n\n\n\n\n\n\n\n\nUse boolean series as index to subset data\n\nidx = penguins.bill_length_mm &gt; 55\nidx\n\n0      False\n1      False\n2      False\n3      False\n4      False\n       ...  \n339    False\n340    False\n341    False\n342    False\n343    False\nName: bill_length_mm, Length: 344, dtype: bool\n\n\n\npenguins.loc[idx]\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n169\nChinstrap\nDream\n58.0\n17.8\n181.0\n3700.0\nFemale\n\n\n215\nChinstrap\nDream\n55.8\n19.8\n207.0\n4000.0\nMale\n\n\n253\nGentoo\nBiscoe\n59.6\n17.0\n230.0\n6050.0\nMale\n\n\n321\nGentoo\nBiscoe\n55.9\n17.0\n228.0\n5600.0\nMale\n\n\n335\nGentoo\nBiscoe\n55.1\n16.0\n230.0\n5850.0\nMale\n\n\n\n\n\n\n\n\n\npenguins.loc[(penguins.bill_length_mm &gt; 55) & (penguins.sex == 'Female')]\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n169\nChinstrap\nDream\n58.0\n17.8\n181.0\n3700.0\nFemale\n\n\n\n\n\n\n\n\n\n\nSetting and resetting the index\n\npenguins\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n339\nGentoo\nBiscoe\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n340\nGentoo\nBiscoe\n46.8\n14.3\n215.0\n4850.0\nFemale\n\n\n341\nGentoo\nBiscoe\n50.4\n15.7\n222.0\n5750.0\nMale\n\n\n342\nGentoo\nBiscoe\n45.2\n14.8\n212.0\n5200.0\nFemale\n\n\n343\nGentoo\nBiscoe\n49.9\n16.1\n213.0\n5400.0\nMale\n\n\n\n\n344 rows × 7 columns\n\n\n\n\n\ndf = penguins.set_index(['species', 'sex', 'island'])\ndf.head(10)\n\n\n\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\nspecies\nsex\nisland\n\n\n\n\n\n\n\n\nAdelie\nMale\nTorgersen\n39.1\n18.7\n181.0\n3750.0\n\n\nFemale\nTorgersen\n39.5\n17.4\n186.0\n3800.0\n\n\nTorgersen\n40.3\n18.0\n195.0\n3250.0\n\n\nNaN\nTorgersen\nNaN\nNaN\nNaN\nNaN\n\n\nFemale\nTorgersen\n36.7\n19.3\n193.0\n3450.0\n\n\nMale\nTorgersen\n39.3\n20.6\n190.0\n3650.0\n\n\nFemale\nTorgersen\n38.9\n17.8\n181.0\n3625.0\n\n\nMale\nTorgersen\n39.2\n19.6\n195.0\n4675.0\n\n\nNaN\nTorgersen\n34.1\n18.1\n193.0\n3475.0\n\n\nTorgersen\n42.0\n20.2\n190.0\n4250.0\n\n\n\n\n\n\n\n\n\ndf.reset_index()\n\n\n\n\n\n\n\n\n\nspecies\nsex\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\n\n\n0\nAdelie\nMale\nTorgersen\n39.1\n18.7\n181.0\n3750.0\n\n\n1\nAdelie\nFemale\nTorgersen\n39.5\n17.4\n186.0\n3800.0\n\n\n2\nAdelie\nFemale\nTorgersen\n40.3\n18.0\n195.0\n3250.0\n\n\n3\nAdelie\nNaN\nTorgersen\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nFemale\nTorgersen\n36.7\n19.3\n193.0\n3450.0\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n339\nGentoo\nNaN\nBiscoe\nNaN\nNaN\nNaN\nNaN\n\n\n340\nGentoo\nFemale\nBiscoe\n46.8\n14.3\n215.0\n4850.0\n\n\n341\nGentoo\nMale\nBiscoe\n50.4\n15.7\n222.0\n5750.0\n\n\n342\nGentoo\nFemale\nBiscoe\n45.2\n14.8\n212.0\n5200.0\n\n\n343\nGentoo\nMale\nBiscoe\n49.9\n16.1\n213.0\n5400.0\n\n\n\n\n344 rows × 7 columns",
+    "text": "Indexing\n\nGet a cell\n\npenguins.loc[4, 'island']\n\n'Torgersen'\n\n\n\n\nGet a row\n\npenguins.loc[4]\n\nspecies                 Adelie\nisland               Torgersen\nbill_length_mm            36.7\nbill_depth_mm             19.3\nflipper_length_mm        193.0\nbody_mass_g             3450.0\nsex                     Female\nName: 4, dtype: object\n\n\n\n\nGet a column\n\npenguins['bill_depth_mm']\n\n0      18.7\n1      17.4\n2      18.0\n3       NaN\n4      19.3\n       ... \n339     NaN\n340    14.3\n341    15.7\n342    14.8\n343    16.1\nName: bill_depth_mm, Length: 344, dtype: float64\n\n\n\npenguins.bill_depth_mm\n\n0      18.7\n1      17.4\n2      18.0\n3       NaN\n4      19.3\n       ... \n339     NaN\n340    14.3\n341    15.7\n342    14.8\n343    16.1\nName: bill_depth_mm, Length: 344, dtype: float64\n\n\n\n\nGet a range of rows and multiple columns\n\npenguins.loc[40:45, ['island', 'body_mass_g']]\n\n\n\n\n\n\n\n\nisland\nbody_mass_g\n\n\n\n\n40\nDream\n3150.0\n\n\n41\nDream\n3900.0\n\n\n42\nDream\n3100.0\n\n\n43\nDream\n4400.0\n\n\n44\nDream\n3000.0\n\n\n45\nDream\n4600.0\n\n\n\n\n\n\n\n\n\nUse boolean series as index to subset data\n\nidx = penguins.bill_length_mm &gt; 55\nidx\n\n0      False\n1      False\n2      False\n3      False\n4      False\n       ...  \n339    False\n340    False\n341    False\n342    False\n343    False\nName: bill_length_mm, Length: 344, dtype: bool\n\n\n\npenguins.loc[idx]\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n169\nChinstrap\nDream\n58.0\n17.8\n181.0\n3700.0\nFemale\n\n\n215\nChinstrap\nDream\n55.8\n19.8\n207.0\n4000.0\nMale\n\n\n253\nGentoo\nBiscoe\n59.6\n17.0\n230.0\n6050.0\nMale\n\n\n321\nGentoo\nBiscoe\n55.9\n17.0\n228.0\n5600.0\nMale\n\n\n335\nGentoo\nBiscoe\n55.1\n16.0\n230.0\n5850.0\nMale\n\n\n\n\n\n\n\n\npenguins.loc[(penguins.bill_length_mm &gt; 55) & (penguins.sex == 'Female')]\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n169\nChinstrap\nDream\n58.0\n17.8\n181.0\n3700.0\nFemale\n\n\n\n\n\n\n\n\n\nSetting and resetting the index\n\npenguins\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n339\nGentoo\nBiscoe\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n340\nGentoo\nBiscoe\n46.8\n14.3\n215.0\n4850.0\nFemale\n\n\n341\nGentoo\nBiscoe\n50.4\n15.7\n222.0\n5750.0\nMale\n\n\n342\nGentoo\nBiscoe\n45.2\n14.8\n212.0\n5200.0\nFemale\n\n\n343\nGentoo\nBiscoe\n49.9\n16.1\n213.0\n5400.0\nMale\n\n\n\n\n344 rows × 7 columns\n\n\n\n\ndf = penguins.set_index(['species', 'sex', 'island'])\ndf.head(10)\n\n\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\nspecies\nsex\nisland\n\n\n\n\n\n\n\n\nAdelie\nMale\nTorgersen\n39.1\n18.7\n181.0\n3750.0\n\n\nFemale\nTorgersen\n39.5\n17.4\n186.0\n3800.0\n\n\nTorgersen\n40.3\n18.0\n195.0\n3250.0\n\n\nNaN\nTorgersen\nNaN\nNaN\nNaN\nNaN\n\n\nFemale\nTorgersen\n36.7\n19.3\n193.0\n3450.0\n\n\nMale\nTorgersen\n39.3\n20.6\n190.0\n3650.0\n\n\nFemale\nTorgersen\n38.9\n17.8\n181.0\n3625.0\n\n\nMale\nTorgersen\n39.2\n19.6\n195.0\n4675.0\n\n\nNaN\nTorgersen\n34.1\n18.1\n193.0\n3475.0\n\n\nTorgersen\n42.0\n20.2\n190.0\n4250.0\n\n\n\n\n\n\n\n\ndf.reset_index()\n\n\n\n\n\n\n\n\nspecies\nsex\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\n\n\n0\nAdelie\nMale\nTorgersen\n39.1\n18.7\n181.0\n3750.0\n\n\n1\nAdelie\nFemale\nTorgersen\n39.5\n17.4\n186.0\n3800.0\n\n\n2\nAdelie\nFemale\nTorgersen\n40.3\n18.0\n195.0\n3250.0\n\n\n3\nAdelie\nNaN\nTorgersen\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nFemale\nTorgersen\n36.7\n19.3\n193.0\n3450.0\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n339\nGentoo\nNaN\nBiscoe\nNaN\nNaN\nNaN\nNaN\n\n\n340\nGentoo\nFemale\nBiscoe\n46.8\n14.3\n215.0\n4850.0\n\n\n341\nGentoo\nMale\nBiscoe\n50.4\n15.7\n222.0\n5750.0\n\n\n342\nGentoo\nFemale\nBiscoe\n45.2\n14.8\n212.0\n5200.0\n\n\n343\nGentoo\nMale\nBiscoe\n49.9\n16.1\n213.0\n5400.0\n\n\n\n\n344 rows × 7 columns",
     "crumbs": [
       "Guides",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Numpy and Pandas</span>"
@@ -531,7 +301,7 @@
     "href": "guides/numpy_pandas.html#sorting-rows",
     "title": "Numpy and Pandas",
     "section": "Sorting rows",
-    "text": "Sorting rows\n\nsorted_df = penguins.sort_values(by=\"bill_length_mm\")\nsorted_df.head()\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n142\nAdelie\nDream\n32.1\n15.5\n188.0\n3050.0\nFemale\n\n\n98\nAdelie\nDream\n33.1\n16.1\n178.0\n2900.0\nFemale\n\n\n70\nAdelie\nTorgersen\n33.5\n19.0\n190.0\n3600.0\nFemale\n\n\n92\nAdelie\nDream\n34.0\n17.1\n185.0\n3400.0\nFemale\n\n\n8\nAdelie\nTorgersen\n34.1\n18.1\n193.0\n3475.0\nNaN\n\n\n\n\n\n\n\n\n\nsorted_df.index.values\n\narray([142,  98,  70,  92,   8,  18,  54,  80,  14, 100,  52,  83, 124,\n        25,  66,  74, 136,  60,  90, 118,  68,  22,  42,  48, 150, 148,\n        78,  94, 120,  86,  34,  64,  58,  40,  15, 147,   4,  82, 132,\n        87,  44, 138,  77,  31, 144, 117,  84,  47, 133,  62,  38,  59,\n        21, 121, 102, 103,  10,  20,  11, 149, 104,  28,  96, 108, 134,\n       110, 107,  23,  88, 130,  13, 106, 116,  16,  24, 126,  36,  89,\n         6, 128, 145,  56,   0,  35, 146,   7,   5,  30,   1,  32, 114,\n        45,  50,  72,  93, 112, 105, 139,  71,  39,  51, 137, 140, 122,\n        97,   2,  27,  29, 125, 141,  26,  57, 143,  95,  41, 230, 182,\n        33,  76, 101, 135, 119,  46,  63,  91,  67,  12,  61,  85, 123,\n        55, 127, 151,  65, 326,  69, 236,  53,   9,  79, 113,  37,  49,\n       172, 184, 206,  17, 256, 115, 260,  75, 251,  81, 244, 131, 278,\n       109, 174,  99, 228, 328, 306, 216, 332, 288, 265, 276, 258, 129,\n        43, 257, 246, 336, 314, 268, 304, 275, 241, 252, 272, 208, 298,\n       299, 269, 342, 157, 280, 262, 226, 155, 232, 277, 195, 312, 266,\n       111, 211, 214, 204, 282,  73, 284, 234, 166, 160,  19, 158, 245,\n       220, 286, 238, 334, 281, 193, 243, 170, 180, 291, 294, 293, 225,\n       274, 152, 242, 162, 270, 227, 176, 325, 229, 340, 213, 317, 190,\n       164, 338, 322, 324, 250, 302, 310, 296, 187, 308, 188, 224, 290,\n       247, 329, 202, 248, 292, 318, 233, 255, 271, 173, 320, 295, 259,\n       239, 222, 337, 192, 199, 231, 300, 323, 254, 171, 237, 235, 209,\n       316, 313, 179, 287, 263, 261, 217, 186, 331, 201, 285, 343, 303,\n       153, 221, 223, 249, 198, 273, 210, 219, 240, 168, 279, 341, 267,\n       330, 167, 178, 264, 175, 289, 205, 305, 218, 197, 315, 196, 194,\n       185, 297, 319, 154, 159, 161, 307, 203, 333, 200, 163, 212, 165,\n       177, 189, 309, 207, 311, 301, 156, 181, 327, 191, 183, 283, 335,\n       215, 321, 169, 253,   3, 339])\n\n\nClick to the left of an output cell to enable/disable scrolling of the output (usefull for large amounts of output).\n\nsorted_df.loc[0]\n\nspecies                 Adelie\nisland               Torgersen\nbill_length_mm            39.1\nbill_depth_mm             18.7\nflipper_length_mm        181.0\nbody_mass_g             3750.0\nsex                       Male\nName: 0, dtype: object\n\n\n\nsorted_df.flipper_length_mm[0]\n\n181.0\n\n\n\nsorted_df.iloc[0] # iloc !!!\n\nspecies              Adelie\nisland                Dream\nbill_length_mm         32.1\nbill_depth_mm          15.5\nflipper_length_mm     188.0\nbody_mass_g          3050.0\nsex                  Female\nName: 142, dtype: object\n\n\n\nsorted_df.flipper_length_mm.iloc[0]\n\n188.0",
+    "text": "Sorting rows\n\nsorted_df = penguins.sort_values(by=\"bill_length_mm\")\nsorted_df.head()\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n142\nAdelie\nDream\n32.1\n15.5\n188.0\n3050.0\nFemale\n\n\n98\nAdelie\nDream\n33.1\n16.1\n178.0\n2900.0\nFemale\n\n\n70\nAdelie\nTorgersen\n33.5\n19.0\n190.0\n3600.0\nFemale\n\n\n92\nAdelie\nDream\n34.0\n17.1\n185.0\n3400.0\nFemale\n\n\n8\nAdelie\nTorgersen\n34.1\n18.1\n193.0\n3475.0\nNaN\n\n\n\n\n\n\n\n\nsorted_df.index.values\n\narray([142,  98,  70,  92,   8,  18,  54,  80,  14, 100,  52,  83, 124,\n        25,  66,  74, 136,  60,  90, 118,  68,  22,  42,  48, 150, 148,\n        78,  94, 120,  86,  34,  64,  58,  40,  15, 147,   4,  82, 132,\n        87,  44, 138,  77,  31, 144, 117,  84,  47, 133,  62,  38,  59,\n        21, 121, 102, 103,  10,  20,  11, 149, 104,  28,  96, 108, 134,\n       110, 107,  23,  88, 130,  13, 106, 116,  16,  24, 126,  36,  89,\n         6, 128, 145,  56,   0,  35, 146,   7,   5,  30,   1,  32, 114,\n        45,  50,  72,  93, 112, 105, 139,  71,  39,  51, 137, 140, 122,\n        97,   2,  27,  29, 125, 141,  26,  57, 143,  95,  41, 230, 182,\n        33,  76, 101, 135, 119,  46,  63,  91,  67,  12,  61,  85, 123,\n        55, 127, 151,  65, 326,  69, 236,  53,   9,  79, 113,  37,  49,\n       172, 184, 206,  17, 256, 115, 260,  75, 251,  81, 244, 131, 278,\n       109, 174,  99, 228, 328, 306, 216, 332, 288, 265, 276, 258, 129,\n        43, 257, 246, 336, 314, 268, 304, 275, 241, 252, 272, 208, 298,\n       299, 269, 342, 157, 280, 262, 226, 155, 232, 277, 195, 312, 266,\n       111, 211, 214, 204, 282,  73, 284, 234, 166, 160,  19, 158, 245,\n       220, 286, 238, 334, 281, 193, 243, 170, 180, 291, 294, 293, 225,\n       274, 152, 242, 162, 270, 227, 176, 325, 229, 340, 213, 317, 190,\n       164, 338, 322, 324, 250, 302, 310, 296, 187, 308, 188, 224, 290,\n       247, 329, 202, 248, 292, 318, 233, 255, 271, 173, 320, 295, 259,\n       239, 222, 337, 192, 199, 231, 300, 323, 254, 171, 237, 235, 209,\n       316, 313, 179, 287, 263, 261, 217, 186, 331, 201, 285, 343, 303,\n       153, 221, 223, 249, 198, 273, 210, 219, 240, 168, 279, 341, 267,\n       330, 167, 178, 264, 175, 289, 205, 305, 218, 197, 315, 196, 194,\n       185, 297, 319, 154, 159, 161, 307, 203, 333, 200, 163, 212, 165,\n       177, 189, 309, 207, 311, 301, 156, 181, 327, 191, 183, 283, 335,\n       215, 321, 169, 253,   3, 339])\n\n\nClick to the left of an output cell to enable/disable scrolling of the output (usefull for large amounts of output).\n\nsorted_df.loc[0]\n\nspecies                 Adelie\nisland               Torgersen\nbill_length_mm            39.1\nbill_depth_mm             18.7\nflipper_length_mm        181.0\nbody_mass_g             3750.0\nsex                       Male\nName: 0, dtype: object\n\n\n\nsorted_df.flipper_length_mm[0]\n\n181.0\n\n\n\nsorted_df.iloc[0] # iloc !!!\n\nspecies              Adelie\nisland                Dream\nbill_length_mm         32.1\nbill_depth_mm          15.5\nflipper_length_mm     188.0\nbody_mass_g          3050.0\nsex                  Female\nName: 142, dtype: object\n\n\n\nsorted_df.flipper_length_mm.iloc[0]\n\n188.0",
     "crumbs": [
       "Guides",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Numpy and Pandas</span>"
@@ -542,7 +312,7 @@
     "href": "guides/numpy_pandas.html#summary-stats",
     "title": "Numpy and Pandas",
     "section": "Summary stats",
-    "text": "Summary stats\n\npenguins.describe()\n\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\n\n\ncount\n342.000000\n342.000000\n342.000000\n342.000000\n\n\nmean\n43.921930\n17.151170\n200.915205\n4201.754386\n\n\nstd\n5.459584\n1.974793\n14.061714\n801.954536\n\n\nmin\n32.100000\n13.100000\n172.000000\n2700.000000\n\n\n25%\n39.225000\n15.600000\n190.000000\n3550.000000\n\n\n50%\n44.450000\n17.300000\n197.000000\n4050.000000\n\n\n75%\n48.500000\n18.700000\n213.000000\n4750.000000\n\n\nmax\n59.600000\n21.500000\n231.000000\n6300.000000\n\n\n\n\n\n\n\n\n\npenguins.bill_length_mm.mean()\n\n43.9219298245614\n\n\n\npenguins.bill_length_mm.count()\n\n342",
+    "text": "Summary stats\n\npenguins.describe()\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\n\n\ncount\n342.000000\n342.000000\n342.000000\n342.000000\n\n\nmean\n43.921930\n17.151170\n200.915205\n4201.754386\n\n\nstd\n5.459584\n1.974793\n14.061714\n801.954536\n\n\nmin\n32.100000\n13.100000\n172.000000\n2700.000000\n\n\n25%\n39.225000\n15.600000\n190.000000\n3550.000000\n\n\n50%\n44.450000\n17.300000\n197.000000\n4050.000000\n\n\n75%\n48.500000\n18.700000\n213.000000\n4750.000000\n\n\nmax\n59.600000\n21.500000\n231.000000\n6300.000000\n\n\n\n\n\n\n\n\npenguins.bill_length_mm.mean()\n\n43.9219298245614\n\n\n\npenguins.bill_length_mm.count()\n\n342",
     "crumbs": [
       "Guides",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Numpy and Pandas</span>"
@@ -553,7 +323,7 @@
     "href": "guides/numpy_pandas.html#grouping",
     "title": "Numpy and Pandas",
     "section": "Grouping",
-    "text": "Grouping\n\npenguins.groupby('island')\n\n&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x15cc9e5e0&gt;\n\n\n\nAggregate\nAggregating produces a single value for each variable in each group:\nMeans for all numeric variables for each island:\n\npenguins.groupby('island').aggregate(\"mean\", numeric_only=True)\n\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\nisland\n\n\n\n\n\n\n\n\nBiscoe\n45.257485\n15.874850\n209.706587\n4716.017964\n\n\nDream\n44.167742\n18.344355\n193.072581\n3712.903226\n\n\nTorgersen\n38.950980\n18.429412\n191.196078\n3706.372549\n\n\n\n\n\n\n\n\n\npenguins.groupby('island').mean(numeric_only=True)\n\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\nisland\n\n\n\n\n\n\n\n\nBiscoe\n45.257485\n15.874850\n209.706587\n4716.017964\n\n\nDream\n44.167742\n18.344355\n193.072581\n3712.903226\n\n\nTorgersen\n38.950980\n18.429412\n191.196078\n3706.372549\n\n\n\n\n\n\n\n\nMeans for bill_length_mm and flipper_length_mm:\n\npenguins.groupby('island')[['bill_length_mm', 'flipper_length_mm']].mean()\n\n\n\n\n\n\n\n\n\nbill_length_mm\nflipper_length_mm\n\n\nisland\n\n\n\n\n\n\nBiscoe\n45.257485\n209.706587\n\n\nDream\n44.167742\n193.072581\n\n\nTorgersen\n38.950980\n191.196078\n\n\n\n\n\n\n\n\nJust for flipper_length_mm:\n\npenguins.groupby('island').flipper_length_mm.mean()\n\nisland\nBiscoe       209.706587\nDream        193.072581\nTorgersen    191.196078\nName: flipper_length_mm, dtype: float64\n\n\n\n\nTransform\nTransforming produces new colums with the same length as the input:\n\npenguins.groupby('island')[['bill_length_mm', 'flipper_length_mm']].transform(\"mean\")\n\n\n\n\n\n\n\n\n\nbill_length_mm\nflipper_length_mm\n\n\n\n\n0\n38.950980\n191.196078\n\n\n1\n38.950980\n191.196078\n\n\n2\n38.950980\n191.196078\n\n\n3\n38.950980\n191.196078\n\n\n4\n38.950980\n191.196078\n\n\n...\n...\n...\n\n\n339\n45.257485\n209.706587\n\n\n340\n45.257485\n209.706587\n\n\n341\n45.257485\n209.706587\n\n\n342\n45.257485\n209.706587\n\n\n343\n45.257485\n209.706587\n\n\n\n\n344 rows × 2 columns\n\n\n\n\n\ndef z_value(sr):\n    return (sr - sr.mean()) / sr.std()\n\npenguins.groupby('island')[['bill_length_mm', 'flipper_length_mm']].transform(z_value)\n\n\n\n\n\n\n\n\n\nbill_length_mm\nflipper_length_mm\n\n\n\n\n0\n0.049258\n-1.636022\n\n\n1\n0.181475\n-0.833742\n\n\n2\n0.445910\n0.610362\n\n\n3\nNaN\nNaN\n\n\n4\n-0.744048\n0.289450\n\n\n...\n...\n...\n\n\n339\nNaN\nNaN\n\n\n340\n0.323193\n0.374297\n\n\n341\n1.077478\n0.869267\n\n\n342\n-0.012044\n0.162167\n\n\n343\n0.972717\n0.232877\n\n\n\n\n344 rows × 2 columns\n\n\n\n\n\n\nApply\nFlexible method allowing any operation on grouped data.\nReturn a single value:\n\ndef fun(df):\n    return df.bill_length_mm + df.flipper_length_mm.mean() / df.body_mass_g\n\npenguins.groupby('island').apply(fun)#.to_frame('my_stat')\n\nisland        \nBiscoe     20     37.861678\n           21     37.758252\n           22     35.955186\n           23     38.253090\n           24     38.855186\n                    ...    \nTorgersen  127    41.544464\n           128    39.062687\n           129    44.147799\n           130    38.557503\n           131    43.154627\nLength: 344, dtype: float64\n\n\nReturn a dataframe:\n\ndef fun(df):\n    return pd.DataFrame({'sqrt_bill': np.sqrt(df.bill_length_mm),\n                         'bill_squared': df.bill_length_mm**2})\n\npenguins.groupby('island').apply(fun)\n\n\n\n\n\n\n\n\n\n\nsqrt_bill\nbill_squared\n\n\nisland\n\n\n\n\n\n\n\nBiscoe\n20\n6.148170\n1428.84\n\n\n21\n6.140033\n1421.29\n\n\n22\n5.991661\n1288.81\n\n\n23\n6.180615\n1459.24\n\n\n24\n6.228965\n1505.44\n\n\n...\n...\n...\n...\n\n\nTorgersen\n127\n6.442049\n1722.25\n\n\n128\n6.244998\n1521.00\n\n\n129\n6.640783\n1944.81\n\n\n130\n6.204837\n1482.25\n\n\n131\n6.565059\n1857.61\n\n\n\n\n344 rows × 2 columns",
+    "text": "Grouping\n\npenguins.groupby('island')\n\n&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x15cc9e5e0&gt;\n\n\n\nAggregate\nAggregating produces a single value for each variable in each group:\nMeans for all numeric variables for each island:\n\npenguins.groupby('island').aggregate(\"mean\", numeric_only=True)\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\nisland\n\n\n\n\n\n\n\n\nBiscoe\n45.257485\n15.874850\n209.706587\n4716.017964\n\n\nDream\n44.167742\n18.344355\n193.072581\n3712.903226\n\n\nTorgersen\n38.950980\n18.429412\n191.196078\n3706.372549\n\n\n\n\n\n\n\n\npenguins.groupby('island').mean(numeric_only=True)\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\nisland\n\n\n\n\n\n\n\n\nBiscoe\n45.257485\n15.874850\n209.706587\n4716.017964\n\n\nDream\n44.167742\n18.344355\n193.072581\n3712.903226\n\n\nTorgersen\n38.950980\n18.429412\n191.196078\n3706.372549\n\n\n\n\n\n\n\nMeans for bill_length_mm and flipper_length_mm:\n\npenguins.groupby('island')[['bill_length_mm', 'flipper_length_mm']].mean()\n\n\n\n\n\n\n\n\nbill_length_mm\nflipper_length_mm\n\n\nisland\n\n\n\n\n\n\nBiscoe\n45.257485\n209.706587\n\n\nDream\n44.167742\n193.072581\n\n\nTorgersen\n38.950980\n191.196078\n\n\n\n\n\n\n\nJust for flipper_length_mm:\n\npenguins.groupby('island').flipper_length_mm.mean()\n\nisland\nBiscoe       209.706587\nDream        193.072581\nTorgersen    191.196078\nName: flipper_length_mm, dtype: float64\n\n\n\n\nTransform\nTransforming produces new colums with the same length as the input:\n\npenguins.groupby('island')[['bill_length_mm', 'flipper_length_mm']].transform(\"mean\")\n\n\n\n\n\n\n\n\nbill_length_mm\nflipper_length_mm\n\n\n\n\n0\n38.950980\n191.196078\n\n\n1\n38.950980\n191.196078\n\n\n2\n38.950980\n191.196078\n\n\n3\n38.950980\n191.196078\n\n\n4\n38.950980\n191.196078\n\n\n...\n...\n...\n\n\n339\n45.257485\n209.706587\n\n\n340\n45.257485\n209.706587\n\n\n341\n45.257485\n209.706587\n\n\n342\n45.257485\n209.706587\n\n\n343\n45.257485\n209.706587\n\n\n\n\n344 rows × 2 columns\n\n\n\n\ndef z_value(sr):\n    return (sr - sr.mean()) / sr.std()\n\npenguins.groupby('island')[['bill_length_mm', 'flipper_length_mm']].transform(z_value)\n\n\n\n\n\n\n\n\nbill_length_mm\nflipper_length_mm\n\n\n\n\n0\n0.049258\n-1.636022\n\n\n1\n0.181475\n-0.833742\n\n\n2\n0.445910\n0.610362\n\n\n3\nNaN\nNaN\n\n\n4\n-0.744048\n0.289450\n\n\n...\n...\n...\n\n\n339\nNaN\nNaN\n\n\n340\n0.323193\n0.374297\n\n\n341\n1.077478\n0.869267\n\n\n342\n-0.012044\n0.162167\n\n\n343\n0.972717\n0.232877\n\n\n\n\n344 rows × 2 columns\n\n\n\n\n\nApply\nFlexible method allowing any operation on grouped data.\nReturn a single value:\n\ndef fun(df):\n    return df.bill_length_mm + df.flipper_length_mm.mean() / df.body_mass_g\n\npenguins.groupby('island').apply(fun)#.to_frame('my_stat')\n\nisland        \nBiscoe     20     37.861678\n           21     37.758252\n           22     35.955186\n           23     38.253090\n           24     38.855186\n                    ...    \nTorgersen  127    41.544464\n           128    39.062687\n           129    44.147799\n           130    38.557503\n           131    43.154627\nLength: 344, dtype: float64\n\n\nReturn a dataframe:\n\ndef fun(df):\n    return pd.DataFrame({'sqrt_bill': np.sqrt(df.bill_length_mm),\n                         'bill_squared': df.bill_length_mm**2})\n\npenguins.groupby('island').apply(fun)\n\n\n\n\n\n\n\n\n\nsqrt_bill\nbill_squared\n\n\nisland\n\n\n\n\n\n\n\nBiscoe\n20\n6.148170\n1428.84\n\n\n21\n6.140033\n1421.29\n\n\n22\n5.991661\n1288.81\n\n\n23\n6.180615\n1459.24\n\n\n24\n6.228965\n1505.44\n\n\n...\n...\n...\n...\n\n\nTorgersen\n127\n6.442049\n1722.25\n\n\n128\n6.244998\n1521.00\n\n\n129\n6.640783\n1944.81\n\n\n130\n6.204837\n1482.25\n\n\n131\n6.565059\n1857.61\n\n\n\n\n344 rows × 2 columns",
     "crumbs": [
       "Guides",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Numpy and Pandas</span>"
@@ -579,6 +349,236 @@
     "crumbs": [
       "Guides",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Plots with matplotlib</span>"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Project Guide",
+    "section": "",
+    "text": "Introduction\nThese pages serve as a source of practial information to get you started. The part called “Project setup”, take you though the steps to get you set up on your own machine and on our computing cluster. You should go through this part in the other it is listed and make sure you have succesfully completed each step before you go on.\nThe Quickstarts are introductions to the most important tools you will use.\nYou will end up producing a set of pages much like these, and the Notebooks and Reporting both serve as showcases and to give you an idea of how your own notebooks and reports will show once you get to that point.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "guides/laptop_setup.html",
+    "href": "guides/laptop_setup.html",
+    "title": "Laptop setup",
+    "section": "",
+    "text": "You will work on our computing cluster, but before we get there, we must get you properly set up on your machine.\n\nInstall Python\nIf you have not done so already, you should install a distribution of Python called Anaconda. Anaconda is not only an easy way of installing Python on Windows, Mac, and Linux; it also comes with the conda package management system (more about that later). To install Anaconda, visit this page. When the download completes, you must follow the default installation.\n\n\nThe Terminal\nThe programs you will use in the project are command-line applications. I.e., programs executed by writing their name and any arguments in a “terminal” rather than clicking on an icon and using a graphical user interface. Many different programs can serve as a terminal.\n\nIf you have a Windows machine, use the Anaconda Powershell Prompt (not the Anaconda Prompt and not the CMD). You installed Anaconda Powershell Prompt along with Anaconda Python.\nIf you have a Mac, the terminal you will use is called Terminal. The Terminal application is pre-installed on Mac.\n\nFrom now on, whenever I refer to the terminal, I mean Anaconda Powershell Prompt on Windows and Terminal on Mac. I will assume some familiarity with using a terminal and executing commands on the command line. If you have not used a terminal before, or if you are a bit rusty, you should run through this primer before you go on.\n\n\nConda environments\n\nYou must install packages and programs for your analyses and pipelines. Sometimes, however, the packages you need for one project conflict with the ones you need for other projects you work on in parallel. Such conflicts seem like an unsolvable problem. Would it not be fantastic if you could create a small world insulated from the rest of your Anaconda installation? Then, that small world would only contain the packages you needed for a single project. If each project had its isolated world, then there would be no such conflicts.\nFortunately, a tool lets you do just that, and its name is Conda. Conda’s small worlds are called “environments,” and you can create as many as you like. You can then switch between them as you switch between your bioinformatics projects. Conda also downloads and installs the packages for you, ensuring that the packages you install in each environment are compatible. It even makes sure to install packages (dependencies) required by the packages you install. By creating an environment for each project, the libraries installed for each project do not interfere.\n\n\nCreate a conda environment on your local machine\nWhen you install Anaconda or Miniconda, Conda makes a single base environment. It is called “base,” and this is why it says “(base)” at your terminal prompt. You need a conda environment for your project on your local machine. You can call it anything you like, but if you call it birc-project, it will match the rest of this tutorial. So do that.\nThe environment on your local machine only needs a few packages since it only connects you to the cluster. The command below creates a birc-project environment and installs the slurm-jupyter package from my conda channel:\n\n\nTerminal\n\nconda create -y -n birc-project -c kaspermunch slurm-jupyter\n\nTo activate the environment, use this command:\n\n\nTerminal\n\nconda activate birc-project\n\nNote how the environment name at your terminal prompt changes from (base) to (birc-project). To deactivate the environment, use this command:\n\n\nTerminal\n\nconda deactivate\n\nand the terminal prompt changes back to (base).\n\n\nVPN\nYou can only connect to the cluster on the University’s internal network. So you must be physically on campus or use the University’s VPN. To install VPN, follow the instructions on this page. Before you can use the VPN, you also need to enable two-step verification. You can see how to do that on the same page. If you are not physically on campus, you must activate your VPN before logging in to the cluster. Your password for the VPN is the same as the one you use to log on to access Blackboard.",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Laptop setup</span>"
+    ]
+  },
+  {
+    "objectID": "guides/cluster_access.html",
+    "href": "guides/cluster_access.html",
+    "title": "Cluster access",
+    "section": "",
+    "text": "This is not a leisure read\n\n\n\nMake sure you follow it to the letter. Do each step in order, and do not proceed until you have successfully completed each step.\n\n\n\nThe GenomeDK cluster is a huge collection of computers with a shared file system. You can find lots of helpful information about the cluster on their homepage beyond what I cover on these pages. The cluster does not have a screen or keyboard you can use, but by connecting to the cluster from your computer, you can create and edit files much like if they were on your laptop. These pages take you through the steps to connect and access the cluster.\nBelow, you will see something like &lt;cluster user name&gt; or &lt;project folder&gt;. Whenever you see something like that, you should replace everything, including &lt; and &gt;, with whatever it says. E.g., if your cluster user name is mike, you should replace &lt;cluster user name&gt; with mike.\nBefore you can begin, you need access to the cluster. The cluster is called GenomeDK and has its own website with lots of information and documentation. To get an account on the cluster, you must request one here. Below, &lt;username&gt; will represent your user name.\n\nConnecting to the cluster using ssh\n\nSSH is short for secure shell. A shell is the software that lets you run commands in your terminal window. The secure shell (SSH) allows you to log in to another computer to navigate the folders and run commands on that machine. So when you open your terminal window, your commands run on your local machine, but when you “ssh” (yes, it is a verb, too) into the cluster, your commands run on the cluster. Before you go on, try to run the command hostname in your terminal. You can see that it prints something that tells you that you are on your laptop.\nYou connect to the cluster from the terminal by executing the command below (remember to replace &lt;cluster user name&gt; with your actual cluster user name):\n\n\nTerminal\n\nssh &lt;cluster user name&gt;@login.genome.au.dk\n\nWhen you do, ssh prompts you for the password that goes with your cluster username (GenomeDK requires two-factor authentication and will sometimes ask you for a site key). Enter the password and press Enter. You are now in your home folder on the cluster. Your terminal looks the same as before, but it will print:\n  _____                                ______ _   __\n |  __ \\                               |  _  \\ | / /\n | |  \\/ ___ _ __   ___  _ __ ___   ___| | | | |/ /\n | | __ / _ \\ '_ \\ / _ \\| '_ ` _ \\ / _ \\ | | |    \\\n | |_\\ \\  __/ | | | (_) | | | | | |  __/ |/ /| |\\  \\\n  \\____/\\___|_| |_|\\___/|_| |_| |_|\\___|___/ \\_| \\_/\nIf you run the hostname command again, you can see that you are now on fe-open-01. Now log out of the cluster again by typing exit and Enter (or pressing Ctrl-d). You are now back on your laptop. Try hostname again and see the name of your computer.\nYou will need to log in to the cluster many times, so you should set up your SSH connection to the cluster so you can connect securely without typing the password every time. This is roughly how it works:\n\n\n\n\n\n\nSSH keys\n\n\n\nFirstly, you have to understand what public/private encryption keys are. A private key is a very long, random sequence of bits. A private key is kept secret and never leaves your laptop. A public key is another string of bits that is a derivative of the private key.\nYou can generate a unique public key from the private key but cannot get the private key from a public key: It is a one-way process. You can encrypt (or sign) any message using the public key, and it will only be possible to decrypt it using the private key it is derived from. In other words, anyone with your public key can send you encrypted messages that only you will be able to read.\nSo, if the cluster has your public key saved, it can authenticate you like this: The cluster sends your laptop a message encrypted using the public key. Your laptop then decrypts the message using its private key and sends it back. If the cluster receives a correctly decrypted message it knows it is you and logs you in.\n\n\nFirst, check if you have these two authentication files on your local machine:\n~/.ssh/id_rsa\n~/.ssh/id_rsa.pub\nYou can do so using the ls commmand:\n\n\nTerminal\n\nls -a ~/.ssh\n\nYou most likely do not. If so, you generate authentication keys with the command below. Just press Enter when prompted for a file in which to save the key. Do not enter a passphrase when prompted - just press enter:\n\n\nTerminal\n\nssh-keygen -t rsa\n\nNow use ssh to create a directory ~/.ssh on the cluster (assuming your username on the cluster is &lt;cluster user name&gt;). SSH will prompt you for your password.\n\n\nTerminal\n\nssh &lt;cluster user name&gt;@login.genome.au.dk mkdir -p .ssh\n\nFinally, append the public ssh key on your local machine to the file .ssh/authorized_keys on the cluster and enter your password (replace &lt;cluster user name&gt; with your cluster user name):\n\n\nTerminal\n\ncat ~/.ssh/id_rsa.pub | ssh username@login.genome.au.dk 'cat &gt;&gt; .ssh/authorized_keys'\n\nFrom now on, you can log into the cluster from your local machine without being prompted for a password.\nTry it:\n\n\nTerminal\n\nssh &lt;cluster user name&gt;@login.genome.au.dk\n\n(see, no password).",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Cluster access</span>"
+    ]
+  },
+  {
+    "objectID": "guides/cluster_setup.html",
+    "href": "guides/cluster_setup.html",
+    "title": "Cluster set up",
+    "section": "",
+    "text": "Install Python on your cluster account\nYou need to install miniconda (a minimal Anaconda version) in your cluster home dir. Log in to the cluster and run this command to download the miniconda install script:\nThen use this command to download and install miniconda:\nFollow the default installation, and say yes when it asks you if it should run conda init for you.\nNP: Now log out of the cluster and log back in. This is needed to make the conda command available to you.",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
+    ]
+  },
+  {
+    "objectID": "guides/cluster_setup.html#install-python-on-your-cluster-account",
+    "href": "guides/cluster_setup.html#install-python-on-your-cluster-account",
+    "title": "Cluster set up",
+    "section": "",
+    "text": "Terminal\n\nwget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh\n\n\n\n\nTerminal\n\nbash Miniconda3-latest-Linux-x86_64.sh",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
+    ]
+  },
+  {
+    "objectID": "guides/cluster_setup.html#the-project-folder",
+    "href": "guides/cluster_setup.html#the-project-folder",
+    "title": "Cluster set up",
+    "section": "The project folder",
+    "text": "The project folder\nThe project folder is a folder that is set up on the cluster to hold your project. I use the placeholder &lt;projectfolder&gt; here, but it will be called something sensible like baboonadmixture.\nIt is accessible to only you and anyone else you collaborate with (such as your supervisor). The project folder is in your home directory and should hold the following subfolders:\n&lt;projectfolder&gt;\n    /data\n    /people\n        /&lt;username&gt;\n        /&lt;supervisor_username&gt;\nThe &lt;projectfolder&gt;/people/&lt;username&gt; is your domain. This is where you have all the files that relates to your project.\nThe name of the project folder is is also the name of the account that gets billed for the work on the cluster. When you run gwf, srun, sbatch or slurm-jupyter (see below) you must specify that project name using the -A or --account options (see below for more details on that).",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
+    ]
+  },
+  {
+    "objectID": "guides/cluster_setup.html#make-a-git-repository-for-your-project",
+    "href": "guides/cluster_setup.html#make-a-git-repository-for-your-project",
+    "title": "Cluster set up",
+    "section": "Make a Git repository for your project",
+    "text": "Make a Git repository for your project\n\nGit is a version control tool that you use from the terminal. A folder under Git control is called a repository. Git does not interfere with your files and it does not save them. It lets you monitor the state of your files so you can easily see if any files are added, modified, or removed, and it allows you to (manually) maintain a record of what files where changes when, how, and for what reason.\n\nStart by creating your own github account if you do not have one already.\nFollow the instructions on this page to add ssh keys to GitHub.\nEmail me your GitHub username on so I can add you to the shared GitHub account for our research group. I will create a repository for you with scaffold of folders and with placeholder files that will get you started in the right way.\nWait for an email or notification and accept my inviation to the “munch-lab” GitHub organization and an email from me with the name of the repository I made for your project. On these pages, I will use &lt;repositoryname&gt; for the name of your repository.\nMake sure you are logged into your GitHub account and then go to the repository listing at the munch-lab organization on GitHub. Find the directory I made for you and have a look at what is in there. Leave it there for now.\n\n\nCloning this git repository to the cluster\nStart logging into the cluster and run these two commands to let Git know who you are:\n\n\nTerminal\n\ngit config --global user.name \"&lt;Your GitHub user name&gt;\"\ngit config --global user.email &lt;your_email@whatever.com&gt;\n\nGo to your folder under the project folder (~/&lt;projectfolder&gt;/people/&lt;username&gt;). Once you are in that folder, you can “clone” your git repository from GitHub to the folder on the cluster.\n\n\nTerminal\n\ngit clone git@github.com:munch-lab/&lt;repositoryname&gt;.git\n\n(replace &lt;repositoryname&gt; with the actual name of your repository).\nYou now have a folder called &lt;projectfolder&gt;/people/&lt;username&gt;/&lt;repositoryname&gt; and this is where you must keep all your files for the project.\nIf you cd into &lt;repositoryname&gt; and run ls, you will see a number of folders.\n\ndata: Stores small (tens of megabases) data files you want to keep .\nbinder: Stores the environment.yml files documenting your conda environment used in the project.\nsandbox: Stores experiment and other files that are not yet part of your project workflow. This keeps the rest of the folder structure clean.\nscripts: Stores Python scripts that that produces intermediate and final results.\nsteps: Stores intermediary files (“steps” on the way to final results).\nnotebooks: Stores Juptyer notebooks with code, documentation, and results.\nfigures: Stores result plots and figures you make.\nresults: Stores the small result files of your project (tens of megabases).\nreports: Stores documents reporting your findings.\n\nFiles in all those folders are under Git control, except files in the steps folder. Those files are not backed up in any way, but should instead be reproducible using the code and information in your other folders.\n\n\n\n\n\n\nWarning: Files on the cluster are not backed up!\n\n\n\nYour files on the cluster are not backed up! If you want to backup files, you need to put them in a folder called BACKUP. But even if you do you may loose a week of work, since the backup loop is very slow.\n\n\nThe best way to keep your progress safe, is to ensure is reproducible and pushed to GitHub as often as it makes sense (at least onece a day). The more often you do it, the less work you will loose if you accidentally delete or overwrite a file. More about that in Reproducible research and Version control.",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
+    ]
+  },
+  {
+    "objectID": "guides/cluster_setup.html#create-a-conda-environment",
+    "href": "guides/cluster_setup.html#create-a-conda-environment",
+    "title": "Cluster set up",
+    "section": "Create a conda environment",
+    "text": "Create a conda environment\nLog in to the cluster. Here, we will be a little more through with the conda environment, since this is where you will be doing all your work.\nBegin by creating an empty environment like this (you can pick another name than birc-project if you have an environment with that name already):\n\n\nTerminal\n\nconda create -n birc-project\n\nNow activate the environmet\n\n\nTerminal\n\nconda activate &lt;name&gt;\n\nMake sure it now says (birc-project) and and not (base) at your terminal prompt.\nNow add channels to the environment (places to search for packagages). These will do for now (you can always add more later):\n\n\nTerminal\n\nconda config --env --append channels conda-forge\nconda config --env --append channels bioconda\nconda config --env --append channels gwforg\nconda config --env --append channels kaspermunch\nconda config --env --append channels micknudsen\n\nThen install the actual packages. The following command installs the basic packages you will need for typical Python-based data analysis project:\n\n\nTerminal\n\nconda install git gwf jupyterlab ipython nbdime seaborn statsmodels scipy gwf pytables gwf-utilization\n\nIf your project use probabilistic programming with PyMC (if you are in doubt, it is not), you need to install these packages as well:\n\n\nTerminal\n\nconda install arviz pymc seaborn xarray bambi\n\n\nIf you prefer to use R for data analysis and plots, you should use the following two commands to add the r channel and install the basic R packages:\n\n\nTerminal\n\nconda config --env --append channels r\nconda install r-essentials rpy2\n\nExport it to the binder folder to document which packages your project depends on:\n\n\nTerminal\n\nconda env export &gt; binder/environment.yml\nconda env export --from-history &gt; binder/environment-from-hisitory.yml\n\nImportant: Whenever you log into the cluster to work on your project, you should activate your birc-project environment like this, otherwise the packages are not available:\n\n\nTerminal\n\nconda activate birc-project\n\nWhen your environment is active, it says (birc-project) on the command prompt instead of (base).",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
+    ]
+  },
+  {
+    "objectID": "guides/cluster_setup.html#tip-git-and-jupyter",
+    "href": "guides/cluster_setup.html#tip-git-and-jupyter",
+    "title": "Cluster set up",
+    "section": "Tip: git and jupyter",
+    "text": "Tip: git and jupyter\nGit diff and merge does not play well with jupyter notebooks. To fix that you can activate your environment and navigate to your cloned repository. Then run this command (assuming you installed nbdime in your conda environment): nbdime config-git --enable.",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Cluster set up</span>"
+    ]
+  },
+  {
+    "objectID": "guides/reproducible.html",
+    "href": "guides/reproducible.html",
+    "title": "Reproducible research",
+    "section": "",
+    "text": "Specify raw input data\nReport the location and version of the raw data that serve as input to your analysis. Make sure this data is “read only” so that onone accidentally modifies or deletes it. You can do that like this:\nor recursively for an entire folder:",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
+    ]
+  },
+  {
+    "objectID": "guides/reproducible.html#specify-raw-input-data",
+    "href": "guides/reproducible.html#specify-raw-input-data",
+    "title": "Reproducible research",
+    "section": "",
+    "text": "Terminal\n\nchmod a=r important_input_file.txt\n\n\n\n\nTerminal\n\nchmod -R a=r input_file_folder",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
+    ]
+  },
+  {
+    "objectID": "guides/reproducible.html#define-dependencies",
+    "href": "guides/reproducible.html#define-dependencies",
+    "title": "Reproducible research",
+    "section": "Define dependencies",
+    "text": "Define dependencies\nEmploying tools like Conda define the dependencies of your of your project, ensuring that others can run the same code with the same dependencies.\nWhen you create your conda environment, and whenever you install new packages, you should update the environment.yml file in the binder directory. That way the specification of your environment is always up to date and allows anyone to create the conda environment required to run your analysis You do it by running this command:\n\n\nTerminal\n\nconda env export --from-history -f ./binder/environment.yml\n\nOnce your project is well underway and you have settled on the set of packages needed for your project, you can make your environment more stable (and thus reproducible) by creating the environment again, installing all the packages in one go. To do that, first create a test environment to make sure that your exported environment can actually be created (you do not want to end up with a new environmnet that does not work like the old one):\n\n\nTerminal\n\nconda env create -n test -f binder/environment.yml\n\nIf, and only if, the test environment is successfully created and works the way it should you delete the test environment and the birc-project enrivonemnt:\n\n\nTerminal\n\nconda env remove -n test\nconda env remove -n birc-project\n\nand create a new version of the birc-project enrivonemnt:\n\n\nTerminal\n\nconda env create -f binder/environment.yml\n\nThen, to make life easier for someone reproducing your project on the GenomeDK, you must run this command as well (it records all the packages used including their linux versions used here):\n\n\nTerminal\n\nconda activate birc-project\nconda env export -f ./binder/environment-genomedk.yml",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
+    ]
+  },
+  {
+    "objectID": "guides/reproducible.html#use-version-control",
+    "href": "guides/reproducible.html#use-version-control",
+    "title": "Reproducible research",
+    "section": "Use version control",
+    "text": "Use version control\nUsing version control systems like Git to track changes to code and documentation over time. This helps in understanding the evolution of the research and facilitates collaboration. It also allows you to tag the the state of your repository upon publication, so you can keep working on it later without disrupting its state at publication.\nIn the world of data projects, there are three kinds of data files.\nType 1 files: Files representing the input to your project: sequencing reads, genomes, genotypes, etc. These are usually difficult or expensive to reproduce and once made they never change. They are often too large to fit on GitHub, so they are saved (and backed up) indefinitely on the cluster, and can be distributed upon request to other researchers that want to replicate your analysis. Often the data is only local copy of data also available in a public database. You can put such files in the data folder of your repository on the cluster, but unless they are very small, do not git add these files to Git control.\nType 2 files: Files representing your work and the results from the project: documentation, scripts, code, gwf workflows, notebooks, plots, tables, etc. These files are usually as small as they are precious and they are the ones you add to your Git repository and puth to GitHub every time you change them. These files are workflow.py, and files you put in the binder, scripts, notebooks, results, figures, and reports folders.\nType 3 files: Files representing intermediary steps to get from files of type 1 to files of type 2. These can be large and many and often most of the harddisk space consumed by your project. However, they are easily regenerated if your project is reproducible. So type 3 files need not be saved indefinitely and they should not be added to your Git repository. In fact, type 3 files should be deleted as soon as the project is finished. All such files must be put in the steps folder or in folders inside the steps folder. This way, removing all type 3 files is safely done by deleting the content of the steps folder.",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
+    ]
+  },
+  {
+    "objectID": "guides/reproducible.html#make-computatioal-steps-an-executable-workflow",
+    "href": "guides/reproducible.html#make-computatioal-steps-an-executable-workflow",
+    "title": "Reproducible research",
+    "section": "Make computatioal steps an executable workflow",
+    "text": "Make computatioal steps an executable workflow\nPipeline the steps of the computationally demanding part of your analysis in executable workflows using cluster workflow tools like GWF. This ensures that interdependent steps are run in the right order and rerun if necessary.",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
+    ]
+  },
+  {
+    "objectID": "guides/reproducible.html#make-your-analysis-executable",
+    "href": "guides/reproducible.html#make-your-analysis-executable",
+    "title": "Reproducible research",
+    "section": "Make your analysis executable",
+    "text": "Make your analysis executable\nUse Jupyter notebooks to assemble the code, ducumentation, and figures relevant to each part of your subsequent analysis. That way your analysis is what is produced by running your notebooks in order, no more, no less. placeholder notebooks in the notebooks folder\nname them so they sort lexicographically: 01_first_analysis.ipynb, 02_second_analysis.ipynb.",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
+    ]
+  },
+  {
+    "objectID": "guides/reproducible.html#make-your-reporting-executable",
+    "href": "guides/reproducible.html#make-your-reporting-executable",
+    "title": "Reproducible research",
+    "section": "Make your reporting executable",
+    "text": "Make your reporting executable\nCompile your manuscript and any supplementary ducumemnts by linking to figures and results in your notebooks. This is easily done using tools like Quarto\nMarkdown / Qmarkdown / Notebooks\nthe _quarto.yml file\nrendering\nat the project end set output-dir to docs, render the whole thing and add docs to repository",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
+    ]
+  },
+  {
+    "objectID": "guides/reproducible.html#make-your-entire-project-publicly-available",
+    "href": "guides/reproducible.html#make-your-entire-project-publicly-available",
+    "title": "Reproducible research",
+    "section": "Make your entire project publicly available",
+    "text": "Make your entire project publicly available\nMaking your repository publically available on GitHub. In addition to the scientific reguirement, reproducibility allows anyone to benefit from and build upon your work, greatly increasing its value.",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
+    ]
+  },
+  {
+    "objectID": "guides/reproducible.html#reproducing-your-work",
+    "href": "guides/reproducible.html#reproducing-your-work",
+    "title": "Reproducible research",
+    "section": "Reproducing your work",
+    "text": "Reproducing your work\nIf you follow the steps above, reproducing your results would only entail the following steps:\n\nRetrieve the raw data in the specified version.\nClone your Git repository.\nCreate the conda environment from the environment.yml file.\nRun GWF workflow on a compute cluster for the computationally demanding parts of your analysis.\nRun the Jupyter notebooks in the specified order.\nRun Quarto on the resulting state of the repository to build the manuscript and supplementary information.\n\nBelow I will go over how to organize your project so that these steps also contribute to makeing your own life easier.",
+    "crumbs": [
+      "Project setup",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Reproducible research</span>"
+    ]
+  },
+  {
+    "objectID": "guides/git_101.html",
+    "href": "guides/git_101.html",
+    "title": "Version control",
+    "section": "",
+    "text": "Git as journaled backup\nWhen you are in your &lt;repositoryname&gt; folder, you can run git commands to manage your files, record their changes and sync them to the repository on GitHub for safe keeping. These tutorials are good introductions to git.\nTo journal the creation or modification of a file, you need to add it to git:\nThis “stages” the change. This adds the file to the a “group” of changes that represent some modification to your project. You can add more files to that “group” by running the command again with other files. If you run git status you can see that the files are now staged.\nSo maybe you added or changed two python files addressing some parcitular problem or advancing some part of your project. Now you want to store those of changes to the journal maintained by Git and associate it with a short message describing the changes. For that you use:\nIf you added two python files, your description could be 'Added two python files for my analysis'. If you fixed a bug or added new code to the files, your message should reflect that.\nNow your changes are recorded in the version of the &lt;repositoryname&gt; on the cluster, but that does not serve as a backup in case you accidentally delete your entire folder or the cluster burns down. To backup your repository you need to synchronize your local &lt;repositoryname&gt; repository on the cluster with the &lt;repositoryname&gt; repository on GitHub. To du that use:\nIn addition to keeping your precious files safe and backed up, your GitHub repository also serve as a journal documenting of your progress. Each commit is a snapshot if your project that can be retrieved at any time.",
+    "crumbs": [
+      "Quickstarts",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Version control</span>"
+    ]
+  },
+  {
+    "objectID": "guides/git_101.html#git-as-journaled-backup",
+    "href": "guides/git_101.html#git-as-journaled-backup",
+    "title": "Version control",
+    "section": "",
+    "text": "Terminal\n\ngit add &lt;the_changed_file&gt;\n\n\n\n\n\nTerminal\n\ngit commit -m '&lt;message&gt;'\n\n\n\n\n\nTerminal\n\ngit push",
+    "crumbs": [
+      "Quickstarts",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Version control</span>"
+    ]
+  },
+  {
+    "objectID": "guides/git_101.html#git",
+    "href": "guides/git_101.html#git",
+    "title": "Version control",
+    "section": "Git",
+    "text": "Git\nThere is a cheat sheet here and some good visual guides here and here.\nThe three most important commands to learn are: git status, git add, git rm, git mv, git commit and git push.",
+    "crumbs": [
+      "Quickstarts",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Version control</span>"
     ]
   },
   {
