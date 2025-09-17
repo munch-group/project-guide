@@ -10,7 +10,7 @@ Reproducible research refers to the idea that the results of a research study ca
 Still, even with the best of intentions, simply recording the commands you used and writing down what you did rarely suffice in practise: You may forget to document something, things you feel are implicit may not be to the reader, you may put something down in the wrong order, you may forget your last minute install of a library in an updated version, and so on ... Any such such thing will leave anyone trying to reproduce your work stuck, not knowing what to do. Even if they figure out a way to proceed, it may not be the way you origiginally did, defeating the purpuse of reprudcing. This page takes you through the approach to reproducibility we use in our group and teaches you how to follow the following seven rules:
 
 1. Define version and location of data (if any) that serve as raw input to your analysis.
-2. Use `conda` to define which external tools and libraries your analysis depend on.
+2. Use `pixi` to define which external tools and libraries your analysis depend on.
 3. Use `git` for version control and backup and host your repository at the [group's home on GitHub](https://github.com/munch-lab)
 4. Use `gwf` to pipeline your computationally demanding steps in an executable workflow.
 5. Use executable `jupyter` notebooks for your experiments, plots, analyses, statistical tests, and interpretation.
@@ -33,39 +33,9 @@ chmod -R a=r input_file_folder
 
 ## Define dependencies
 
-Employing tools like Conda define the dependencies of your of your project, ensuring that others can run the same code with the same dependencies.
+Employing tools like Pixi define the dependencies of your of your project, ensuring that others can run the same code with the same dependencies.
 
-When you create your conda environment, and whenever you install new packages, you should update the `environment.yml` file in the `binder` directory. That way the specification of your environment is always up to date and allows anyone to create the conda environment required to run your analysis You do it by running this command:
-
-```{.bash filename="Terminal"}
-conda env export --from-history -f ./binder/environment.yml
-```
-
-Once your project is well underway and you have settled on the set of packages needed for your project, you can make your environment more stable (and thus reproducible) by creating the environment again, installing all the packages in one go. To do that, first create a `test` environment to make sure that your exported environment can actually be created (you do not want to end up with a new environmnet that does not work like the old one):
-
-```{.bash filename="Terminal"}
-conda env create -n test -f binder/environment.yml
-```
-
-If, and only if, the `test` environment is successfully created and works the way it should you delete the `test` environment and the `birc-project` enrivonemnt:
-
-```{.bash filename="Terminal"}
-conda env remove -n test
-conda env remove -n birc-project
-```
-
-and create a new version of the `birc-project` enrivonemnt:
-
-```{.bash filename="Terminal"}
-conda env create -f binder/environment.yml
-```
-
-Then, to make life easier for someone reproducing your project on the GenomeDK, you must run this command as well (it records all the packages used including their linux versions used here):
-
-```{.bash filename="Terminal"}
-conda activate birc-project
-conda env export -f ./binder/environment-genomedk.yml
-```
+Add the `pixi.toml` and `pixi.lock` files to your git repository. That way, the specification of your pixi environment is always up to date and allows anyone to create the environment required to run your analysis
 
 
 ## Use version control
@@ -86,7 +56,7 @@ Pipeline the steps of the computationally demanding part of your analysis in exe
 
 ## Make your analysis executable
 
-Use [Jupyter](https://jupyter.org/) notebooks to assemble the code, ducumentation, and figures relevant to each part of your subsequent analysis. That way your analysis is what is produced by running your notebooks in order, no more, no less.
+Use [Jupyter](https://jupyter.org/) notebooks to assemble the code, documentation, and figures relevant to each part of your subsequent analysis. That way your analysis is what is produced by running your notebooks in order, no more, no less.
 placeholder notebooks in the notebooks `folder`
 
 name them so they sort lexicographically: `01_first_analysis.ipynb`, ` 02_second_analysis.ipynb`.
@@ -94,7 +64,7 @@ name them so they sort lexicographically: `01_first_analysis.ipynb`, ` 02_second
 
 ## Make your reporting executable
 
-Compile your manuscript and any supplementary ducumemnts by linking to figures and results in your notebooks. This is easily done using tools like [Quarto](https://quarto.org/)
+Compile your manuscript and any supplementary documents by linking to figures and results in your notebooks. This is easily done using tools like [Quarto](https://quarto.org/)
 
 Markdown / Qmarkdown / Notebooks
 
@@ -106,7 +76,7 @@ at the project end set output-dir to docs, render the whole thing and add docs t
 
 ## Make your entire project publicly available
 
-Making your repository publically available on GitHub. In addition to the scientific reguirement, reproducibility allows anyone to benefit from and build upon your work, greatly increasing its value.
+Making your repository publicly available on GitHub. In addition to the scientific requirement, reproducibility allows anyone to benefit from and build upon your work, greatly increasing its value.
 
 
 ## Reproducing your work
@@ -115,9 +85,8 @@ If you follow the steps above, reproducing your results would only entail the fo
 
 1. Retrieve the raw data in the specified version.
 2. Clone your Git repository.
-3. Create the conda environment from the `environment.yml` file.
-4. Run GWF workflow on a compute cluster for the computationally demanding parts of your analysis.
-5. Run the Jupyter notebooks in the specified order.
-6. Run Quarto on the resulting state of the repository to build the manuscript and supplementary information.
+3. Run GWF workflow on a compute cluster for the computationally demanding parts of your analysis.
+4. Run the Jupyter notebooks in the specified order.
+5. Run Quarto on the resulting state of the repository to build the manuscript and supplementary information.
 
-Below I will go over how to organize your project so that these steps also contribute to makeing your own life easier. 
+Below I will go over how to organize your project so that these steps also contribute to making your own life easier. 

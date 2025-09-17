@@ -23,7 +23,7 @@ The repos can each have their own adjustable workflow as decribed [here](https:/
 Make sure you install the current version of Git in your environments. The one on the cluster is ancient.
 
 ```{.bash filename="Terminal"}
-conda install -c conda-forge git
+pixi global install gh git
 ```
 
 I also set these configs for each environment to get nicer/safer commands (commands below assume these are set):
